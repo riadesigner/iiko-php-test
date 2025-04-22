@@ -1,0 +1,8 @@
+FROM php:latest
+
+# # Workdir
+ENV WORKDIR=/var/www/app
+RUN mkdir -p ${WORKDIR}
+WORKDIR ${WORKDIR}
+
+CMD ["php", "-S", "0.0.0.0:8000"]

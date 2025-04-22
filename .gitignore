@@ -1,0 +1,9 @@
+node_modules
+vendor
+video
+.DS_Store
+logs
+db
+db-backup
+.env
+*.env
