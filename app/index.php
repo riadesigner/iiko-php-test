@@ -1,5 +1,17 @@
 <?php
 
+if ($_SERVER['REQUEST_URI'] !== '/') {
+    echo "Nothing to see here.";
+    exit;
+}
+
+// file_put_contents('hits.log', date('H:i:s.u') . PHP_EOL, FILE_APPEND);
+// echo "Hello!";
+
+file_put_contents('hits.log', date('H:i:s.u') . ' ' . $_SERVER['REQUEST_URI'] . PHP_EOL, FILE_APPEND);
+echo "Hello!";
+
+exit();
 define("BASEPATH",__file__);
 
 require_once('config.php');

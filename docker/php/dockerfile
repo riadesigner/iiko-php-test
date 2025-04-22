@@ -5,4 +5,4 @@ ENV WORKDIR=/var/www/app
 RUN mkdir -p ${WORKDIR}
 WORKDIR ${WORKDIR}
 
-CMD ["php", "-S", "0.0.0.0:8000"]
+CMD ["php", "-S", "0.0.0.0:8000 router.php"]
