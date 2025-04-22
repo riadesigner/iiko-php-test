@@ -49,8 +49,9 @@ class Iiko_params_test{
 		$this->read_order_types();	
 		$this->read_status_current_terminal_group();	
 		glog("-- IIKO LOADED ROUGH_DATA -- \n".print_r($this->ROUGH_DATA,1));
-						
-		return $this->update_db();		
+			
+		return true;
+		// return $this->update_db();		
 	}
 
 	public function get(): array{
