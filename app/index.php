@@ -5,6 +5,7 @@ define("BASEPATH",__file__);
 require_once('config.php');
 require_once('common.php');
 require_once('class.iiko_params_test.php');
+require_once('class.iiko_nomenclature.php');
 
 /**
  * --------------------------
@@ -25,6 +26,7 @@ $routes = [
     },
     '/parse' => function () {
         echo "парсинг меню";
+        load_and_parse_nomenclature("json-info-formated-full-original.json");
     },
 ];
 
@@ -50,26 +52,22 @@ if (array_key_exists($requestUri, $routes)) {
 
 
 function get_and_save_iiko_params($id_cafe, $api_key): void {
-    $iiko_params = new iiko_params_test($id_cafe, $api_key);
-    $iiko_params->reload();
-    // $data = $iiko_params->get();    
-    $data2 = $iiko_params->get_rough();        
-    
-    // try {        
-    //     $savedFile = saveArrayToUniqueJson($data);
-    //     echo "<br>File saved: " . $savedFile;
-    // } catch (RuntimeException $e) {
-    //     echo "<br>Error: " . $e->getMessage();
-    // }
+    $iiko_params = new Iiko_params_test($id_cafe, $api_key);
+    $iiko_params->reload();    
+    $data = $iiko_params->get_rough();
 
     try {        
-        $savedFile = saveArrayToUniqueJson($data2);
+        $savedFile = saveArrayToUniqueJson($data);
         echo "<br>File saved: " . $savedFile;
     } catch (RuntimeException $e) {
         echo "<br>Error: " . $e->getMessage();
     }    
+}
 
 
+function load_and_parse_nomenclature($file_name){
+    $json_file_path = __dir__."/files/$file_name";
+    $n = new Iiko_nomenclature_parse($json_file_path);    
 }
 
 // print_r(glob('storage/*.json'));
