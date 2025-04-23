@@ -49,13 +49,15 @@ class Iiko_params_test{
 		$this->read_order_types();	
 		$this->read_status_current_terminal_group();	
 		glog("-- IIKO LOADED ROUGH_DATA -- \n".print_r($this->ROUGH_DATA,1));
-			
-		return true;
-		// return $this->update_db();		
+	
+		return $this->update_db();		
 	}
 
 	public function get(): array{
 		return $this->iiko_params;
+	}
+	public function get_rough(): array{
+		return $this->ROUGH_DATA;
 	}
 
 	public function get_token(): string{
@@ -134,7 +136,8 @@ class Iiko_params_test{
 		$this->iiko_params["current_oldway_menu_id"]="";
 		$this->iiko_params["nomenclature_mode"] = 0;
 
-		return $this->save();
+		// return $this->save();
+		return true;
 	}
 
 	// public function save(): bool {

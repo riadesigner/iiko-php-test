@@ -50,8 +50,7 @@ function glogIikoHook($msg){
 
 function glog($msg, $pre="log: "){	
 	global $CFG;			
-	$path = $CFG->dirroot.$CFG->log_path.$CFG->log_menu_file;		
-	echo "\$path=$path<br>";
+	$path = $CFG->dirroot.$CFG->log_path.$CFG->log_menu_file;
 	if (!file_exists($path)) { touch($path); }
 	$log = date('Y-m-d H:i:s') . " $pre $msg";	
 	file_put_contents($path, $log . PHP_EOL, FILE_APPEND);
@@ -262,20 +261,48 @@ function getMinutesWord(int $n): string {
     }
 }
 
-/* for remember and TODO */
+function saveArrayToUniqueJson(array $data, string $directory = 'storage'): ?string {
 
-// try {
-//     throw new Exception("Exception message");
-//     echo "That code will never been executed";
-// } catch (Exception $e) {
-//     echo $e->getMessage();
-// }
+    // Создаем директорию, если её нет
+    if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
+        throw new RuntimeException("Failed to create directory: $directory");
+    }
 
-// if (!is_dir($path)) {  mkdir($path, 0777, true); }
+    // Генерируем уникальное имя для финального файла
+    do {
+        $finalFilename = sprintf(
+            '%s/%s_%s.json',
+            $directory,
+            date('Y-m-d_H-i-s'),
+            bin2hex(random_bytes(4))
+        );
+    } while (file_exists($finalFilename));
 
-//$today  = date("Y-m-d");
-//select * from table_name where timestamp >= CURDATE();
-//select * from table_name where timestamp >= '2018-07-07';
+    // Кодируем данные
+    $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    if ($json === false) {
+        throw new RuntimeException('JSON encoding failed');
+    }
 
+    // Создаем временный файл
+    $tempFile = tempnam(sys_get_temp_dir(), 'json_');
+    if ($tempFile === false) {
+        throw new RuntimeException('Failed to create temporary file');
+    }
+
+    // Записываем JSON во временный файл
+    if (file_put_contents($tempFile, $json, LOCK_EX) === false) {
+        unlink($tempFile); // удаляем временный файл в случае неудачи
+        throw new RuntimeException("Failed to write to temporary file");
+    }
+
+    // Перемещаем временный файл в финальное место
+    if (!rename($tempFile, $finalFilename)) {
+        unlink($tempFile);
+        throw new RuntimeException("Failed to move file to: $finalFilename");
+    }
+
+    return $finalFilename;
+}
 		
 ?>

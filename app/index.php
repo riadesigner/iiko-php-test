@@ -1,135 +1,95 @@
 <?php
 
-if ($_SERVER['REQUEST_URI'] !== '/') {
-    echo "Nothing to see here.";
-    exit;
-}
-
-// file_put_contents('hits.log', date('H:i:s.u') . PHP_EOL, FILE_APPEND);
-// echo "Hello!";
-
-file_put_contents('hits.log', date('H:i:s.u') . ' ' . $_SERVER['REQUEST_URI'] . PHP_EOL, FILE_APPEND);
-echo "Hello!";
-
-exit();
 define("BASEPATH",__file__);
 
 require_once('config.php');
 require_once('common.php');
 require_once('class.iiko_params_test.php');
 
+/**
+ * --------------------------
+ * 
+ *           ROUTER
+ * 
+ * --------------------------
+ */
+
+$routes = [
+    '/' => function () {
+        echo "Главная страница";
+    },
+    '/params' => function () {
+        global $CFG;
+        echo "загрузка параметров iiko";        
+        get_and_save_iiko_params(100, $CFG->api_key);
+    },
+    '/parse' => function () {
+        echo "парсинг меню";
+    },
+];
+
+// Получаем текущий URI без параметров и слэша в конце
+$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$requestUri = rtrim($requestUri, '/');
+
+// Если URI пустой (например, "/"), установим его в "/"
+if ($requestUri === '') {
+    $requestUri = '/';
+}
+
+// Проверяем, есть ли маршрут
+if (array_key_exists($requestUri, $routes)) {
+    $routes[$requestUri](); // Вызываем соответствующую функцию
+} else {
+    // 404 страница
+    http_response_code(404);
+    echo "Страница не найдена";
+}
+
+// ------------------------------------------------------------
 
 
-// $iiko_params = new iiko_params_test(100,$_ENV["API_KEY"]);
-// $iiko_params->reload();
-// $data = $iiko_params->get();
-
-// try {
-//     $savedFile = saveArrayToUniqueJson($data, "files");
-//     echo "File saved: " . $savedFile;
-// } catch (RuntimeException $e) {
-//     echo "Error: " . $e->getMessage();
-// }
-
-echo "1<br>";
-
-
-function saveArrayToUniqueJson_old(array $data, string $directory = 'storage'): ?string {
-
-    error_log("saveArrayToUniqueJson CALLED");
-    glog("функция вызвана!");
-    echo "A<br>";
-
-    // Создаем директорию, если её нет
-    if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
-        throw new RuntimeException("Failed to create directory: $directory");
-    }
-
-    // Генерируем уникальное имя файла
-    do {
-        $filename = sprintf(
-            '%s/%s_%s.json',
-            $directory,
-            date('Y-m-d_H-i-s'),
-            bin2hex(random_bytes(4))
-        );
-    } while (file_exists($filename));
-
-    // Кодируем данные
-    $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+function get_and_save_iiko_params($id_cafe, $api_key): void {
+    $iiko_params = new iiko_params_test($id_cafe, $api_key);
+    $iiko_params->reload();
+    // $data = $iiko_params->get();    
+    $data2 = $iiko_params->get_rough();        
     
-    if ($json === false) {
-        throw new RuntimeException('JSON encoding failed');
-    }
+    // try {        
+    //     $savedFile = saveArrayToUniqueJson($data);
+    //     echo "<br>File saved: " . $savedFile;
+    // } catch (RuntimeException $e) {
+    //     echo "<br>Error: " . $e->getMessage();
+    // }
 
-    // Сохраняем в файл
-    if (file_put_contents($filename, $json, LOCK_EX) === false) {
-        throw new RuntimeException("Failed to write file: $filename");
-    }
+    try {        
+        $savedFile = saveArrayToUniqueJson($data2);
+        echo "<br>File saved: " . $savedFile;
+    } catch (RuntimeException $e) {
+        echo "<br>Error: " . $e->getMessage();
+    }    
 
-    return $filename;
+
 }
 
-function saveArrayToUniqueJson(array $data, string $directory = 'storage'): ?string {
-
-    echo "<br>wow<br>";
-
-    // Создаем директорию, если её нет
-    if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
-        throw new RuntimeException("Failed to create directory: $directory");
-    }
-
-    // Генерируем уникальное имя для финального файла
-    do {
-        $finalFilename = sprintf(
-            '%s/%s_%s.json',
-            $directory,
-            date('Y-m-d_H-i-s'),
-            bin2hex(random_bytes(4))
-        );
-    } while (file_exists($finalFilename));
-
-    // Кодируем данные
-    $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    if ($json === false) {
-        throw new RuntimeException('JSON encoding failed');
-    }
-
-    // Создаем временный файл
-    $tempFile = tempnam(sys_get_temp_dir(), 'json_');
-    if ($tempFile === false) {
-        throw new RuntimeException('Failed to create temporary file');
-    }
-
-    // Записываем JSON во временный файл
-    if (file_put_contents($tempFile, $json, LOCK_EX) === false) {
-        unlink($tempFile); // удаляем временный файл в случае неудачи
-        throw new RuntimeException("Failed to write to temporary file");
-    }
-
-    // Перемещаем временный файл в финальное место
-    if (!rename($tempFile, $finalFilename)) {
-        unlink($tempFile);
-        throw new RuntimeException("Failed to move file to: $finalFilename");
-    }
-
-    return $finalFilename;
-}
-
-// Пример использования
-try {
-    $data = [
-        'name' => 'John Doe',
-        'email' => 'john@example.com',
-        'hobbies' => ['reading', 'gaming']
-    ];
-    
-    $savedFile = saveArrayToUniqueJson($data);
-    echo "File saved: " . $savedFile;
-} catch (RuntimeException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-print_r(glob('storage/*.json'));
+// print_r(glob('storage/*.json'));
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iiko test</title>
+</head>
+<body>
+
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/params">Загрузить параметры iiko</a></li>
+        <li><a href="/parse">Парсинг меню</a></li>
+    </ul>
+
+    
+</body>
+</html>
