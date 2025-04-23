@@ -5,7 +5,7 @@ define("BASEPATH",__file__);
 require_once('config.php');
 require_once('common.php');
 require_once('class.iiko_params_test.php');
-require_once('class.iiko_nomenclature.php');
+require_once('class.iiko_nomenclature_parse.php');
 
 /**
  * --------------------------
