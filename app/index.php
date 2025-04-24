@@ -6,6 +6,7 @@ require_once('config.php');
 require_once('common.php');
 require_once('class.iiko_params_test.php');
 require_once('class.iiko_nomenclature_parse.php');
+require_once('class.iiko_nomenclature_parse2.php');
 
 /**
  * --------------------------
@@ -17,15 +18,16 @@ require_once('class.iiko_nomenclature_parse.php');
 
 $routes = [
     '/' => function () {
-        echo "Главная страница";
+        echo "<h2>Главная страница</h2>";
     },
     '/params' => function () {
         global $CFG;
-        echo "загрузка параметров iiko";        
-        get_and_save_iiko_params(100, $CFG->api_key);
+        echo "<h2>загрузка параметров iiko</h2>";        
+        echo "<p>пауза...</p>";
+        // get_and_save_iiko_params(100, $CFG->api_key);        
     },
     '/parse' => function () {
-        echo "парсинг меню";
+        echo "<h2>парсинг меню</h2>";
         load_and_parse_nomenclature("json-info-formated-full-original.json");
     },
 ];
@@ -67,10 +69,13 @@ function get_and_save_iiko_params($id_cafe, $api_key): void {
 
 function load_and_parse_nomenclature($file_name){
     $json_file_path = __dir__."/files/$file_name";
-    $n = new Iiko_nomenclature_parse($json_file_path);    
+    // $n = new Iiko_nomenclature_parse($json_file_path);    
+    $n2 = new Iiko_nomenclature_parse2($json_file_path);    
 }
 
 // print_r(glob('storage/*.json'));
+
+
 
 ?>
 <!DOCTYPE html>
@@ -79,6 +84,17 @@ function load_and_parse_nomenclature($file_name){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iiko test</title>
+    <style>
+        body{
+            font:.8rem arial;
+        }
+        small{
+            color:gray;
+        }
+        small i{
+            color:red;
+        }
+    </style>
 </head>
 <body>
 
