@@ -44,8 +44,6 @@ class Iiko_nomenclature_parse2{
 		echo "<h2>ГРУППЫ МЕНЮ</h2>";
 		$this->print_groups_tree($this->ARR_GROUPS_TREE);
 
-		
-
 		echo "<h2>ГРУППЫ МЕНЮ (ПЛОССКИЙ МАССИВ)</h2>";
 		$this->print_groups_tree($this->ARR_GROUPS_FLATTEN);		
 
@@ -137,79 +135,28 @@ class Iiko_nomenclature_parse2{
 				$result[$id] = $group;
 			}
 		}
-	
 		return $result;
-	
 	}
 	
-	// private function flatten_groups_tree(array $tree): array {
-	// 	$result = [];
-	// 	foreach ($tree as $rootGroup) {
-	// 		// Клонируем корневую категорию
-	// 		$subs = $rootGroup['sub_groups'];			
-	// 		$result[] = $rootGroup;
-	// 		$rootGroup['sub_groups'] = $this->flattenTree($subs);
-	// 	}
-	// 	return $result;
-	// }
-
-	// private function flattenTree(array $tree): array {
-	// 	$result = [];
-	// 	$queue = new SplQueue();
-	
-	// 	foreach ($tree as &$rootNode) {
-	// 		$queue->enqueue($rootNode);
-	// 	}
-	
-	// 	while (!$queue->isEmpty()) {
-	// 		$node = $queue->dequeue();
-	// 		$subs = $node['sub_groups'];
-	// 		$node['sub_groups'] = [];
-	// 		$result[] = $node; // Добавляем узел в результат
-	
-	// 		foreach ($subs as $child) {
-	// 			$queue->enqueue($child);
-	// 		}
-	// 	}
-	
-	// 	return $result;
-	// }
-
 	private function flatten_groups_tree(array $tree): array {
 		$result = [];
-		foreach ($tree as $group) {
-			
-
+		foreach ($tree as $group) {					
 			$all_subs = [];
-			$this->traverseTreeWithCallback($group['sub_groups'], function ($node) use (&$all_subs) {
-				$all_subs[] = $node;
-			});
+			$this->flatten_groups_tree_helper($group['sub_groups'], $all_subs);
 			$group['sub_groups'] = $all_subs;
 			$result[] = $group;
-			
 		}
 		return $result;
 	}
 
-	private function traverseTreeWithCallback(array $tree, callable $callback): void {
-		foreach ($tree as $node) {
-			$callback($node);
-			if (!empty($node['sub_groups'])) {
-				$subs = $node['sub_groups'];
-				$node['sub_groups'] = [];
-				$this->traverseTreeWithCallback($subs, $callback);
-			}
-		}
-	}	
-
-	// private function flatten_groups_tree_helper(array $tree, array &$result): void {
-	// 	foreach ($tree as $group) {
-	// 		$subs = $group['sub_groups'];
-	// 		$group['sub_groups'] = [];
-	// 		$result[] = $group;
-	// 		$this->flatten_groups_tree_helper($subs, $result);		
-	// 	}
-	// }
+	private function flatten_groups_tree_helper(array $tree, array &$result): void {
+		foreach ($tree as $group) {
+			$subs = $group['sub_groups'];
+			$group['sub_groups'] = [];
+			$result[] = $group;
+			$this->flatten_groups_tree_helper($subs, $result);		
+		}		
+	}
 
 
 
