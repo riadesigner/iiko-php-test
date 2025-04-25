@@ -14,6 +14,9 @@ class Iiko_nomenclature_parse2{
 	private array $ARR_CAFES = [];
 	private array $ARR_GROUPS_TREE = [];
 	private array $ARR_CATEGORIES = [];
+	private array $ARR_GROUPS_MODIFIERS = [];
+	private array $ARR_GROUPS_MENUS = [];
+	private array $ARR_GROUPS_FLATTEN = [];
 	
 	function __construct(string $json_file_path=""){		
 		// read the json file
@@ -33,10 +36,22 @@ class Iiko_nomenclature_parse2{
 		
 		$this->ARR_CATEGORIES = $this->collect_categories_array($productCategories);
 		$this->ARR_CAFES = $this->search_cafes_in_groups($groups);
-		$this->ARR_GROUPS_TREE = $this->build_groups_tree($groups);
+		$this->ARR_GROUPS_MODIFIERS = $this->search_modifiers_in_groups($groups);
+		$this->ARR_GROUPS_MENUS = $this->search_menus_in_groups($groups);
+		$this->ARR_GROUPS_TREE = $this->build_groups_tree($this->ARR_GROUPS_MENUS);
+		$this->ARR_GROUPS_FLATTEN = $this->flatten_groups_tree($this->ARR_GROUPS_TREE);
 
-		// $this->print($this->ARR_GROUPS_TREE);
+		echo "<h2>ГРУППЫ МЕНЮ</h2>";
 		$this->print_groups_tree($this->ARR_GROUPS_TREE);
+
+		
+
+		echo "<h2>ГРУППЫ МЕНЮ (ПЛОССКИЙ МАССИВ)</h2>";
+		$this->print_groups_tree($this->ARR_GROUPS_FLATTEN);		
+
+
+		echo "<h2>ГРУППЫ МОДИФИКАТОРОВ</h2>";
+		$this->print_modifiers($this->ARR_GROUPS_MODIFIERS);
 		
 		// $this->search_sections_in_groups($groups);
 		// $this->search_items_in_products($products);
@@ -50,11 +65,43 @@ class Iiko_nomenclature_parse2{
 		echo "</pre>";
 	}	
 
-	public function print_groups_tree(array $groups, int $level = 0): void{		
+	public function print_modifiers(array $modifiers): void{
+		echo "<ol>";
+		foreach ($modifiers as $modifier) {
+			echo "<li>{$modifier['name']} <small>{$modifier['id']}</small></li>";
+		}
+		echo "</ol>";
+	}
+	public function print_groups_flatten(array $groups, int $level = 0): void{
+		
+		// Рекурсивно выводим дерево групп
 		foreach ($groups as $group) {
 			// Формируем отступы (количество дефисов = уровень вложенности + 1)
-			$indent = str_repeat('-&nbsp;&nbsp;', $level + 1);
-			echo "<br>$indent {$group['name']} <small>{$group['id']}</small>";
+			$indent = str_repeat('---&nbsp;&nbsp;', $level );
+			if(!$level){
+				echo "<br><p>$indent {$group['name']} <small>{$group['id']}</small></p>";
+			}else{
+				echo "<br>$indent {$group['name']} <small>{$group['id']}</small>";
+			}
+	
+			// Рекурсивно обрабатываем подкатегории, увеличивая уровень вложенности
+			if (!empty($group['sub_groups'])) {
+				$this->print_groups_tree($group['sub_groups'], $level + 1);
+			}
+		}
+	}
+
+	public function print_groups_tree(array $groups, int $level = 0): void{		
+		
+		// Рекурсивно выводим дерево групп
+		foreach ($groups as $group) {
+			// Формируем отступы (количество дефисов = уровень вложенности + 1)
+			$indent = str_repeat('---&nbsp;&nbsp;', $level );
+			if(!$level){
+				echo "<br><h3>$indent {$group['name']} <small>{$group['id']}</small></h3>";
+			}else{
+				echo "<br>$indent {$group['name']} <small>{$group['id']}</small>";
+			}
 	
 			// Рекурсивно обрабатываем подкатегории, увеличивая уровень вложенности
 			if (!empty($group['sub_groups'])) {
@@ -92,7 +139,79 @@ class Iiko_nomenclature_parse2{
 		}
 	
 		return $result;
+	
 	}
+	
+	// private function flatten_groups_tree(array $tree): array {
+	// 	$result = [];
+	// 	foreach ($tree as $rootGroup) {
+	// 		// Клонируем корневую категорию
+	// 		$subs = $rootGroup['sub_groups'];			
+	// 		$result[] = $rootGroup;
+	// 		$rootGroup['sub_groups'] = $this->flattenTree($subs);
+	// 	}
+	// 	return $result;
+	// }
+
+	// private function flattenTree(array $tree): array {
+	// 	$result = [];
+	// 	$queue = new SplQueue();
+	
+	// 	foreach ($tree as &$rootNode) {
+	// 		$queue->enqueue($rootNode);
+	// 	}
+	
+	// 	while (!$queue->isEmpty()) {
+	// 		$node = $queue->dequeue();
+	// 		$subs = $node['sub_groups'];
+	// 		$node['sub_groups'] = [];
+	// 		$result[] = $node; // Добавляем узел в результат
+	
+	// 		foreach ($subs as $child) {
+	// 			$queue->enqueue($child);
+	// 		}
+	// 	}
+	
+	// 	return $result;
+	// }
+
+	private function flatten_groups_tree(array $tree): array {
+		$result = [];
+		foreach ($tree as $group) {
+			
+
+			$all_subs = [];
+			$this->traverseTreeWithCallback($group['sub_groups'], function ($node) use (&$all_subs) {
+				$all_subs[] = $node;
+			});
+			$group['sub_groups'] = $all_subs;
+			$result[] = $group;
+			
+		}
+		return $result;
+	}
+
+	private function traverseTreeWithCallback(array $tree, callable $callback): void {
+		foreach ($tree as $node) {
+			$callback($node);
+			if (!empty($node['sub_groups'])) {
+				$subs = $node['sub_groups'];
+				$node['sub_groups'] = [];
+				$this->traverseTreeWithCallback($subs, $callback);
+			}
+		}
+	}	
+
+	// private function flatten_groups_tree_helper(array $tree, array &$result): void {
+	// 	foreach ($tree as $group) {
+	// 		$subs = $group['sub_groups'];
+	// 		$group['sub_groups'] = [];
+	// 		$result[] = $group;
+	// 		$this->flatten_groups_tree_helper($subs, $result);		
+	// 	}
+	// }
+
+
 
 	private function collect_categories_array($categories): array{
 		$arr = [];
@@ -101,6 +220,25 @@ class Iiko_nomenclature_parse2{
 				$arr[$cat["id"]] = $cat;						
 			}
 		};
+		return $arr;
+	}
+
+	private function search_menus_in_groups($groups): array{
+		$arr = array_filter($groups, fn($e) =>
+			(				
+				$e["isGroupModifier"] == false
+			)
+		);		
+		return $arr;
+	}
+
+	private function search_modifiers_in_groups($groups): array{
+		$arr = array_filter($groups, fn($e) =>
+			(
+				$e["parentGroup"] == null 
+				&& $e["isGroupModifier"] == true
+			)
+		);		
 		return $arr;
 	}
 
