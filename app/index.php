@@ -59,8 +59,11 @@ $routes = [
         // get_and_save_iiko_params(100, $CFG->api_key);        
     },    
     '/reload' => function () {
+        global $CFG;
         echo "<h2>загрузка номенклатуры</h2>";
-        reload_nomenclature();
+        echo "<p>now reloading nomenclature</p>";
+        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd";
+        reload_nomenclature($id_org, $CFG->api_key);
     },    
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
@@ -133,11 +136,17 @@ function parse_nomenclature($file_name, $var = 1){
     }
 }
 
-function reload_nomenclature(){
+function reload_nomenclature($id_org, $api_key){
     global $CFG;
-    echo "now reloading nomenclature";
-    $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd";
-    $NOMCL = new Iiko_nomenclature($id_org, $CFG->api_key);    
+    $NOMCL = new Iiko_nomenclature($id_org, $api_key);    
+    $NOMCL->reload();
+    $data = $NOMCL->get_data();
+    try {        
+        $savedFile = saveArrayToUniqueJson($data);
+        echo "<br>File saved: " . $savedFile;
+    } catch (RuntimeException $e) {
+        echo "<br>Error: " . $e->getMessage();
+    }      
 }
 // print_r(glob('storage/*.json'));
 
