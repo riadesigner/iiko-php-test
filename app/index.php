@@ -23,9 +23,11 @@
     <ul class="top-menu">
         <li><a href="/">Главная</a></li>
         <li><a href="/params">Загрузить параметры iiko</a></li>
-        <li><a href="/parse/1">Парсинг / вар. 1</a></li>
-        <li><a href="/parse/2">Парсинг / вар. 2</a></li>
+        <li><a href="/parse/1">Парсинг 1</a></li>
+        <li><a href="/parse/2">Парсинг 2</a></li>
         <li><a href="/reload">Релоад номенкл.</a></li>
+        <li><a href="/parse-nmcl">Парс. номенкл.</a></li>
+        
     </ul>
 
 
@@ -36,6 +38,7 @@ define("BASEPATH",__file__);
 require_once('config.php');
 require_once('common.php');
 require_once('class.iiko_params_test.php');
+require_once('class.Iiko_nmcl_parser.php');
 require_once('class.Iiko_nomenclature.php');
 require_once('class.iiko_nomenclature_parse.php');
 require_once('class.iiko_nomenclature_parse2.php');
@@ -61,16 +64,24 @@ $routes = [
     '/reload' => function () {
         global $CFG;
         echo "<h2>загрузка номенклатуры</h2>";
-        echo "<p>now reloading nomenclature</p>";
+        echo "<p>пауза...</p>";
         $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd";
-        reload_nomenclature($id_org, $CFG->api_key);
+        // reload_nomenclature($id_org, $CFG->api_key);
     },    
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
         $id = htmlspecialchars($id);
         echo "<h2>парсинг меню. Версия {$id}</h2>";
-        parse_nomenclature("json-info-formated-full-original.json", $id);
-    }
+        $file_name = "json-info-formated-full-original.json";
+        parse_nomenclature($file_name, $id);
+    },
+    '/parse-nmcl' => function () {
+        global $CFG;
+        echo "<h2>парсинг номенклатуры iiko full из файла</h2>";
+        echo "<p>пауза...</p>";
+        $file_name = "json-info-formated-full-new.json";
+        // parse_nmcl($file_name);
+    }    
 ];
 
 // ---------------------- private -------------------------------
@@ -108,7 +119,7 @@ if (!$matched) {
     echo "Страница не найдена";
 }
 
-// ------------------------------------------------------------
+// --------------------------- SERVICES ---------------------------------
 
 
 function get_and_save_iiko_params($id_cafe, $api_key): void {
@@ -148,6 +159,21 @@ function reload_nomenclature($id_org, $api_key){
         echo "<br>Error: " . $e->getMessage();
     }      
 }
+
+function parse_nmcl($file_name){
+    $json_file_path = __dir__."/files/$file_name";
+    $PARSER_NOMCL = new Iiko_nmcl_parser($json_file_path);    
+    $PARSER_NOMCL->parse();    
+    $data = $PARSER_NOMCL->get_data();
+    try {        
+        $savedFile = saveArrayToUniqueJson($data);
+        echo "<br>File saved: " . $savedFile;
+    } catch (RuntimeException $e) {
+        echo "<br>Error: " . $e->getMessage();
+    }    
+    $PARSER_NOMCL->print();
+}
+
 // print_r(glob('storage/*.json'));
 
 

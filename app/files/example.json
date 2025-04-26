@@ -1,0 +1,95 @@
+{    
+    "menu" : [
+        {
+        "name": "Меню",
+        "categories": [
+            {
+                "id": "uniq-0000001",
+                "name": "Категория 1",
+                "items": [
+                    {
+                        "id": "uniq-0000001-0000001",
+                        "name": "Продукт 1",
+                        "sizes":[
+                            {
+                                "price": 100,
+                                "sizeName": "Размер 1"
+                            },
+                            {
+                                "price": 120,
+                                "sizeName": "Размер 2"
+                            }                                
+                        ],                            
+                        "description": "Описание продукта 1",
+                        "imageUrl": "http://example.com/image1.jpg",
+                        "orderItemType":"Compound",
+                        "modifiers":[
+                            {
+                                "modifiersGroupId": "uniq-1000001",
+                                "name":"mods group name 1",
+                                "items":[
+                                    {
+                                        "modifierId": "uniq-1000001-0000001",
+                                        "name": "mod name 1",
+                                        "description":"Описание продукта 1",
+                                        "price": 10,
+                                        "portionWeightGrams":0,
+                                        "restrictions":[
+                                            {
+                                                "byDefault": 0,
+                                                "freeQuantity": 0,
+                                                "maxQuantity":0,
+                                                "minQuantity":0
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "modifierId": "uniq-1000001-0000002",
+                                        "name": "mod name 2",
+                                        "description":"Описание продукта 2",
+                                        "price": 10,
+                                        "portionWeightGrams":0,
+                                        "restrictions":[
+                                            {
+                                                "byDefault": 0,
+                                                "freeQuantity": 0,
+                                                "maxQuantity":0,
+                                                "minQuantity":0
+                                            }
+                                        ]
+                                    }                                        
+                                ]
+                            }
+                        ]
+                        
+                    },
+                    {
+                        "id": "uniq-0000001-0000002",
+                        "name": "Продукт 2",
+                        "sizes":[
+                            {
+                                "price": 200,
+                                "sizeName": "Размер 1"
+                            },
+                            {
+                                "price": 320,
+                                "sizeName": "Размер 2"
+                            }                                
+                        ],
+                        "description": "Описание продукта 1",
+                        "imageUrl": "http://example.com/image2.jpg",
+                        "orderItemType":"Product",
+                            "modifiers":[]
+                        }                        
+                    ]
+                },
+                {
+                    "id": "uniq-0000002",
+                    "name": "Категория 2",
+                    "items": []
+                }
+            ]
+        }
+    ],
+    "id_menu":"uniq_000000100"
+}
