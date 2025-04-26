@@ -1,3 +1,4 @@
+{
   "products": [
     {
       "fatAmount": 0,
@@ -72557,4 +72558,5 @@
       "seoKeywords": null,
       "seoTitle": null
     }
-  ],
+  ]  
+}

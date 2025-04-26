@@ -87,7 +87,7 @@ class Iiko_params_test{
 		$this->current_terminal_group_id = $id;
 		$this->iiko_params["current_terminal_group_id"] = $id;
 	}
-	public function set_current_extmenu_id(string $id): void{
+	public function set_current_extmenu_id(string $id): void{		
 		$this->current_extmenu_id = $id;
 		$this->iiko_params["current_extmenu_id"] = $id;	
 	}	
@@ -124,7 +124,7 @@ class Iiko_params_test{
 		$this->iiko_params["order_types"] = json_encode($this->arr_order_types, JSON_UNESCAPED_UNICODE);	
 		if($this->arr_extmenus && count($this->arr_extmenus)){
 			$this->iiko_params["extmenus"] = json_encode($this->arr_extmenus, JSON_UNESCAPED_UNICODE);	
-			$this->iiko_params["current_extmenu_id"] = $this->current_extmenu_id;
+			$this->iiko_params["current_extmenu_id"] = 0;
 		}		
 		$this->iiko_params["current_organization_id"] = $this->current_organization_id;
 		$this->iiko_params["current_terminal_group_id"] = $this->current_terminal_group_id;	
@@ -207,7 +207,8 @@ class Iiko_params_test{
 		$this->arr_extmenus = $this->iiko_get_extmenus_info($this->token);	
 		if(count($this->arr_extmenus)){
 			$this->ROUGH_DATA["EXTERNALMENUS"] = $this->arr_extmenus;	
-			$this->current_extmenu_id = $this->calc_new_current_extmenu_id($this->arr_extmenus, $this->iiko_params["current_extmenu_id"]);
+			// $this->current_extmenu_id = $this->calc_new_current_extmenu_id($this->arr_extmenus, $this->iiko_params["current_extmenu_id"]);
+			$this->current_extmenu_id = 0;
 		}		
 	}	
 

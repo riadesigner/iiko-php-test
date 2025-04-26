@@ -17,7 +17,9 @@ class Iiko_nomenclature_parse2{
 	private array $ARR_GROUPS_MODIFIERS = [];
 	private array $ARR_GROUPS_MENUS = [];
 	private array $ARR_GROUPS_FLATTEN = [];
-	
+	private array $ARR_PROD_TYPES = [];
+	private array $ARR_PRODS_BY_TYPES = [];
+
 	function __construct(string $json_file_path=""){		
 		// read the json file
 		$arr = $this->load_json_file($json_file_path);
@@ -40,16 +42,26 @@ class Iiko_nomenclature_parse2{
 		$this->ARR_GROUPS_MENUS = $this->search_menus_in_groups($groups);
 		$this->ARR_GROUPS_TREE = $this->build_groups_tree($this->ARR_GROUPS_MENUS);
 		$this->ARR_GROUPS_FLATTEN = $this->flatten_groups_tree($this->ARR_GROUPS_TREE);
+		$this->ARR_PROD_TYPES = $this->get_prod_types($products);
+		$this->ARR_PRODS_BY_TYPES = $this->get_prods_by_types($products, $this->ARR_PROD_TYPES);
 
-		echo "<h2>ГРУППЫ МЕНЮ</h2>";
-		$this->print_groups_tree($this->ARR_GROUPS_TREE);
+		echo "<h2>ТИПЫ ПРОДУКТОВ</h2>";
+		$this->print_prod_types($this->ARR_PROD_TYPES);
 
-		echo "<h2>ГРУППЫ МЕНЮ (ПЛОССКИЙ МАССИВ)</h2>";
-		$this->print_groups_tree($this->ARR_GROUPS_FLATTEN);		
+		echo "<h2>ПРОДУКТЫ ПО ТИПАМ</h2>";
+		$this->print_prods_by_types($this->ARR_PRODS_BY_TYPES);		
 
+		// echo "<h2>ГРУППЫ МЕНЮ</h2>";
+		// $this->print_groups_tree($this->ARR_GROUPS_TREE);
+
+		// echo "<h2>ГРУППЫ МЕНЮ (ПЛОССКИЙ МАССИВ)</h2>";
+		// $this->print_groups_tree($this->ARR_GROUPS_FLATTEN);
 
 		echo "<h2>ГРУППЫ МОДИФИКАТОРОВ</h2>";
 		$this->print_modifiers($this->ARR_GROUPS_MODIFIERS);
+
+
+
 		
 		// $this->search_sections_in_groups($groups);
 		// $this->search_items_in_products($products);
@@ -63,6 +75,14 @@ class Iiko_nomenclature_parse2{
 		echo "</pre>";
 	}	
 
+	public function print_prod_types(array $types): void{
+		echo "<ol>";
+		foreach ($types as $type) {
+			echo "<li>{$type}</li>";
+		}
+		echo "</ol>";
+	}
+
 	public function print_modifiers(array $modifiers): void{
 		echo "<ol>";
 		foreach ($modifiers as $modifier) {
@@ -70,6 +90,22 @@ class Iiko_nomenclature_parse2{
 		}
 		echo "</ol>";
 	}
+
+	private function print_prods_by_types(array $prods_by_types): void{
+		foreach ($prods_by_types as $type => $prods) {
+			echo "<h3>{$type}</h3>";
+			$this->print_prods($prods);
+		}
+	}
+
+	private function print_prods(array $prods): void{
+		echo "<ol>";
+		foreach ($prods as $prod) {
+			echo "<li>{$prod['name']} <small>{$prod['id']}</small></li>";
+		}
+		echo "</ol>";
+	}
+
 	public function print_groups_flatten(array $groups, int $level = 0): void{
 		
 		// Рекурсивно выводим дерево групп
@@ -106,6 +142,30 @@ class Iiko_nomenclature_parse2{
 				$this->print_groups_tree($group['sub_groups'], $level + 1);
 			}
 		}
+	}
+
+
+	private function get_prod_types($products):array {
+		$arr = [];
+		foreach($products as $product){
+			$type = $product["type"];
+			if(!in_array($type, $arr)){
+				$arr[] = $type;
+			};
+		}
+		return $arr;
+	}
+	
+	private function get_prods_by_types($products, $prod_types):array {		
+		$arr = [];		
+		foreach($prod_types as $type){
+			$arr[$type] = [];
+		}
+		foreach($products as $product){
+			$type = $product["type"];
+			$arr[$type][] = $product;
+		}
+		return $arr;
 	}
 
 	private function build_groups_tree(array $groups): array {
@@ -157,8 +217,6 @@ class Iiko_nomenclature_parse2{
 			$this->flatten_groups_tree_helper($subs, $result);		
 		}		
 	}
-
-
 
 	private function collect_categories_array($categories): array{
 		$arr = [];

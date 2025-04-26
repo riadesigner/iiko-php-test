@@ -58,28 +58,33 @@ $routes = [
     '/params' => function () {
         global $CFG;
         echo "<h2>загрузка параметров iiko</h2>";        
-        echo "<p>пауза...</p>";
-        // get_and_save_iiko_params(100, $CFG->api_key);        
+        // echo "<p>пауза...</p>";
+        get_and_save_iiko_params(100, $CFG->api_key);        
     },    
     '/reload' => function () {
         global $CFG;
         echo "<h2>загрузка номенклатуры</h2>";
         echo "<p>пауза...</p>";
-        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd";
+        // $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // pizza
+        // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // test
         // reload_nomenclature($id_org, $CFG->api_key);
     },    
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
         $id = htmlspecialchars($id);
         echo "<h2>парсинг меню. Версия {$id}</h2>";
-        $file_name = "json-info-formated-full-original.json";
+                       
+        $file_name = "json-info-formated-full-new.json"; // pizza
+        // $file_name = "nomenc-my-full-3.json"; // мой
+        
         parse_nomenclature($file_name, $id);
     },
+    // gpt
     '/parse-nmcl' => function () {
         global $CFG;
-        echo "<h2>парсинг номенклатуры iiko full из файла</h2>";
-        echo "<p>пауза...</p>";
-        $file_name = "json-info-formated-full-new.json";
+        echo "<h2>парсинг (gpt) номенклатуры iiko full из файла</h2>";
+        // echo "<p>пауза...</p>";
+        // $file_name = "2025-04-26_08-50-37_0f7f4440.json";        
         // parse_nmcl($file_name);
     }    
 ];
