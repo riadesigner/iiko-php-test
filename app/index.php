@@ -1,4 +1,34 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iiko test</title>
+    <style>
+        body{
+            font:.8rem arial;
+        }
+        small{
+            color:gray;
+        }
+        small i{
+            color:red;
+        }
+        .top-menu {list-style: none;}
+        .top-menu li{display: inline-block;margin:0 0 0 2%;}
+    </style>
+</head>
+<body>
+
+    <ul class="top-menu">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/params">Загрузить параметры iiko</a></li>
+        <li><a href="/parse/1">Парсинг / вар. 1</a></li>
+        <li><a href="/parse/2">Парсинг / вар. 2</a></li>
+    </ul>
+
+
+    <?php
 
 define("BASEPATH",__file__);
 
@@ -26,26 +56,49 @@ $routes = [
         echo "<p>пауза...</p>";
         // get_and_save_iiko_params(100, $CFG->api_key);        
     },
-    '/parse' => function () {
-        echo "<h2>парсинг меню</h2>";
-        load_and_parse_nomenclature("json-info-formated-full-original.json");
-    },
+    '/load_nomenclature' => function () {
+        echo "<h2>загрузка номенклатуры</h2>";
+        load_nomenclature("json-info-formated-full-original.json");
+    },    
+    // /parse/1 or /parse/2  ...
+    '#^/parse/(\d+)$#' => function ($id) {
+        $id = htmlspecialchars($id);
+        echo "<h2>парсинг меню. Версия {$id}</h2>";
+        parse_nomenclature("json-info-formated-full-original.json", $id);
+    }
 ];
 
-// Получаем текущий URI без параметров и слэша в конце
+// ---------------------- private -------------------------------
+
+// Получаем URI
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $requestUri = rtrim($requestUri, '/');
-
-// Если URI пустой (например, "/"), установим его в "/"
 if ($requestUri === '') {
     $requestUri = '/';
 }
 
-// Проверяем, есть ли маршрут
-if (array_key_exists($requestUri, $routes)) {
-    $routes[$requestUri](); // Вызываем соответствующую функцию
-} else {
-    // 404 страница
+$matched = false;
+
+foreach ($routes as $pattern => $handler) {
+    // Если маршрут — это точное совпадение
+    if ($pattern[0] !== '#') {
+        if ($requestUri === $pattern) {
+            $handler();
+            $matched = true;
+            break;
+        }
+    } else {
+        // Если маршрут — это регулярное выражение
+        if (preg_match($pattern, $requestUri, $matches)) {
+            array_shift($matches); // Удаляем полное совпадение
+            $handler(...$matches); // Передаём параметры в функцию
+            $matched = true;
+            break;
+        }
+    }
+}
+
+if (!$matched) {
     http_response_code(404);
     echo "Страница не найдена";
 }
@@ -67,10 +120,15 @@ function get_and_save_iiko_params($id_cafe, $api_key): void {
 }
 
 
-function load_and_parse_nomenclature($file_name){
+function parse_nomenclature($file_name, $var = 1){
     $json_file_path = __dir__."/files/$file_name";
-    // $n = new Iiko_nomenclature_parse($json_file_path);    
-    $n2 = new Iiko_nomenclature_parse2($json_file_path);    
+    if($var==1){        
+        $n = new Iiko_nomenclature_parse($json_file_path);    
+    }elseif($var==2){
+        $n = new Iiko_nomenclature_parse2($json_file_path);    
+    }else{
+        throw new Exception("Invalid var");
+    }
 }
 
 // print_r(glob('storage/*.json'));
@@ -78,32 +136,7 @@ function load_and_parse_nomenclature($file_name){
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iiko test</title>
-    <style>
-        body{
-            font:.8rem arial;
-        }
-        small{
-            color:gray;
-        }
-        small i{
-            color:red;
-        }
-    </style>
-</head>
-<body>
 
-    <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/params">Загрузить параметры iiko</a></li>
-        <li><a href="/parse">Парсинг меню</a></li>
-    </ul>
 
-    
 </body>
 </html>
