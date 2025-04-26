@@ -25,6 +25,7 @@
         <li><a href="/params">Загрузить параметры iiko</a></li>
         <li><a href="/parse/1">Парсинг / вар. 1</a></li>
         <li><a href="/parse/2">Парсинг / вар. 2</a></li>
+        <li><a href="/reload">Релоад номенкл.</a></li>
     </ul>
 
 
@@ -35,6 +36,7 @@ define("BASEPATH",__file__);
 require_once('config.php');
 require_once('common.php');
 require_once('class.iiko_params_test.php');
+require_once('class.Iiko_nomenclature.php');
 require_once('class.iiko_nomenclature_parse.php');
 require_once('class.iiko_nomenclature_parse2.php');
 
@@ -55,10 +57,10 @@ $routes = [
         echo "<h2>загрузка параметров iiko</h2>";        
         echo "<p>пауза...</p>";
         // get_and_save_iiko_params(100, $CFG->api_key);        
-    },
-    '/load_nomenclature' => function () {
+    },    
+    '/reload' => function () {
         echo "<h2>загрузка номенклатуры</h2>";
-        load_nomenclature("json-info-formated-full-original.json");
+        reload_nomenclature();
     },    
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
@@ -131,6 +133,12 @@ function parse_nomenclature($file_name, $var = 1){
     }
 }
 
+function reload_nomenclature(){
+    global $CFG;
+    echo "now reloading nomenclature";
+    $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd";
+    $NOMCL = new Iiko_nomenclature($id_org, $CFG->api_key);    
+}
 // print_r(glob('storage/*.json'));
 
 
