@@ -41,6 +41,7 @@ class Iiko_nomenclature_parse{
 
 	private function make_categories_array($categories): void{
 		if(!count($categories))return;
+		echo "<h2>Все категории</h2>";
 		echo "<ol>";
 		foreach($categories as $cat){
 			$this->ARR_CATEGORIES[$cat["id"]] = $cat;			

@@ -15,7 +15,7 @@
             color:red;
         }
         .top-menu {list-style: none;}
-        .top-menu li{display: inline-block;margin:0 0 0 2%;}
+        .top-menu li{display: inline-block;margin:0 0 0 2%;}        
     </style>
 </head>
 <body>
@@ -54,6 +54,7 @@ require_once('class.iiko_nomenclature_parse2.php');
 $routes = [
     '/' => function () {
         echo "<h2>Главная страница</h2>";
+        render_index_page();
     },
     '/params' => function () {
         global $CFG;
@@ -181,6 +182,84 @@ function parse_nmcl($file_name){
 
 // print_r(glob('storage/*.json'));
 
+function render_index_page(){
+    ?>
+    <h3>Описание структуры:</h3>
+    <pre>        
+        Iiko_nomenclature - класс для получения данных из iiko.
+        Iiko_nmcl_parser - класс для парсинга данных (от GPT).
+        Iiko_params_test - класс для получения параметров iiko. 
+        Iiko_nomenclature_parse - класс для изучения структуры nomenclature.
+        Iiko_nomenclature_parse2 - класс для изучения структуры nomenclature. 
+
+        ---
+
+        TOPMENU
+
+        [Главная страница]
+
+        [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
+        (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
+        
+        [Парсинг 1] - Показывает некоторые данные из файла nomeclature.json 
+        
+        [Парсинг 2] - Показывает некоторые данные из файла nomeclature.json         
+
+        [Релоад номенкл.] - Загружает номенклатуру iiko в файл json и выводит название файла 
+        (groups, productCategories, products)
+
+        [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
+                
+        -----
+
+        ВЫВОДЫ
+
+
+        В ответе json от iiko в номенклатуре есть:
+        
+        - Groups
+        - ProductCategories
+        - Products
+
+        ------ 
+        
+        Groups это: 
+            
+            - ПАПКИ С ТОВАРАМИ (в т.ч. вложенные) {"isGroupModifier": false}
+            – ГРУППЫ МОДИФИКАТОРОВ {"isGroupModifier": true}
+
+        ProductCategories это:
+            
+            - КАТЕГОРИИ ТОВАРОВ
+        
+        Products это:
+        
+            – ТОВАРЫ {type: Dish}
+            – СЕРВИС {type: Service}
+            – МОДИФИКАТОРЫ {type: Modifier}
+
+        При этом:
+
+            Модификаторы – это обычные товары
+            
+            – просто списком "modifiers": []
+            – в группах модификаторов "groupModifiers": []            
+
+            в товаре Модификаторы могут быть указаны
+            
+            – просто списком "modifiers": []
+            – или в группах модификаторов "groupModifiers": []
+
+            Сервис - это товар-услуга 
+
+            - например Доставка
+
+
+
+    </pre>
+
+    <?php
+}
 
 
 ?>
