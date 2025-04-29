@@ -27,6 +27,7 @@
         <li><a href="/parse/2">Парсинг 2</a></li>
         <li><a href="/reload">Релоад номенкл.</a></li>
         <li><a href="/parse-nmcl">Парс. номенкл.</a></li>
+        <li><a href="/parse-to-chefsmenu">Парс. в -> chefs</a></li></li>        
         
     </ul>
 
@@ -42,6 +43,8 @@ require_once('class.Iiko_nmcl_parser.php');
 require_once('class.Iiko_nomenclature.php');
 require_once('class.iiko_nomenclature_parse.php');
 require_once('class.iiko_nomenclature_parse2.php');
+require_once('class.iiko_chefs_parser.php');
+
 
 /**
  * --------------------------
@@ -59,8 +62,8 @@ $routes = [
     '/params' => function () {
         global $CFG;
         echo "<h2>загрузка параметров iiko</h2>";        
-        // echo "<p>пауза...</p>";
-        get_and_save_iiko_params(100, $CFG->api_key);        
+        echo "<p>пауза...</p>";
+        // get_and_save_iiko_params(100, $CFG->api_key);        
     },    
     '/reload' => function () {
         global $CFG;
@@ -73,21 +76,26 @@ $routes = [
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
         $id = htmlspecialchars($id);
-        echo "<h2>парсинг меню. Версия {$id}</h2>";
-                       
+        echo "<h2>парсинг меню. Версия {$id}</h2>";                       
         $file_name = "json-info-formated-full-new.json"; // pizza
-        // $file_name = "nomenc-my-full-3.json"; // мой
-        
+        // $file_name = "nomenc-my-full-3.json"; // мой        
         parse_nomenclature($file_name, $id);
     },
     // gpt
     '/parse-nmcl' => function () {
         global $CFG;
         echo "<h2>парсинг (gpt) номенклатуры iiko full из файла</h2>";
-        // echo "<p>пауза...</p>";
+        echo "<p>пауза...</p>";
         // $file_name = "2025-04-26_08-50-37_0f7f4440.json";        
         // parse_nmcl($file_name);
-    }    
+    },
+    '/parse-to-chefsmenu' => function () {
+        global $CFG;
+        echo "<h2>парсинг номенклатуры для chefsmenu</h2>";
+        // echo "<p>пауза...</p>";
+        $file_name = "json-info-formated-full-new.json";
+        parse_to_chefsmenu($file_name);
+    },
 ];
 
 // ---------------------- private -------------------------------
@@ -180,7 +188,20 @@ function parse_nmcl($file_name){
     $PARSER_NOMCL->print();
 }
 
-// print_r(glob('storage/*.json'));
+function parse_to_chefsmenu($file_name){
+    $json_file_path = __dir__."/files/$file_name";
+    $PARSER_TO_CHEFS = new Iiko_chefs_parser($json_file_path);    
+    $PARSER_TO_CHEFS->parse();    
+    // $data = $PARSER_TO_CHEFS->get_data();
+    // try {        
+    //     $savedFile = saveArrayToUniqueJson($data);
+    //     echo "<br>File saved: " . $savedFile;
+    // } catch (RuntimeException $e) {
+    //     echo "<br>Error: " . $e->getMessage();
+    // }        
+} 
+
+// print_r(glob('exports/*.json'));
 
 function render_index_page(){
     ?>
@@ -193,27 +214,30 @@ function render_index_page(){
         Iiko_nomenclature_parse2 - класс для изучения структуры nomenclature. 
 
         ---
+        /files - папка для хранения исходников
+        /exports - папка для экспорта json файлов
+        ---
 
         TOPMENU
 
-        [Главная страница]
+        1. [Главная страница]
 
-        [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
-        (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
+        2. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
+           (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
         
-        [Парсинг 1] - Показывает некоторые данные из файла nomeclature.json 
+        3. [Парсинг 1] - Показывает некоторые данные из файла nomeclature.json 
         
-        [Парсинг 2] - Показывает некоторые данные из файла nomeclature.json         
+        4. [Парсинг 2] - Показывает некоторые данные из файла nomeclature.json         
 
-        [Релоад номенкл.] - Загружает номенклатуру iiko в файл json и выводит название файла 
-        (groups, productCategories, products)
+        5. [Релоад номенкл.] - Загружает номенклатуру iiko в файл json и выводит название файла 
+           (groups, productCategories, products)
 
-        [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
+        6. [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
                 
         -----
 
+        
         ВЫВОДЫ
-
 
         В ответе json от iiko в номенклатуре есть:
         
@@ -231,6 +255,11 @@ function render_index_page(){
         ProductCategories это:
             
             - КАТЕГОРИИ ТОВАРОВ
+
+            Нужно посмотреть как их создавать в iiko. 
+            Меню можно построить двумя способами 
+            - через категории 
+            - через обычные папки
         
         Products это:
         
@@ -238,7 +267,7 @@ function render_index_page(){
             – СЕРВИС {type: Service}
             – МОДИФИКАТОРЫ {type: Modifier}
 
-        При этом:
+            При этом:
 
             Модификаторы – это обычные товары
             

@@ -261,7 +261,7 @@ function getMinutesWord(int $n): string {
     }
 }
 
-function saveArrayToUniqueJson(array $data, string $directory = 'storage'): ?string {
+function saveArrayToUniqueJson(array $data, string $directory = 'exports'): ?string {
 
     // Создаем директорию, если её нет
     if (!is_dir($directory) && !mkdir($directory, 0755, true)) {
