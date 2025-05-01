@@ -22,7 +22,8 @@
 
     <ul class="top-menu">
         <li><a href="/">Главная</a></li>
-        <li><a href="/params">Загрузить параметры iiko</a></li>
+        <li><a href="/reload-dev-extmenu">reload dev extmenu</a></li>
+        <li><a href="/params">Загр. параметры iiko</a></li>
         <li><a href="/parse/1">Парсинг 1</a></li>
         <li><a href="/parse/2">Парсинг 2</a></li>
         <li><a href="/reload">Релоад номенкл.</a></li>
@@ -44,6 +45,7 @@ require_once('class.Iiko_nomenclature.php');
 require_once('class.iiko_nomenclature_parse.php');
 require_once('class.iiko_nomenclature_parse2.php');
 require_once('class.iiko_chefs_parser.php');
+require_once('class.iiko_extmenu_loader.php');
 
 
 /**
@@ -65,13 +67,13 @@ $routes = [
         echo "<p>пауза...</p>";
         // get_and_save_iiko_params(100, $CFG->api_key);        
     },  
-    '/reload-dev-extmenu/' => function () {
+    '/reload-dev-extmenu' => function () {
         global $CFG;
         echo "<h2>загрузка внешнего меню и тестового сервера</h2>";
-        echo "<p>пауза...</p>";
-        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // Мой ресторан        
-        $id_dev_extmenu = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // Тестовое меню 2        
-        reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_key);
+        // echo "<p>пауза...</p>";        
+        $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
+        $id_dev_extmenu = "11215"; // Тестовое меню 2        
+        reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_dev_key);
     },       
     '/reload' => function () {
         global $CFG;
@@ -137,7 +139,7 @@ foreach ($routes as $pattern => $handler) {
 }
 
 if (!$matched) {
-    http_response_code(404);
+    // http_response_code(404);
     echo "Страница не найдена";
 }
 
@@ -210,7 +212,16 @@ function parse_to_chefsmenu($file_name){
 } 
 
 function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
-    
+    global $CFG;
+    $EXTM_LOADER = new Iiko_extmenu_loader($id_org, $id_dev_extmenu, $api_key);    
+    $EXTM_LOADER->reload();
+    $data = $EXTM_LOADER->get_data();
+    try {        
+        $savedFile = saveArrayToUniqueJson($data);
+        echo "<br>File saved: " . $savedFile;
+    } catch (RuntimeException $e) {
+        echo "<br>Error: " . $e->getMessage();
+    }      
 }
 
 // print_r(glob('exports/*.json'));
@@ -229,6 +240,9 @@ function render_index_page(){
         /files - папка для хранения исходников
         /exports - папка для экспорта json файлов
         ---
+
+        // json-dev-extmenu.json ( ответ от iiko - внешнее меню "Тестовое меню 2" )
+        // json-info-formated-full-new.json (ответ от iiko - номенклатура "pizzaiolo" )
 
         TOPMENU
 

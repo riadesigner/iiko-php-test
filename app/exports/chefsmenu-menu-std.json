@@ -1,0 +1,197 @@
+{
+    "Menus":[
+        {
+            "menuId":"1",
+            "name":"Menu 1",
+            "description":"Description 1",
+            "itemCategories": [
+                {
+                    "groupId":"1",
+                    "type": "CATEGORY",
+                    "name":"Category 1",
+                    "description":"Description 1",
+                    "items": [
+                        {
+                            "itemId":"1",
+                            "name":"Item 1",
+                            "description":"Description 1",
+                            "imageUrl": "http://example.com/image1.jpg",
+                            "type": "DISH",
+                            "itemSizes": [
+                                {
+                                    "sizeId":"1",
+                                    "sizeName":"Size 1",
+                                    "price": 100,
+                                    "isDefault": true,
+                                    "weightGrams":100,
+                                    "measureUnitType":"GRAM"
+                                },
+                                {
+                                    "sizeId":"2",
+                                    "sizeName":"Size 2",
+                                    "price": 200,
+                                    "isDefault": false,
+                                    "weightGrams":200,
+                                    "measureUnitType":"GRAM"                              
+                                }                        
+                            ],
+                            "itemModifiers":[
+                                {
+                                "modifierGroupId":"1",
+                                "restrictions": {
+                                    "minQuantity": 0,
+                                    "maxQuantity": 1,
+                                    "byDefault": 0
+                                    },
+                                    "items":[
+                                        {"modifierId":"1"},
+                                        {"modifierId":"2"},
+                                        {"modifierId":"3"}
+                                    ]
+                                },
+                                {
+                                    "modifierGroupId":"2",
+                                    "restrictions":{
+                                        "minQuantity": 0,
+                                        "maxQuantity": 1,
+                                        "byDefault": 0
+                                    },
+                                    "items":[
+                                        {"modifierId":"4"},
+                                        {"modifierId":"5"}
+                                    ]                                
+                                }                            
+                            ],
+                            "isAvailable": true                        
+                        }
+                    ]
+                }
+            ],
+            "modifiersGroups":[
+                {
+                    "groupId":"1",
+                    "type": "MODIFIERS_GROUP",
+                    "name":"Сыр",
+                    "description":"", 
+                    "items":[
+                        {
+                            "itemId":"1",
+                            "name":"Modifier 1",
+                            "description":"Description 1",
+                            "imageUrl": "",
+                            "type": "MODIFIER",                        
+                            "itemSizes": [
+                                {
+                                    "sizeId":"",
+                                    "sizeName":"",
+                                    "price": 30,
+                                    "isDefault": false,
+                                    "weightGrams":40,
+                                    "measureUnitType":"GRAM"
+                                }                       
+                            ],
+                            "isAvailable": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "menuId":"1",
+            "name":"Menu 1",
+            "description":"Description 1",
+            "itemCategories": [
+                {
+                    "groupId":"1",
+                    "type": "CATEGORY",
+                    "name":"Category 1",
+                    "description":"Description 1",
+                    "items": [
+                        {
+                            "itemId":"1",
+                            "name":"Item 1",
+                            "description":"Description 1",
+                            "imageUrl": "http://example.com/image1.jpg",
+                            "type": "DISH",
+                            "itemSizes": [
+                                {
+                                    "sizeId":"1",
+                                    "sizeName":"Size 1",
+                                    "price": 100,
+                                    "isDefault": true,
+                                    "weightGrams":100,
+                                    "measureUnitType":"GRAM"
+                                },
+                                {
+                                    "sizeId":"2",
+                                    "sizeName":"Size 2",
+                                    "price": 200,
+                                    "isDefault": false,
+                                    "weightGrams":200,
+                                    "measureUnitType":"GRAM"                              
+                                }                        
+                            ],
+                            "itemModifiers":[
+                                {
+                                "modifierGroupId":"1",
+                                "restrictions": {
+                                    "minQuantity": 0,
+                                    "maxQuantity": 1,
+                                    "byDefault": 0
+                                    },
+                                    "items":[
+                                        {"modifierId":"1"},
+                                        {"modifierId":"2"},
+                                        {"modifierId":"3"}
+                                    ]
+                                },
+                                {
+                                    "modifierGroupId":"2",
+                                    "restrictions":{
+                                        "minQuantity": 0,
+                                        "maxQuantity": 1,
+                                        "byDefault": 0
+                                    },
+                                    "items":[
+                                        {"modifierId":"4"},
+                                        {"modifierId":"5"}
+                                    ]                                
+                                }                            
+                            ],
+                            "isAvailable": true                        
+                        }
+                    ]
+                }
+            ],
+            "modifiersGroups":[
+                {
+                    "groupId":"1",
+                    "type": "MODIFIERS_GROUP",
+                    "name":"Сыр",
+                    "description":"", 
+                    "items":[
+                        {
+                            "itemId":"1",
+                            "name":"Modifier 1",
+                            "description":"Description 1",
+                            "imageUrl": "",
+                            "type": "MODIFIER",                        
+                            "itemSizes": [
+                                {
+                                    "sizeId":"",
+                                    "sizeName":"",
+                                    "price": 30,
+                                    "isDefault": false,
+                                    "isAvailable": true,
+                                    "weightGrams":40,
+                                    "measureUnitType":"GRAM"
+                                }                       
+                            ],
+                            "isAvailable": true
+                        }
+                    ]
+                }
+            ]
+        }        
+    ]
+}

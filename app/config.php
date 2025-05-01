@@ -14,6 +14,7 @@ $CFG->log_path = "logs/";
 $CFG->log_menu_file = "test.log";
 
 $CFG->api_key = $_ENV['API_KEY'];
+$CFG->api_dev_key = $_ENV['API_DEV_KEY'];
 
 
 ?>

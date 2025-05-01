@@ -14,6 +14,13 @@ class Iiko_chefs_parser {
         $arr = $this->load_json_file($this->JSON_FILE_PATH);
         $this->DATA = $this->build_menu_from_iiko_json($arr);
     }
+    // get_menu_v2_by_id
+    // res([
+    //     vars['menu'],
+    //     vars['menu-hash'],
+    //     vars['need-to-update']
+    // ]);
+
 
     // public function print(): void {
     //     $arr = $this->DATA["menu"][0]["categories"];
@@ -118,12 +125,23 @@ class Iiko_chefs_parser {
         $menus = [];
         foreach ($menuGroupsFlatten as $rootGroup) {
             // создаем меню
-            $menu = ["name" => $rootGroup["name"], "id"=>$rootGroup['id'], "categories"=>[]];
+            $menu = [
+                "menuId"=>$rootGroup['id'], 
+                "name" => $rootGroup["name"],                 
+                "description"=>$rootGroup["description"],                
+                "itemCategories"=>[],                
+            ];
             // заполняем категориями
             foreach ($rootGroup['sub_groups'] as $cat) {
-                $category = ["name" => $cat["name"], "id"=>$cat['id'], "items"=>[]];                
+                $category = [
+                    "groupId"=>$cat['id'], 
+                    "type"=> "CATEGORY",
+                    "description"=>$cat["description"],
+                    "name" => $cat["name"],                     
+                    "items"=>[]
+                ];                
                 // отбираем товары для категории
-                $prods = array_filter($productsById, fn($e) => $e["parentGroup"] === $category["id"]);
+                $prods = array_filter($productsById, fn($e) => $e["parentGroup"] === $category["groupId"]);
                 // добавляем товары в категорию
                 foreach ($prods as $prod) {
                     
@@ -138,12 +156,28 @@ class Iiko_chefs_parser {
                         // находим модификаторы группы 
                         $modifiers = $gModifier["childModifiers"];                        
                         
-                        // собираем модификатор                        
-                        $items = array_map(fn($e) => [
-                                "id"=>$e["id"],
+                        // собираем модификаторы                        
+                        $items = array_map(function($e) use($modifiersById) { 
+                            $price = $modifiersById[$e["id"]]["sizePrices"][0]["price"]["currentPrice"];
+                            $itemSizes = [
+                                [
+                                "sizeId" => "",
+                                "sizeName" => "",
+                                "price" =>  $price,
+                                "isDefault" =>  false,
+                                "weightGrams" => 0,
+                                "measureUnitType" => "GRAM",
+                                ]
+                            ];
+                            return [
+                                "itemId"=>$e["id"],
                                 "name"=>$modifiersById[$e["id"]]["name"],
-                                "price"=>$modifiersById[$e["id"]]["sizePrices"][0]["price"]["currentPrice"],
-                            ], $modifiers);
+                                "description"=>$modifiersById[$e["id"]]["description"],
+                                "imageUrl"=> "",
+                                "type" => "MODIFIER",
+                                "itemSizes"=>$itemSizes,
+                                "isAvailable" => true,
+                            ];}, $modifiers);
                         
                         $prodGroupModifiers[$gModifier["id"]] = [
                             "modifierGroupId"=>$gModifier["id"],                            
@@ -167,9 +201,9 @@ class Iiko_chefs_parser {
                     $category["items"][$prod["id"]] = $product;
                 }
                 // добавляем категорию в меню
-                $menu["categories"][$category["id"]] = $category;
+                $menu["itemCategories"][$category["groupId"]] = $category;
             }
-            $menus[$menu["id"]] = $menu;
+            $menus[$menu["menuId"]] = $menu;
         }
 
         echo "<pre>";
