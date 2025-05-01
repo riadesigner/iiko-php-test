@@ -64,7 +64,15 @@ $routes = [
         echo "<h2>загрузка параметров iiko</h2>";        
         echo "<p>пауза...</p>";
         // get_and_save_iiko_params(100, $CFG->api_key);        
-    },    
+    },  
+    '/reload-dev-extmenu/' => function () {
+        global $CFG;
+        echo "<h2>загрузка внешнего меню и тестового сервера</h2>";
+        echo "<p>пауза...</p>";
+        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // Мой ресторан        
+        $id_dev_extmenu = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // Тестовое меню 2        
+        reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_key);
+    },       
     '/reload' => function () {
         global $CFG;
         echo "<h2>загрузка номенклатуры</h2>";
@@ -200,6 +208,10 @@ function parse_to_chefsmenu($file_name){
     //     echo "<br>Error: " . $e->getMessage();
     // }        
 } 
+
+function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
+    
+}
 
 // print_r(glob('exports/*.json'));
 

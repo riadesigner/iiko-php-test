@@ -134,14 +134,21 @@ class Iiko_chefs_parser {
                     // парсим групповые модификаторы товара
                     $prodGroupModifiers = [];                
                     foreach ($prod['groupModifiers'] as $gModifier) {
-                        $modifiers = $gModifier["childModifiers"];
-                        // ---------- HERE TOTO
-                        // $modifiersById = array_filter($modifiersById, fn($e) => in_array($e["id"], $modifiers));    
+                        
+                        // находим модификаторы группы 
+                        $modifiers = $gModifier["childModifiers"];                        
+                        
+                        // собираем модификатор                        
+                        $items = array_map(fn($e) => [
+                                "id"=>$e["id"],
+                                "name"=>$modifiersById[$e["id"]]["name"],
+                                "price"=>$modifiersById[$e["id"]]["sizePrices"][0]["price"]["currentPrice"],
+                            ], $modifiers);
                         
                         $prodGroupModifiers[$gModifier["id"]] = [
                             "modifierGroupId"=>$gModifier["id"],                            
                             "name"=>$groupsModifiersById[$gModifier["id"]]["name"]??"без названия",
-                            "items"=>[],
+                            "items"=>$items,
                             "restrictions"=>[
                                 "minAmount"=>$gModifier["minAmount"],
                                 "maxAmount"=>$gModifier["maxAmount"],
@@ -150,22 +157,18 @@ class Iiko_chefs_parser {
                         ];                        
                     }
                     
-                    $product = [
-                        "name" => $prod["name"], 
+                    $product = [                        
                         "id"=>$prod['id'],                         
+                        "name" => $prod["name"],
+                        "description"=>$prod["description"],       
                         "modifiers"=>$prodGroupModifiers,
+                        "price"=>$prod["sizePrices"][0]["price"]["currentPrice"],
                     ];
                     $category["items"][$prod["id"]] = $product;
                 }
-                // array_map(fn($e) => $category["items"][$e["id"]] = $e, $prods);                
                 // добавляем категорию в меню
                 $menu["categories"][$category["id"]] = $category;
             }
-            // Расскидываем товары по папкам
-
-            // foreach ($menu["categories"] as $category) {
-            //     $menu["items"][] = $productsById[$category];
-            // }
             $menus[$menu["id"]] = $menu;
         }
 
