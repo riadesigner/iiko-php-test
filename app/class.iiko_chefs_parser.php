@@ -3,7 +3,12 @@
 
 class Iiko_chefs_parser {
     private string $JSON_FILE_PATH="";
-    private array $DATA = [];    
+    private array $DATA;    
+    private array $menuGroupsFlatten;
+    private array $productsById;
+    private array $modifiersById;
+    private array $groupsModifiersById;
+    private array $categoriesById;          
 
 	function __construct(string $json_file_path){				
         $this->JSON_FILE_PATH = $json_file_path;
@@ -73,7 +78,7 @@ class Iiko_chefs_parser {
 
     private function build_all_menus($data): array {
 
-        $GROUPS_AS_CATEGORY = false;
+        $GROUPS_AS_CATEGORY = true;
 
         // Собираем категории
         $categoriesById = [];
@@ -112,13 +117,17 @@ class Iiko_chefs_parser {
             }            
         }
 
+        $this->menuGroupsFlatten = $menuGroupsFlatten;
+        $this->productsById = $productsById;
+        $this->modifiersById = $modifiersById;
+        $this->groupsModifiersById = $groupsModifiersById;
+        $this->categoriesById = $categoriesById;                        
+
         if($GROUPS_AS_CATEGORY){
-            $menus = $this->build_menus_from_groups($menuGroupsFlatten, $productsById, $modifiersById);
+            return $this->build_menus_from_groups();
         }else{
-            $menus = $this->build_menus_from_categories($menuGroupsFlatten, $productsById, $modifiersById, $categoriesById);
+            return $this->build_menus_from_categories();
         }        
-  
-        return $this->build_prods($menus);
     }
 
     /**
@@ -127,9 +136,9 @@ class Iiko_chefs_parser {
      * - группы (они же папки) – используются в качестве категорий
      * - а iiko-категории – не учитываются
     */     
-    private function build_menus_from_groups($menuGroupsFlatten, $productsById, $modifiersById): array{
+    private function build_menus_from_groups(): array{
         $menus = [];
-        foreach ($menuGroupsFlatten as $rootGroup) {
+        foreach ($this->menuGroupsFlatten as $rootGroup) {
             // создаем меню
             $menu = [
                 "menuId"=>$rootGroup['id'], 
@@ -146,11 +155,12 @@ class Iiko_chefs_parser {
                     "items"=>[]
                 ];                
                 // отбираем товары для категории
-                $prods = array_filter($productsById, fn($e) => $e["parentGroup"] === $category["groupId"]);
+                $prods = array_filter($this->productsById, fn($e) => $e["parentGroup"] === $category["groupId"]);
                 // добавляем товары в категорию
                 foreach ($prods as $prod) {
-
-                    $category["items"][$prod["id"]] = [];
+                    $prodId = $prod['id'];
+                    $prod = $this->parse_prod($this->productsById[$prodId]);
+                    $category["items"][$prod["id"]] = $prod;
                 }
                 // добавляем категорию в меню
                 $menu["itemCategories"][$category["groupId"]] = $category;
@@ -166,16 +176,16 @@ class Iiko_chefs_parser {
      * - группы используются для определения какие товары к какому меню относятся
      * - iiko-категории – используются в качестве категорий 
     */ 
-    private function build_menus_from_categories($menuGroupsFlatten, $productsById, $modifiersById, $categoriesById): array{
+    private function build_menus_from_categories(): array{
         // Вычисляем какие товары к какому меню относятся:
         // - каждая корневая папка – это отдельное меню 
         // - распределяем индексы всех товаров по этим меню  
         $productsIdsByMenu = [];
-        foreach ($menuGroupsFlatten as $menu) {
+        foreach ($this->menuGroupsFlatten as $menu) {
             $arr = [];
             foreach ($menu['sub_groups'] as $cat) {                
                 // отбираем товары для каждой категории
-                $prods = array_filter($productsById, fn($e) => $e["parentGroup"] === $cat["id"]);
+                $prods = array_filter($this->productsById, fn($e) => $e["parentGroup"] === $cat["id"]);
                 // вычисляем индексы товаров для каждой категории
                 $indexes = array_map(fn($e) => $e["id"], $prods);
                 $arr = [...$arr, ...$indexes];
@@ -184,7 +194,7 @@ class Iiko_chefs_parser {
         } 
         // создаем меню с категориями 
         $menus = [];
-        foreach ($menuGroupsFlatten as $rootGroup) {
+        foreach ($this->menuGroupsFlatten as $rootGroup) {
             $menu = [
                 "menuId"=>$rootGroup["id"],
                 "name"=>$rootGroup["name"],
@@ -194,8 +204,8 @@ class Iiko_chefs_parser {
             // берем все товары этого меню
             $menuProdsIds = $productsIdsByMenu[$rootGroup["id"]];
             foreach($menuProdsIds as $prodId){
-                $prod = $productsById[$prodId];
-                $cat = $categoriesById[$prod["productCategoryId"]];                
+                $prod = $this->productsById[$prodId];
+                $cat = $this->categoriesById[$prod["productCategoryId"]];                
                 $category = [
                     "groupId" => $cat["id"],
                     "type"=> "CATEGORY",
@@ -207,85 +217,70 @@ class Iiko_chefs_parser {
                     $menu["itemCategories"][$cat["id"]] = $category;
                 };
                 //добавляем товар в эту категорию
-                $menu["itemCategories"][$cat["id"]]["items"][$prodId] = [];
+                $prod = $this->parse_prod($prod);                
+                $menu["itemCategories"][$cat["id"]]["items"][$prodId] = $prod;
             }
             $menus[$menu["menuId"]] = $menu;
         }
         return $menus;
     }    
 
-    /**
-     *   ПАРСИМ ТОВАРЫ И МОДИФИКАТОРЫ 
-    */
-    private function build_prods($menus){
-
-        foreach($menus as $menu){
-            echo "<h1>{$menu['name']}</h1>";
-            foreach($menu['itemCategories'] as $cat){
-                echo "<h3>{$cat['name']}</h3>";
-                print_r($cat['items']);
-                // foreach($cat['items'] as $prod){
-                //     echo "<br>prods = ".count($prod);
-                // }
-            }
-        }
+    private function parse_prod($prod): array{
         // пропускаем одиночные модификаторы, 
         // не используем в этой версии                    
         // $prod['modifiers']
 
         // парсим групповые модификаторы товара
-        // $prodGroupModifiers = [];                
-        // foreach ($prod['groupModifiers'] as $gModifier) {
+        $prodGroupModifiers = [];                
+        foreach ($prod['groupModifiers'] as $gModifier) {
             
-        //     // находим модификаторы группы 
-        //     $modifiers = $gModifier["childModifiers"];                        
+            // находим модификаторы группы 
+            $modifiers = $gModifier["childModifiers"];                        
+            $mById = $this->modifiersById;
+            // собираем модификаторы                        
+            $items = array_map(function($e) use($mById) { 
+                $price = $mById[$e["id"]]["sizePrices"][0]["price"]["currentPrice"];
+                $itemSizes = [
+                    [
+                    "sizeId" => "",
+                    "sizeName" => "",
+                    "price" =>  $price,
+                    "isDefault" =>  false,
+                    "weightGrams" => 0,
+                    "measureUnitType" => "GRAM",
+                    ]
+                ];
+                return [
+                    "itemId"=>$e["id"],
+                    "name"=>$mById[$e["id"]]["name"],
+                    "description"=>$mById[$e["id"]]["description"],
+                    "imageUrl"=> "",
+                    "type" => "MODIFIER",
+                    "itemSizes"=>$itemSizes,
+                    "isAvailable" => true,
+                ];}, $modifiers);
             
-        //     // собираем модификаторы                        
-        //     $items = array_map(function($e) use($modifiersById) { 
-        //         $price = $modifiersById[$e["id"]]["sizePrices"][0]["price"]["currentPrice"];
-        //         $itemSizes = [
-        //             [
-        //             "sizeId" => "",
-        //             "sizeName" => "",
-        //             "price" =>  $price,
-        //             "isDefault" =>  false,
-        //             "weightGrams" => 0,
-        //             "measureUnitType" => "GRAM",
-        //             ]
-        //         ];
-        //         return [
-        //             "itemId"=>$e["id"],
-        //             "name"=>$modifiersById[$e["id"]]["name"],
-        //             "description"=>$modifiersById[$e["id"]]["description"],
-        //             "imageUrl"=> "",
-        //             "type" => "MODIFIER",
-        //             "itemSizes"=>$itemSizes,
-        //             "isAvailable" => true,
-        //         ];}, $modifiers);
-            
-        //     $prodGroupModifiers[$gModifier["id"]] = [
-        //         "modifierGroupId"=>$gModifier["id"],                            
-        //         "name"=>$groupsModifiersById[$gModifier["id"]]["name"]??"без названия",
-        //         "items"=>$items,
-        //         "restrictions"=>[
-        //             "minAmount"=>$gModifier["minAmount"],
-        //             "maxAmount"=>$gModifier["maxAmount"],
-        //             "required"=>$gModifier["required"],                                
-        //         ],                            
-        //     ];                        
-        // }
+            $prodGroupModifiers[$gModifier["id"]] = [
+                "modifierGroupId"=>$gModifier["id"],                            
+                "name"=>$this->groupsModifiersById[$gModifier["id"]]["name"]??"без названия",
+                "items"=>$items,
+                "restrictions"=>[
+                    "minAmount"=>$gModifier["minAmount"],
+                    "maxAmount"=>$gModifier["maxAmount"],
+                    "required"=>$gModifier["required"],                                
+                ],                            
+            ];                        
+        }
         
-        // $product = [                        
-        //     "id"=>$prod['id'],                         
-        //     "name" => $prod["name"],
-        //     "description"=>$prod["description"],       
-        //     "modifiers"=>$prodGroupModifiers,
-        //     "price"=>$prod["sizePrices"][0]["price"]["currentPrice"],
-        // ];
-            // $category["items"][$prod["id"]] = $product;   
-    return $menus;     
+        $product = [                        
+            "id"=>$prod['id'],                         
+            "name" => $prod["name"],
+            "description"=>$prod["description"],       
+            "modifiers"=>$prodGroupModifiers,
+            "price"=>$prod["sizePrices"][0]["price"]["currentPrice"],
+        ];        
+        return $product;
     }
-
 
 	private function build_groups_tree(array $groups): array {
 
