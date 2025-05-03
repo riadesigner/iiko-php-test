@@ -78,7 +78,7 @@ class Iiko_chefs_parser {
 
     private function build_all_menus($data): array {
 
-        $GROUPS_AS_CATEGORY = true;
+        $GROUPS_AS_CATEGORY = false;
 
         // Собираем категории
         $categoriesById = [];
@@ -263,12 +263,12 @@ class Iiko_chefs_parser {
             $prodGroupModifiers[$gModifier["id"]] = [
                 "modifierGroupId"=>$gModifier["id"],                            
                 "name"=>$this->groupsModifiersById[$gModifier["id"]]["name"]??"без названия",
-                "items"=>$items,
                 "restrictions"=>[
                     "minAmount"=>$gModifier["minAmount"],
                     "maxAmount"=>$gModifier["maxAmount"],
                     "required"=>$gModifier["required"],                                
-                ],                            
+                ],                
+                "items"=>$items,                            
             ];                        
         }
         
