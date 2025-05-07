@@ -46,7 +46,7 @@
                     ],
                     "modifiers": [
                         {
-                            "itemId":"1"
+                            "modifierId":"1"
                         }                        
                     ],
                     "groupModifiers":[
@@ -56,7 +56,15 @@
                                 "minQuantity": 0,
                                 "maxQuantity": 1,
                                 "byDefault": 0
+                                },
+                            "items": [
+                                {
+                                    "modifierId":"1"
+                                },
+                                {
+                                    "modifierId":"2"
                                 }
+                            ]
                         }
                     ],
                     "isAvailable": true,

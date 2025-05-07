@@ -24,37 +24,6 @@ class Iiko_chefs_parser {
         print_r($this->DATA);
         echo "</pre>";
     }
-    // get_menu_v2_by_id
-    // res([
-    //     vars['menu'],
-    //     vars['menu-hash'],
-    //     vars['need-to-update']
-    // ]);
-
-
-    // public function print(): void {
-    //     $arr = $this->DATA["menu"][0]["categories"];
-    //     $this->print_tree($arr);
-    // }	
-    
-    // private function print_tree(array $categories, int $level = 0): void{		
-		
-	// 	// Рекурсивно выводим дерево групп
-	// 	foreach ($categories as $cat) {
-	// 		// Формируем отступы (количество дефисов = уровень вложенности + 1)
-	// 		$indent = str_repeat('---&nbsp;&nbsp;', $level );
-	// 		if(!$level){
-	// 			echo "<br><h3>$indent {$cat['name']} <small>{$cat['id']}</small></h3>";
-	// 		}else{
-	// 			echo "<br>$indent {$cat['name']} <small>{$cat['id']}</small>";
-	// 		}
-	
-	// 		// Рекурсивно обрабатываем подкатегории, увеличивая уровень вложенности
-	// 		if (!empty($cat['items'])) {
-	// 			$this->print_tree($cat['items'], $level + 1);
-	// 		}
-	// 	}
-	// }    
 
     public function get_data(): array {
         return $this->DATA;
