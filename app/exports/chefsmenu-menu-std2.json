@@ -1,0 +1,90 @@
+{
+    "Menus":[
+        {
+            "menuId":"1",
+            "name":"Menu 1",
+            "description":"Description 1",
+            "groups": [
+                {
+                    "groupId":"1",
+                    "type": "CATEGORY",
+                    "name":"Category 1",
+                    "description":"Description 1"
+                },
+                {
+                    "groupId":"10",
+                    "type": "MODIFIERS_GROUP",
+                    "name":"Сыр",
+                    "description":""
+                }                
+            ],
+            "products":[
+                {
+                    "itemId":"1",
+                    "name":"Product 1",
+                    "description":"Description 1",
+                    "imageUrl": "",
+                    "type": "DISH", 
+                    "parentGroup":"1",
+                    "itemSizes": [
+                        {
+                            "sizeId":"",
+                            "sizeName":"Средняя",
+                            "price": 300,
+                            "isDefault": true,
+                            "weightGrams":350,
+                            "measureUnitType":"GRAM"
+                        },
+                        {
+                            "sizeId":"",
+                            "sizeName":"Большая",
+                            "price": 400,
+                            "isDefault": false,
+                            "weightGrams":450,
+                            "measureUnitType":"GRAM"
+                        }                                               
+                    ],
+                    "modifiers": [
+                        {
+                            "itemId":"1"
+                        }                        
+                    ],
+                    "groupModifiers":[
+                        {
+                            "groupId":"10",
+                            "restrictions": {
+                                "minQuantity": 0,
+                                "maxQuantity": 1,
+                                "byDefault": 0
+                                }
+                        }
+                    ],
+                    "isAvailable": true,
+                    "pos": 0
+                },
+                {
+                    "itemId":"10",
+                    "name":"Modifier 1",
+                    "description":"Description 1",
+                    "imageUrl": "",
+                    "type": "MODIFIER",
+                    "parentGroup":"10",
+                    "itemSizes": [
+                        {
+                            "sizeId":"",
+                            "sizeName":"",
+                            "price": 30,
+                            "isDefault": false,
+                            "weightGrams":40,
+                            "measureUnitType":"GRAM"
+                        }                       
+                    ],
+                    "modifiers": [],
+                    "groupModifiers":[],
+                    "isAvailable": true,
+                    "pos": 0
+                }                
+            ]
+        }      
+    ]
+}

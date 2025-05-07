@@ -35,7 +35,8 @@
                                     "measureUnitType":"GRAM"                              
                                 }                        
                             ],
-                            "itemModifiers":[
+                            "modifiers": [],
+                            "groupModifiers":[
                                 {
                                 "modifierGroupId":"1",
                                 "restrictions": {
@@ -67,7 +68,7 @@
                     ]
                 }
             ],
-            "modifiersGroups":[
+            "groupModifiers":[
                 {
                     "groupId":"1",
                     "type": "MODIFIERS_GROUP",

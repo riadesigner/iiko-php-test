@@ -9,13 +9,15 @@ class Iiko_chefs_parser {
     private array $modifiersById;
     private array $groupsModifiersById;
     private array $categoriesById;          
+    private bool $GROUPS_AS_CATEGORY;
 
 	function __construct(string $json_file_path){				
         $this->JSON_FILE_PATH = $json_file_path;
 		return $this;
 	}
 
-    public function parse(): void {
+    public function parse(bool $groups_as_category = false): void {
+        $this->GROUPS_AS_CATEGORY = $groups_as_category;
         $arr = $this->load_json_file($this->JSON_FILE_PATH);
         $this->DATA = $this->build_all_menus($arr);
         echo "<pre>";
@@ -76,9 +78,7 @@ class Iiko_chefs_parser {
         return $data;
     }
 
-    private function build_all_menus($data): array {
-
-        $GROUPS_AS_CATEGORY = false;
+    private function build_all_menus($data): array {        
 
         // Собираем категории
         $categoriesById = [];
@@ -123,7 +123,7 @@ class Iiko_chefs_parser {
         $this->groupsModifiersById = $groupsModifiersById;
         $this->categoriesById = $categoriesById;                        
 
-        if($GROUPS_AS_CATEGORY){
+        if($this->GROUPS_AS_CATEGORY){
             return $this->build_menus_from_groups();
         }else{
             return $this->build_menus_from_categories();
@@ -230,7 +230,7 @@ class Iiko_chefs_parser {
         // не используем в этой версии                    
         // $prod['modifiers']
 
-        // парсим групповые модификаторы товара
+        // парсим групповые модификаторы текущего товара
         $prodGroupModifiers = [];                
         foreach ($prod['groupModifiers'] as $gModifier) {
             

@@ -228,88 +228,30 @@ function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
 
 function render_index_page(){
     ?>
-    <h3>Описание структуры:</h3>
-    <pre>        
-        Iiko_nomenclature - класс для получения данных из iiko.
-        Iiko_nmcl_parser - класс для парсинга данных (от GPT).
-        Iiko_params_test - класс для получения параметров iiko. 
-        Iiko_nomenclature_parse - класс для изучения структуры nomenclature.
-        Iiko_nomenclature_parse2 - класс для изучения структуры nomenclature. 
-
-        ---
-        /files - папка для хранения исходников
-        /exports - папка для экспорта json файлов
-        ---
-
-        // json-dev-extmenu.json ( ответ от iiko - внешнее меню "Тестовое меню 2" )
-        // json-info-formated-full-new.json (ответ от iiko - номенклатура "pizzaiolo" )
+    
+    <pre>
 
         TOPMENU
 
         1. [Главная страница]
 
-        2. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
+        2. [reload dev extmenu] – загрузка внешнего (тестового) меню iiko в файл json
+
+        3. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
            (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
         
-        3. [Парсинг 1] - Показывает некоторые данные из файла nomeclature.json 
+        4. [Парсинг 1] - Показывает некоторые данные из файла nomeclature.json 
         
-        4. [Парсинг 2] - Показывает некоторые данные из файла nomeclature.json         
+        5. [Парсинг 2] - Показывает некоторые данные из файла nomeclature.json         
 
-        5. [Релоад номенкл.] - Загружает номенклатуру iiko в файл json и выводит название файла 
+        6. [Релоад номенкл.] - Загружает номенклатуру iiko в файл json и выводит название файла 
            (groups, productCategories, products)
 
-        6. [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
+        7. [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
+
+        8. [Парс. в -> chefs] – окончательны парсинг номенклатуры iiko (вариант для ChefsMenu)
+
                 
-        -----
-
-        
-        ВЫВОДЫ
-
-        В ответе json от iiko в номенклатуре есть:
-        
-        - Groups
-        - ProductCategories
-        - Products
-
-        ------ 
-        
-        Groups это: 
-            
-            - ПАПКИ С ТОВАРАМИ (в т.ч. вложенные) {"isGroupModifier": false}
-            – ГРУППЫ МОДИФИКАТОРОВ {"isGroupModifier": true}
-
-        ProductCategories это:
-            
-            - КАТЕГОРИИ ТОВАРОВ
-
-            Нужно посмотреть как их создавать в iiko. 
-            Меню можно построить двумя способами 
-            - через категории 
-            - через обычные папки
-        
-        Products это:
-        
-            – ТОВАРЫ {type: Dish}
-            – СЕРВИС {type: Service}
-            – МОДИФИКАТОРЫ {type: Modifier}
-
-            При этом:
-
-            Модификаторы – это обычные товары
-            
-            – просто списком "modifiers": []
-            – в группах модификаторов "groupModifiers": []            
-
-            в товаре Модификаторы могут быть указаны
-            
-            – просто списком "modifiers": []
-            – или в группах модификаторов "groupModifiers": []
-
-            Сервис - это товар-услуга 
-
-            - например Доставка
-
-
 
     </pre>
 
