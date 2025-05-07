@@ -15,7 +15,7 @@
                     "groupId":"10",
                     "type": "MODIFIERS_GROUP",
                     "name":"Сыр",
-                    "description":""
+                    "description":""                   
                 }                
             ],
             "products":[
@@ -24,7 +24,7 @@
                     "name":"Product 1",
                     "description":"Description 1",
                     "imageUrl": "",
-                    "type": "DISH", 
+                    "type": "PRODUCT", 
                     "parentGroup":"1",
                     "itemSizes": [
                         {
@@ -56,15 +56,7 @@
                                 "minQuantity": 0,
                                 "maxQuantity": 1,
                                 "byDefault": 0
-                                },
-                            "items": [
-                                {
-                                    "modifierId":"1"
-                                },
-                                {
-                                    "modifierId":"2"
                                 }
-                            ]
                         }
                     ],
                     "isAvailable": true,
