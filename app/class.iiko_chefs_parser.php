@@ -128,7 +128,7 @@ class Iiko_chefs_parser {
                 // добавляем товары в меню с указанием категории (parentGroup)
                 foreach ($prods as $prod) {
                     $prodId = $prod['id'];
-                    $prod = $this->parse_prod($this->productsById[$prodId], $menu);
+                    $prod = $this->parse_prod($this->productsById[$prodId], $cat['id'], $menu);
                     $menu["products"][$prodId] = $prod;
                 }
                 // добавляем категорию в меню
@@ -179,14 +179,14 @@ class Iiko_chefs_parser {
                 $category = [
                     "groupId" => $cat["id"],
                     "type"=> "CATEGORY",
-                    "name"=>$cat["name"]
+                    "name"=>$cat["name"]                    
                 ];                           
                 // добавляем категорию меню, если такой категории еще нет 
                 if(!isset($menu["groups"][$cat["id"]])){         
                     $menu["groups"][$cat["id"]] = $category;
                 };
                 //добавляем товар в меню с указанием категории (parentGroup)
-                $prod = $this->parse_prod($prod, $menu);                
+                $prod = $this->parse_prod($prod, $cat["id"], $menu);                
                 $menu["products"][$prodId] = $prod;
             }
             $menus[$menu["menuId"]] = $menu;
@@ -194,7 +194,7 @@ class Iiko_chefs_parser {
         return $menus;
     }    
 
-    private function parse_prod($prod, $menu): array{
+    private function parse_prod($prod, $parentGroupId, &$menu): array{
         
         // парсим групповые модификаторы текущего товара
         $prodGroupModifiers = $this->parse_modifiers($prod, $menu);
@@ -206,7 +206,7 @@ class Iiko_chefs_parser {
             "description"=>$prod["description"],    
             "imageUrl" => "",
             "type" => "PRODUCT", 
-            "parentGroup" => $prod["parentGroup"],
+            "parentGroup" => $parentGroupId,
             "itemSizes"=>$itemSizes,
             "modifiers" => [], // одиночные модификаторы
             "groupModifiers"=> $prodGroupModifiers, // группы модификаторов
@@ -216,27 +216,29 @@ class Iiko_chefs_parser {
         return $product;
     }
 
-    private function parse_modifiers($prods, $menu): array{
+    private function parse_modifiers($prod, &$menu): array{
        
         // пропускаем одиночные модификаторы, 
         // не используем в этой версии                    
         // $prod['modifiers']
                 
         // парсим групповые модификаторы текущего товара
-        $prodGroupModifiers = [];      
+        $prodGroupModifiers = [];              
 
         foreach ($prod['groupModifiers'] as $gModifier) {
             
+            $gm = $this->groupsModifiersById[$gModifier["id"]];
+
             $readyGroupModifiers = [
                 "groupId" => $gModifier["id"],
                 "type"=> "MODIFIERS_GROUP",
-                "name"=>$gModifier["name"]
-            ]; 
+                "name"=>$gm["name"]
+            ];
             
             // сохраняем групповой модификатор в конечный json
             if(!isset($menu["groups"][$gModifier["id"]])){
                 $menu["groups"][$gModifier["id"]] = $readyGroupModifiers;
-            }            
+            }
 
             // находим модификаторы группы 
             $modifiers = $gModifier["childModifiers"];                        
@@ -262,7 +264,7 @@ class Iiko_chefs_parser {
                     "description"=>$m["description"],
                     "imageUrl"=> "",
                     "type" => "MODIFIER",
-                    "parentGroup" => $gModifier["id"],
+                    "parentGroup" => $m["parentGroup"],
                     "itemSizes"=>$itemSizes,
                     "modifiers" => [],
                     "groupModifiers" => [],                    
@@ -282,7 +284,6 @@ class Iiko_chefs_parser {
 
             $prodGroupModifiers[$gModifier["id"]] = [
                 "groupId"=>$gModifier["id"],
-                "name"=>$this->groupsModifiersById[$gModifier["id"]]["name"]??"без названия",
                 "restrictions"=>[
                     "minAmount"=>$gModifier["minAmount"],
                     "maxAmount"=>$gModifier["maxAmount"],

@@ -8,14 +8,12 @@
                 {
                     "groupId":"1",
                     "type": "CATEGORY",
-                    "name":"Category 1",
-                    "description":"Description 1"
+                    "name":"Category 1"
                 },
                 {
                     "groupId":"10",
                     "type": "MODIFIERS_GROUP",
-                    "name":"Сыр",
-                    "description":""                   
+                    "name":"Modifiers Group Name 10"
                 }                
             ],
             "products":[
