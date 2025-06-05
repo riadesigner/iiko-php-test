@@ -28,7 +28,7 @@
         <li><a href="/parse/2">Парсинг 2</a></li>
         <li><a href="/reload">Релоад номенкл.</a></li>
         <li><a href="/parse-nmcl">Парс. номенкл.</a></li>
-        <li><a href="/parse-to-chefsmenu">Парс. в -> chefs</a></li></li>        
+        <li><a href="/parse-to-std-chefsmenu">Парс. в -> std chefs</a></li></li>        
         
     </ul>
 
@@ -39,13 +39,13 @@ define("BASEPATH",__file__);
 
 require_once('config.php');
 require_once('common.php');
-require_once('class.iiko_params_test.php');
-require_once('class.Iiko_nmcl_parser.php');
-require_once('class.Iiko_nomenclature.php');
-require_once('class.iiko_nomenclature_parse.php');
-require_once('class.iiko_nomenclature_parse2.php');
-require_once('class.iiko_chefs_parser.php');
-require_once('class.iiko_extmenu_loader.php');
+require_once('libs/class.iiko_params_test.php');
+require_once('libs/class.Iiko_nmcl_parser.php');
+require_once('libs/class.Iiko_nomenclature.php');
+require_once('libs/class.iiko_nomenclature_parse.php');
+require_once('libs/class.iiko_nomenclature_parse2.php');
+require_once('libs/class.iiko_chefs_parser.php');
+require_once('libs/class.iiko_extmenu_loader.php');
 
 
 /**
@@ -99,12 +99,12 @@ $routes = [
         // $file_name = "2025-04-26_08-50-37_0f7f4440.json";        
         // parse_nmcl($file_name);
     },
-    '/parse-to-chefsmenu' => function () {
+    '/parse-to-std-chefsmenu' => function () {
         global $CFG;
-        echo "<h2>парсинг номенклатуры для chefsmenu</h2>";
+        echo "<h2>парсинг номенклатуры для std chefsmenu</h2>";
         // echo "<p>пауза...</p>";
         $file_name = "json-info-formated-full-new.json";
-        parse_to_chefsmenu($file_name);
+        parse_to_std_chefsmenu($file_name);
     },
 ];
 
@@ -198,7 +198,7 @@ function parse_nmcl($file_name){
     $PARSER_NOMCL->print();
 }
 
-function parse_to_chefsmenu($file_name){
+function parse_to_std_chefsmenu($file_name){
     $json_file_path = __dir__."/files/$file_name";
     $PARSER_TO_CHEFS = new Iiko_chefs_parser($json_file_path);    
     $PARSER_TO_CHEFS->parse();    

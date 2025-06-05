@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ
+ * 
+ * 1. Строим структуру меню как копию структуры импортированных вложенных папок
+ * 2. Строим структуру меню с учетом указанных категорий товаров
+ * 
+ * */
 
 class Iiko_chefs_parser {
     private string $JSON_FILE_PATH="";
@@ -198,8 +204,33 @@ class Iiko_chefs_parser {
         
         // парсим групповые модификаторы текущего товара
         $prodGroupModifiers = $this->parse_modifiers($prod, $menu);
+        
+        // парсим размеры текущего товара
         $itemSizes = [];
-
+        if(count($prod['sizePrices']) > 0){
+            foreach($prod['sizePrices'] as $sizePrice){                
+                $itemSizes[] = [
+                    "sizeId" => $sizePrice['sizeId'],
+                    "sizeName"=>"",
+                    "price" => $sizePrice['price']['currentPrice'],
+                    "isDefault"=>false,
+                    "weightGrams"=> 0,
+                    "measureUnitType"=>"GRAM",
+                ];
+            }
+            $weightGrams = (float) $prod['weight'] * 1000;
+            $itemSizes[0]["weightGrams"] = (int) $weightGrams;
+        }else{
+            $itemSizes[] = [
+                "sizeId" => null,
+                "sizeName"=>"",
+                "price" => 0,
+                "isDefault"=>false,
+                "weightGrams"=> 0,
+                "measureUnitType"=>"GRAM",
+            ];        
+        }
+        
         $product = [                        
             "itemId"=>$prod['id'],                         
             "name" => $prod["name"],
