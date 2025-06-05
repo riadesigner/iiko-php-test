@@ -278,6 +278,7 @@ class Iiko_chefs_parser {
             // пересобираем модификаторы                        
             $readyModifiers = array_map(function($e) use($mById) { 
                 $m = $mById[$e["id"]];
+                $weightGrams = (float) $m["weight"] * 1000;
                 $price = $m["sizePrices"][0]["price"]["currentPrice"];
                 $itemSizes = [
                     [
@@ -285,7 +286,7 @@ class Iiko_chefs_parser {
                     "sizeName" => "",
                     "price" =>  $price,
                     "isDefault" =>  false,
-                    "weightGrams" => 0,
+                    "weightGrams" => (int) $weightGrams,
                     "measureUnitType" => "GRAM",
                     ]
                 ];                 
