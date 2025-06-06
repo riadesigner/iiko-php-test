@@ -26,10 +26,9 @@
         <li><a href="/params">Загр. параметры iiko</a></li>
         <li><a href="/parse/1">Парсинг 1</a></li>
         <li><a href="/parse/2">Парсинг 2</a></li>
-        <li><a href="/reload">Релоад номенкл.</a></li>
-        <li><a href="/parse-nmcl">Парс. номенкл.</a></li>
-        <li><a href="/parse-to-std-chefsmenu">Парс. в -> std chefs</a></li></li>        
-        
+        <li><a href="/reload">Релоад номенкл.</a></li>        
+        <li><a href="/parse-to-unimenu">Парс. в -> unimenu</a></li></li>
+        <li><a href="/unimenu-to-chefs">unimenu -> chefs</a></li></li>
     </ul>
 
 
@@ -40,12 +39,12 @@ define("BASEPATH",__file__);
 require_once('config.php');
 require_once('common.php');
 require_once('libs/class.iiko_params_test.php');
-require_once('libs/class.Iiko_nmcl_parser.php');
 require_once('libs/class.Iiko_nomenclature.php');
 require_once('libs/class.iiko_nomenclature_parse.php');
 require_once('libs/class.iiko_nomenclature_parse2.php');
-require_once('libs/class.iiko_chefs_parser.php');
+require_once('libs/class.iiko_parser_to_unimenu.php');
 require_once('libs/class.iiko_extmenu_loader.php');
+require_once('libs/class.conv_unimenu_to_chefs.php');
 
 
 /**
@@ -70,10 +69,10 @@ $routes = [
     '/reload-dev-extmenu' => function () {
         global $CFG;
         echo "<h2>загрузка внешнего меню и тестового сервера</h2>";
-        // echo "<p>пауза...</p>";        
-        $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
-        $id_dev_extmenu = "11215"; // Тестовое меню 2        
-        reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_dev_key);
+        echo "<p>пауза...</p>";        
+        // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
+        // $id_dev_extmenu = "11215"; // Тестовое меню 2        
+        // reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_dev_key);
     },       
     '/reload' => function () {
         global $CFG;
@@ -92,20 +91,27 @@ $routes = [
         parse_nomenclature($file_name, $id);
     },
     // gpt
-    '/parse-nmcl' => function () {
+    // '/parse-nmcl' => function () {
+    //     global $CFG;
+    //     echo "<h2>парсинг (gpt) номенклатуры iiko full из файла</h2>";
+    //     echo "<p>пауза...</p>";
+    //     // $file_name = "2025-04-26_08-50-37_0f7f4440.json";        
+    //     // parse_nmcl($file_name);
+    // },
+    '/parse-to-unimenu' => function () {
         global $CFG;
-        echo "<h2>парсинг (gpt) номенклатуры iiko full из файла</h2>";
-        echo "<p>пауза...</p>";
-        // $file_name = "2025-04-26_08-50-37_0f7f4440.json";        
-        // parse_nmcl($file_name);
-    },
-    '/parse-to-std-chefsmenu' => function () {
-        global $CFG;
-        echo "<h2>парсинг номенклатуры для std chefsmenu</h2>";
+        echo "<h2>парсинг номенклатуры в формат UNIMENU</h2>";
         // echo "<p>пауза...</p>";
         $file_name = "json-info-formated-full-new.json";
-        parse_to_std_chefsmenu($file_name);
+        parse_to_std_unimenu($file_name);
     },
+    '/unimenu-to-chefs' => function () {
+        global $CFG;
+        echo "<h2>конверт UNIMENU в текущий формат CHEFS</h2>";
+        // echo "<p>пауза...</p>";
+        $file_name = "json-info-formated-full-new.json";
+        convert_unimenu_to_chefs($file_name);
+    },    
 ];
 
 // ---------------------- private -------------------------------
@@ -184,25 +190,16 @@ function reload_nomenclature($id_org, $api_key){
     }      
 }
 
-function parse_nmcl($file_name){
+function parse_to_std_unimenu($file_name){
     $json_file_path = __dir__."/files/$file_name";
-    $PARSER_NOMCL = new Iiko_nmcl_parser($json_file_path);    
-    $PARSER_NOMCL->parse();    
-    $data = $PARSER_NOMCL->get_data();
-    try {        
-        $savedFile = saveArrayToUniqueJson($data);
-        echo "<br>File saved: " . $savedFile;
-    } catch (RuntimeException $e) {
-        echo "<br>Error: " . $e->getMessage();
-    }    
-    $PARSER_NOMCL->print();
-}
+    $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($json_file_path);    
+    $PARSER_TO_UNIMENU->parse();    
+    $data = $PARSER_TO_UNIMENU->get_data();
 
-function parse_to_std_chefsmenu($file_name){
-    $json_file_path = __dir__."/files/$file_name";
-    $PARSER_TO_CHEFS = new Iiko_chefs_parser($json_file_path);    
-    $PARSER_TO_CHEFS->parse();    
-    // $data = $PARSER_TO_CHEFS->get_data();
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+
     // try {        
     //     $savedFile = saveArrayToUniqueJson($data);
     //     echo "<br>File saved: " . $savedFile;
@@ -210,6 +207,23 @@ function parse_to_std_chefsmenu($file_name){
     //     echo "<br>Error: " . $e->getMessage();
     // }        
 } 
+
+function convert_unimenu_to_chefs($file_name){
+    $json_file_path = __dir__."/files/$file_name";
+    $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($json_file_path);    
+    $PARSER_TO_UNIMENU->parse();    
+    $data = $PARSER_TO_UNIMENU->get_data();   
+
+    $CHEFS_CONVERTER = new Conv_unimenu_to_chefs($data);
+    $chefsdata = $CHEFS_CONVERTER->convert()->get_data();
+    
+    echo "<pre>";
+    print_r($chefsdata);
+    echo "</pre>";    
+
+}
+
+
 
 function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
     global $CFG;
@@ -249,7 +263,7 @@ function render_index_page(){
 
         7. [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
 
-        8. [Парс. в -> chefs] – окончательны парсинг номенклатуры iiko (вариант для ChefsMenu)
+        8. [Парс. в -> unimenu] – окончательны парсинг номенклатуры iiko в универсальный формат
 
                 
 

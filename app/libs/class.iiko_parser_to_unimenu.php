@@ -7,7 +7,7 @@
  * 
  * */
 
-class Iiko_chefs_parser {
+class Iiko_parser_to_unimenu {
     private string $JSON_FILE_PATH="";
     private array $DATA;    
     private array $menuGroupsFlatten;
@@ -26,9 +26,6 @@ class Iiko_chefs_parser {
         $this->GROUPS_AS_CATEGORY = $groups_as_category;
         $arr = $this->load_json_file($this->JSON_FILE_PATH);
         $this->DATA = $this->build_all_menus($arr);
-        echo "<pre>";
-        print_r($this->DATA);
-        echo "</pre>";
     }
 
     public function get_data(): array {
