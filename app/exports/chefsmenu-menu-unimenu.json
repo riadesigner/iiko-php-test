@@ -53,8 +53,11 @@
                             "restrictions": {
                                 "minQuantity": 0,
                                 "maxQuantity": 1,
-                                "byDefault": 0
-                                }
+                                "freeQuantity": 0,
+                                "byDefault": 0,
+                                "required": true
+                                },
+                            "pos" : 0
                         }
                     ],
                     "isAvailable": true,

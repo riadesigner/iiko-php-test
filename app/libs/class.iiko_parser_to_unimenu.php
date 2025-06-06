@@ -96,10 +96,16 @@ class Iiko_parser_to_unimenu {
         $this->categoriesById = $categoriesById;                        
 
         if($this->GROUPS_AS_CATEGORY){
-            return $this->build_menus_from_groups();
+            $menus = $this->build_menus_from_groups();
         }else{
-            return $this->build_menus_from_categories();
+            $menus = $this->build_menus_from_categories();
         }        
+        return [
+            "SourceMenus" => "NOMENCLATURE",
+            "TypeMenus" => "UNIMENU",
+            "TotalMenus" => count($menus),
+            "Menus" => $menus,            
+        ];
     }
 
     /**
@@ -314,9 +320,11 @@ class Iiko_parser_to_unimenu {
             $prodGroupModifiers[$gModifier["id"]] = [
                 "groupId"=>$gModifier["id"],
                 "restrictions"=>[
-                    "minAmount"=>$gModifier["minAmount"],
-                    "maxAmount"=>$gModifier["maxAmount"],
-                    "required"=>$gModifier["required"],                                
+                    "minQuantity"=>$gModifier["minAmount"],
+                    "maxQuantity"=>$gModifier["maxAmount"],
+                    "required"=>$gModifier["required"],
+                    "byDefault"=>$gModifier["defaultAmount"], 
+                    "freeQuantity"=>$gModifier["freeOfChargeAmount"],                    
                 ]                
             ];                        
         }
