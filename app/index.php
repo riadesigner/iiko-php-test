@@ -223,8 +223,6 @@ function convert_unimenu_to_chefs($file_name){
 
 }
 
-
-
 function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
     global $CFG;
     $EXTM_LOADER = new Iiko_extmenu_loader($id_org, $id_dev_extmenu, $api_key);    
@@ -263,8 +261,7 @@ function render_index_page(){
 
         7. [Парс. номенкл.] - Парсинг номенклатуры iiko (вариант GPT)
 
-        8. [Парс. в -> unimenu] – окончательны парсинг номенклатуры iiko в универсальный формат
-
+        8. [Парс. в -> UNIMENU] – окончательны парсинг номенклатуры iiko в универсальный формат
                 
 
     </pre>
