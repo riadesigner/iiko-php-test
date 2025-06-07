@@ -65,12 +65,6 @@ class Conv_unimenu_to_chefs {
 
             $sizes = $this->get_item_sizes($e["itemSizes"], $gSizesModifiers);
 
-            // echo "<pre>";
-            // print_r($e["itemSizes"][0]["price"]);
-            // echo "</pre>";
-
-            // $sizes = [];
-
             return [
             "id" => $e["itemId"],
             "name" => $e["name"],
