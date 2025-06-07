@@ -90,14 +90,7 @@ $routes = [
         // $file_name = "nomenc-my-full-3.json"; // мой        
         parse_nomenclature($file_name, $id);
     },
-    // gpt
-    // '/parse-nmcl' => function () {
-    //     global $CFG;
-    //     echo "<h2>парсинг (gpt) номенклатуры iiko full из файла</h2>";
-    //     echo "<p>пауза...</p>";
-    //     // $file_name = "2025-04-26_08-50-37_0f7f4440.json";        
-    //     // parse_nmcl($file_name);
-    // },
+
     '/parse-to-unimenu' => function () {
         global $CFG;
         echo "<h2>парсинг номенклатуры в формат UNIMENU</h2>";
@@ -199,13 +192,7 @@ function parse_to_std_unimenu($file_name){
     echo "<pre>";
     print_r($data);
     echo "</pre>";
-
-    // try {        
-    //     $savedFile = saveArrayToUniqueJson($data);
-    //     echo "<br>File saved: " . $savedFile;
-    // } catch (RuntimeException $e) {
-    //     echo "<br>Error: " . $e->getMessage();
-    // }        
+    
 } 
 
 function convert_unimenu_to_chefs($file_name){
