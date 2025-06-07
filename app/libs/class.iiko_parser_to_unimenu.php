@@ -218,12 +218,14 @@ class Iiko_parser_to_unimenu {
                     "price" => $sizePrice['price']['currentPrice'],
                     "isDefault"=>false,
                     "weightGrams"=> 0,
-                    "measureUnitType"=>"GRAM",
+                    "measureUnitType"=>mb_strtoupper($prod["measureUnit"], 'UTF-8'),
                 ];
             }
             $weightGrams = (float) $prod['weight'] * 1000;
             $itemSizes[0]["weightGrams"] = (int) $weightGrams;
         }else{
+            // если товар не имеет размеров, 
+            // то добавляем один размер по умолчанию
             $itemSizes[] = [
                 "sizeId" => null,
                 "sizeName"=>"",
@@ -290,7 +292,7 @@ class Iiko_parser_to_unimenu {
                     "price" =>  $price,
                     "isDefault" =>  false,
                     "weightGrams" => (int) $weightGrams,
-                    "measureUnitType" => "GRAM",
+                    "measureUnitType" => mb_strtoupper($m["measureUnit"], 'UTF-8'),
                     ]
                 ];                 
                 $modifier = [
@@ -303,7 +305,7 @@ class Iiko_parser_to_unimenu {
                     "itemSizes"=>$itemSizes,
                     "modifiers" => [],
                     "groupModifiers" => [],                    
-                    "isAvailable" => true,
+                    "isAvailable" => true,                    
                     "pos" => $m["order"]
                 ];
                 return $modifier;

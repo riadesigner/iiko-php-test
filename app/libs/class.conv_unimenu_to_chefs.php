@@ -46,6 +46,7 @@ class Conv_unimenu_to_chefs {
         return $data;
     }
 
+    // собираем категории
     private function get_categoties(array $groups): array {        
         $categories = array_filter($groups, fn($e) => $e["type"] === "CATEGORY");
         $categories = array_map(fn($e) => [
@@ -55,21 +56,35 @@ class Conv_unimenu_to_chefs {
         return $categories;
     }
 
+    // собираем товары
     private function get_items(array $menu, string $category_id): array {
         $items = array_filter($menu['products'], fn($e) => $e["parentGroup"] === $category_id);
-        $items_parsed = array_map(fn($e) => [
+        $items_parsed = array_map(function($e) use($menu) { 
+                        
+            [$gNormalModifiers, $gSizesModifiers] = $this->get_modifiers_goups($menu, $e["groupModifiers"]);
+
+            $sizes = $this->get_item_sizes($e["itemSizes"], $gSizesModifiers);
+
+            // echo "<pre>";
+            // print_r($e["itemSizes"][0]["price"]);
+            // echo "</pre>";
+
+            // $sizes = [];
+
+            return [
             "id" => $e["itemId"],
             "name" => $e["name"],
             "description" => $e["description"],
             "imageUrl"=> $e["imageUrl"],
-            "sizes"=>[],
-            "modifiers"=> $this->get_modifiers_goups($menu, $e["groupModifiers"]),
+            "sizes"=> $sizes,
+            "modifiers"=> $gNormalModifiers,
             "orderItemType"=>"",
             "sku"=>"",        
-        ], $items);
+        ];}, $items);
         return $items_parsed;
     }
 
+    // собираем группы модификаторов
     private function get_modifiers_goups(array $menu, array $groupModifiers): array {
 
         $gModifiers = array_map(fn($e) => [
@@ -86,28 +101,72 @@ class Conv_unimenu_to_chefs {
             ],$groupModifiers);
 
         // ФИШКА PIZZAIOLO:
-        // делим на группы обычных модификаторов
-        // и на группы модификаторов размера        
-        // $gNormalModifiers = array_filter($gModifiers, fn($e) => !str_contains(mb_strtolower($e["name"]), "размер"));
-        // $gSizeModifiers = array_filter($gModifiers, fn($e) => str_contains(mb_strtolower($e["name"]), "размер"));
+        // делим группы модификаторов
+        // на ОБЫЧНЫЕ и на МОДИФИКАТОРЫ РАЗМЕРА
+        // (если в названии группы модификаторов есть слово "размер")
+        $gNormalModifiers = array_filter($gModifiers, fn($e) => !str_contains(mb_strtolower($e["name"]), "размер"));
+        $gSizesModifiers = array_filter($gModifiers, fn($e) => str_contains(mb_strtolower($e["name"]), "размер"));
 
-        return $gModifiers;
+        return [$gNormalModifiers, $gSizesModifiers];
 
     }
 
+    // собираем модификаторы
     private function get_modifiers_items(array $menu, string $modifierGroupId): array {
         $items = array_filter($menu['products'], fn($e) => ($e["parentGroup"] === $modifierGroupId));
         $items_parsed = array_map(fn($e) => [
             "modifierId" => $e["itemId"],
             "name" => $e["name"],
             "description" => $e["description"],
-            "portionWeightGrams"=>"",
             "imageUrl"=> $e["imageUrl"],
+            "portionWeightGrams"=>$e["itemSizes"][0]["weightGrams"]??0,
             "price"=>$e["itemSizes"][0]["price"]??0,
         ], $items);
         return $items_parsed;
     }
 
+    // собираем размеры товара
+    private function get_item_sizes(array $sizes, array $gSizesModifiers=null): array {
+        
+        // фишка PIZZAIOLO:
+        // если есть специальный модификатор для размеров, 
+        // то строим размерный ряд из него        
+        if($gSizesModifiers!==null && count($gSizesModifiers)>0){
+
+            $gSizesModifier = $gSizesModifiers[array_key_first($gSizesModifiers)];            
+            $mainPrice = (int) $sizes[0]["price"];
+            $measureUnitType = $sizes[0]["measureUnitType"];
+            $weightGrams = (int) $sizes[0]["weightGrams"];
+
+            $sizes_parsed = [];
+
+            foreach($gSizesModifier["items"] as $item){
+                $sizes_parsed[] = [
+                    "sizeCode"=>"",
+                    "sizeId" => $item["modifierId"],
+                    "sizeName" => $item["name"],
+                    "isDefault"=> false,
+                    "price" => (int) $item["price"] + $mainPrice,
+                    "measureUnitType"=> $measureUnitType,
+                    "portionWeightGrams" => (int) $item["portionWeightGrams"] + $weightGrams,
+                ];
+            }
+
+        // иначе, применяем обычные размеры
+        }else{
+            $sizes_parsed = array_map(fn($e)=>[
+                "sizeCode"=>"",
+                "sizeId" => $e["sizeId"],
+                "sizeName" => "",
+                "isDefault"=> true,
+                "price" => $e["price"],
+                "measureUnitType"=>$e["measureUnitType"],
+                "portionWeightGrams" => $e["weightGrams"],
+            ], $sizes);
+        }
+
+        return $sizes_parsed;
+    }
 
 }
 
