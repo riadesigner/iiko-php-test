@@ -39,7 +39,7 @@ define("BASEPATH",__file__);
 require_once('config.php');
 require_once('common.php');
 require_once('libs/class.iiko_params_test.php');
-require_once('libs/class.Iiko_nomenclature.php');
+require_once('libs/class.iiko_nomenclature.php');
 require_once('libs/class.iiko_nomenclature_parse.php');
 require_once('libs/class.iiko_nomenclature_parse2.php');
 require_once('libs/class.iiko_parser_to_unimenu.php');
