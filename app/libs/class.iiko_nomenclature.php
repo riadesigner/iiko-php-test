@@ -2,7 +2,7 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * 	ПОЛУЧАЕМ НОМЕНКЛАТУРУ ИЗ IIKO (v-1)
+ * 	ПОЛУЧАЕМ НОМЕНКЛАТУРУ ИЗ IIKO
  * 
  *  @param <string> $id_organization
  *  @param <string> $iiko_api_key
@@ -15,14 +15,24 @@ class Iiko_nomenclature{
 	private array $DATA;
 	private string $TOKEN;
 	
-	function __construct(string $id_org, string $iiko_api_key=""){
+	/**
+	 * @param <string> $id_org
+	 * @param <string> $iiko_api_key / optional
+	 * @param <string> $token / optional
+	 * @return <Iiko_nomenclature>
+	 * 
+	 * опционально можно передать токен, если есть
+	 * или iiko_api_key, если токен еще не получен
+	*/
+	function __construct(string $id_org, string $iiko_api_key="", string $token=""){
 		$this->ID_ORG = $id_org;
-		$this->IIKO_API_KEY = $iiko_api_key;		
+		$this->IIKO_API_KEY = $iiko_api_key;
+		$this->TOKEN = $token;		
 		return $this;
 	}
 
 	public function reload(): void{
-		$this->TOKEN = $this->reload_token();
+		if(empty($this->TOKEN)){ $this->TOKEN = $this->reload_token(); }
 		$this->DATA = $this->load_nomenclature();
 	}
 
