@@ -2,7 +2,7 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * 	ПОЛУЧАЕМ НОМЕНКЛАТУРУ ИЗ IIKO
+ * 	ПОЛУЧАЕМ НОМЕНКЛАТУРУ ИЗ IIKO (v-1)
  * 
  *  @param <string> $id_organization
  *  @param <string> $iiko_api_key
