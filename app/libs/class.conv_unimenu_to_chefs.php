@@ -1,11 +1,10 @@
 <?php
 /**
- * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU
+ * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU (v-2)
  * 
- * нужно переделать:
- * особенность формата chefsmenu оказывается в том, что 
- * CATEGORIES и ITEMS - хранятся как ассоциативный массив (с id ключами ),
- * а MODIFIERS и ITEMS (ВЛОЖЕННЫЕ) - как обычные массивы (с индексами 0, 1, 2, ...);
+ * особенность формата chefsmenu в том (в том числе), что 
+ * CATEGORIES и ITEMS (ТОВАРЫ) - хранятся как ассоциативный массив (с id ключами ),
+ * а MODIFIERS и ITEMS (ГРУППЫ МОДИФИКАТОРОВ и МОДИФИКАТОРЫ) - как обычные массивы (с индексами 0, 1, 2, ...);
  * 
  * */
 
@@ -68,11 +67,15 @@ class Conv_unimenu_to_chefs {
 
     // собираем товары
     private function get_items(array $menu, string $category_id): array {
+       
         $items = array_filter($menu['products'], fn($e) => $e["parentGroup"] === $category_id);
+        
         $items_parsed = array_map(function($e) use($menu) { 
                         
             [$gNormalModifiers, $gSizesModifiers] = $this->get_modifiers_goups($menu, $e["groupModifiers"]);
 
+            $gNormalModifiers = $this->assoc_to_array($gNormalModifiers);
+            
             $sizes = $this->get_item_sizes($e["itemSizes"], $gSizesModifiers);
 
             return [
@@ -126,7 +129,7 @@ class Conv_unimenu_to_chefs {
             "portionWeightGrams"=>$e["itemSizes"][0]["weightGrams"]??0,
             "price"=>$e["itemSizes"][0]["price"]??0,
         ], $items);
-        return $items_parsed;
+        return $this->assoc_to_array($items_parsed);
     }
 
     // собираем размеры товара
@@ -170,6 +173,14 @@ class Conv_unimenu_to_chefs {
         }
 
         return $sizes_parsed;
+    }
+
+    private function assoc_to_array($assoc) {
+        $new_array = [];
+        foreach ($assoc as $key => $value) {
+            $new_array[] = $value;
+        }
+        return $new_array;
     }
 
 }
