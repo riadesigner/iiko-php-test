@@ -2,6 +2,11 @@
 /**
  * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU
  * 
+ * нужно переделать:
+ * особенность формата chefsmenu оказывается в том, что 
+ * CATEGORIES и ITEMS - хранятся как ассоциативный массив (с id ключами ),
+ * а MODIFIERS и ITEMS (ВЛОЖЕННЫЕ) - как обычные массивы (с индексами 0, 1, 2, ...);
+ * 
  * */
 
 class Conv_unimenu_to_chefs {
@@ -21,7 +26,7 @@ class Conv_unimenu_to_chefs {
         $menus = $this->UNIMENU['Menus'];
 
         foreach($menus as $menu){
-            $ready_menus[] = $this->convert_menu($menu);
+            $ready_menus[$menu["menuId"]] = $this->convert_menu($menu);
         }
 
         $this->DATA = $ready_menus;
@@ -29,7 +34,12 @@ class Conv_unimenu_to_chefs {
     }
 
     public function get_data(): array {
-        return $this->DATA;
+        return [
+            "SourceMenus" => "NOMENCLATURE",
+            "TypeMenus" => "CHEFSMENU",
+            "TotalMenus" => count($this->DATA),
+            "Menus" => $this->DATA,            
+        ];        
     }
 
     private function convert_menu(array $menu): array {
