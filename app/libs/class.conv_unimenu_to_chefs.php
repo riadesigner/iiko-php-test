@@ -154,6 +154,7 @@ class Conv_unimenu_to_chefs {
                     "sizeName" => $item["name"],
                     "isDefault"=> false,
                     "price" => (int) $item["price"] + $mainPrice,
+                    "originalPrice" => (int) $item["price"],
                     "measureUnitType"=> $measureUnitType,
                     "portionWeightGrams" => (int) $item["portionWeightGrams"] + $weightGrams,
                 ];
@@ -167,6 +168,7 @@ class Conv_unimenu_to_chefs {
                 "sizeName" => "",
                 "isDefault"=> true,
                 "price" => $e["price"],
+                "originalPrice" => null,
                 "measureUnitType"=>$e["measureUnitType"],
                 "portionWeightGrams" => $e["weightGrams"],
             ], $sizes);
