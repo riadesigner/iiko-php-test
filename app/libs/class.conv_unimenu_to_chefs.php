@@ -152,12 +152,15 @@ class Conv_unimenu_to_chefs {
 
             $sizes_parsed = [];
 
-            foreach($gSizesModifier["items"] as $item){
+            $count = 0;
+            foreach($gSizesModifier["items"] as $item){             
+                // устанавливаем по умолчанию второй по счету размер; 
+                $isDefault = $count==1; $count++;                
                 $sizes_parsed[] = [
                     "sizeCode"=>"",
                     "sizeId" => $item["modifierId"],
                     "sizeName" => $item["name"],
-                    "isDefault"=> false,
+                    "isDefault"=> $isDefault,
                     "price" => (int) $item["price"] + $mainPrice,
                     "originalPrice" => (int) $item["price"],
                     "measureUnitType"=> $measureUnitType,
