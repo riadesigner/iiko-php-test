@@ -132,6 +132,7 @@ class Conv_unimenu_to_chefs {
         $items = array_filter($menu['products'], fn($e) => ($e["parentGroup"] === $modifierGroupId));
         $items_parsed = array_map(fn($e) => [
             "modifierId" => $e["itemId"],
+            "modifierGroupId"=> $e["parentGroup"],
             "name" => $e["name"],
             "description" => $e["description"],
             "imageUrl"=> $e["imageUrl"],
