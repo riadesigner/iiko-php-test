@@ -77,17 +77,21 @@ $routes = [
     '/reload' => function () {
         global $CFG;
         echo "<h2>загрузка номенклатуры</h2>";
-        echo "<p>пауза...</p>";
+        // echo "<p>пауза...</p>";
         // $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // pizza
-        // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // test
-        // reload_nomenclature($id_org, $CFG->api_key);
+        // $apikey = $CFG->api_key;
+
+        $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // test
+        $apikey = $CFG->api_dev_key;
+
+       reload_nomenclature($id_org, $apikey);
     },    
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
         $id = htmlspecialchars($id);
         echo "<h2>парсинг меню. Версия {$id}</h2>";                       
-        $file_name = "json-info-formated-full-new.json"; // pizza
-        // $file_name = "nomenc-my-full-3.json"; // мой        
+        // $file_name = "json-info-formated-full-new3.json"; // pizza
+        $file_name = "nomenc-my-full-4.json"; // мой        
         parse_nomenclature($file_name, $id);
     },
 
@@ -95,14 +99,16 @@ $routes = [
         global $CFG;
         echo "<h2>парсинг номенклатуры в формат UNIMENU</h2>";
         // echo "<p>пауза...</p>";
-        $file_name = "json-info-formated-full-new.json";
+        // $file_name = "json-info-formated-full-new3.json";
+        $file_name = "nomenc-my-full-4.json"; // мой        
         parse_to_std_unimenu($file_name);
     },
     '/unimenu-to-chefs' => function () {
         global $CFG;
         echo "<h2>конверт UNIMENU в текущий формат CHEFS</h2>";
         // echo "<p>пауза...</p>";
-        $file_name = "json-info-formated-full-new.json";
+        // $file_name = "json-info-formated-full-new3.json";
+        $file_name = "nomenc-my-full-4.json"; // мой        
         convert_unimenu_to_chefs($file_name);
     },    
 ];
@@ -185,8 +191,10 @@ function reload_nomenclature($id_org, $api_key){
 
 function parse_to_std_unimenu($file_name){
     $json_file_path = __dir__."/files/$file_name";
-    $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($json_file_path);    
-    $PARSER_TO_UNIMENU->parse();    
+    $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($json_file_path);
+    
+    $groups_as_category = true; // fo my test server   
+    $PARSER_TO_UNIMENU->parse($groups_as_category);    
     $data = $PARSER_TO_UNIMENU->get_data();
 
     echo "<pre>";
@@ -198,7 +206,9 @@ function parse_to_std_unimenu($file_name){
 function convert_unimenu_to_chefs($file_name){
     $json_file_path = __dir__."/files/$file_name";
     $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($json_file_path);    
-    $PARSER_TO_UNIMENU->parse();    
+    
+    $groups_as_category = true; // fo my test server   
+    $PARSER_TO_UNIMENU->parse($groups_as_category);      
     $data = $PARSER_TO_UNIMENU->get_data();   
 
     $CHEFS_CONVERTER = new Conv_unimenu_to_chefs($data);
