@@ -1,6 +1,10 @@
 <?php
 /**
- * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ (v-1.1.0)
+ * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ (v-2.0.0)
+ * 
+ * добавлена возможность выбора, что парсить
+ * - json_file 
+ * - iiko_response
  * 
  * 1. Строим структуру меню как копию структуры импортированных вложенных папок
  * 2. Строим структуру меню с учетом указанных категорий товаров
@@ -12,6 +16,7 @@
  * */
 
 class Iiko_parser_to_unimenu {
+    private array $IIKO_RESPONSE;
     private string $JSON_FILE_PATH="";
     private array $DATA;    
     private array $menuGroupsFlatten;
@@ -21,15 +26,20 @@ class Iiko_parser_to_unimenu {
     private array $categoriesById;          
     private bool $GROUPS_AS_CATEGORY;
 
-	function __construct(string $json_file_path){				
+	function __construct(string $json_file_path = "", array $iiko_response = []){				
         $this->JSON_FILE_PATH = $json_file_path;
+        $this->IIKO_RESPONSE = $iiko_response;
 		return $this;
 	}
 
     public function parse(bool $groups_as_category = false): void {
         $this->GROUPS_AS_CATEGORY = $groups_as_category;
-        $arr = $this->load_json_file($this->JSON_FILE_PATH);
-        $this->DATA = $this->build_all_menus($arr);
+        if(!empty($this->JSON_FILE_PATH)){
+            $res = $this->load_json_file($this->JSON_FILE_PATH);
+            $this->DATA = $this->build_all_menus($res);
+        }else{
+            $this->DATA = $this->build_all_menus($this->IIKO_RESPONSE);        
+        }
     }
 
     public function get_data(): array {
