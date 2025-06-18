@@ -1,9 +1,13 @@
 <?php
 /**
- * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ
+ * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ (v-1.1.0)
  * 
  * 1. Строим структуру меню как копию структуры импортированных вложенных папок
  * 2. Строим структуру меню с учетом указанных категорий товаров
+ * 
+ * особенность формата UNIMENU в том (в том числе), что 
+ * Menus, groups, products - хранятся как ассоциативный массив (с id ключами ),
+ * а itemSizes, modifiers и groupModifiers - как обычные массивы (с индексами 0, 1, 2, ...);
  * 
  * */
 
@@ -244,7 +248,7 @@ class Iiko_parser_to_unimenu {
             "type" => "PRODUCT", 
             "parentGroup" => $parentGroupId,
             "itemSizes"=>$itemSizes,
-            "modifiers" => [], // одиночные модификаторы
+            "modifiers" => [], // одиночные модификаторы (в этой версии не используются)
             "groupModifiers"=> $prodGroupModifiers, // группы модификаторов
             "isAvailable" => true,
             "pos" => $prod["order"]            
@@ -276,11 +280,13 @@ class Iiko_parser_to_unimenu {
                 $menu["groups"][$gModifier["id"]] = $readyGroupModifiers;
             }
 
-            // находим модификаторы группы 
+            // находим модификаторы в данной группе 
             $modifiers = $gModifier["childModifiers"];                        
             $mById = $this->modifiersById;
             
-            // пересобираем модификаторы                        
+            // собираем модификаторы,
+            // делаем их подобными обычным товарам, 
+            // но с пометкой type=MODIFIER  
             $readyModifiers = array_map(function($e) use($mById) { 
                 $m = $mById[$e["id"]];
                 $weightGrams = (float) $m["weight"] * 1000;
@@ -294,7 +300,8 @@ class Iiko_parser_to_unimenu {
                     "weightGrams" => (int) $weightGrams,
                     "measureUnitType" => mb_strtoupper($m["measureUnit"], 'UTF-8'),
                     ]
-                ];                 
+                ];           
+
                 $modifier = [
                     "itemId"=>$e["id"],
                     "name"=>$m["name"],
@@ -306,7 +313,7 @@ class Iiko_parser_to_unimenu {
                     "modifiers" => [],
                     "groupModifiers" => [],                    
                     "isAvailable" => true,                    
-                    "pos" => $m["order"]
+                    "pos" => $m["order"],
                 ];
                 return $modifier;
             }, $modifiers);
@@ -319,15 +326,33 @@ class Iiko_parser_to_unimenu {
                 }
             }
 
-            $prodGroupModifiers[$gModifier["id"]] = [
-                "groupId"=>$gModifier["id"],
+            // меняем названия переменных 
+            // у вложенных модификаторов группы
+            $childModifiers = [];
+            foreach($modifiers as $mo){
+                $childModifiers[] = [                        
+                    "modifierId"=>$mo["id"],
+                    "restrictions"=>[
+                        "minQuantity"=>$mo["minAmount"],
+                        "maxQuantity"=>$mo["maxAmount"],
+                        "required"=>$mo["required"],
+                        "byDefault"=>$mo["defaultAmount"], 
+                        "freeQuantity"=>$mo["freeOfChargeAmount"], 
+                    ]                     
+                ];
+            }
+            // собираем групповой модификатор 
+            // со своими названиями переменных     
+            $prodGroupModifiers[] = [
+                "modifierGroupId"=>$gModifier["id"],
                 "restrictions"=>[
                     "minQuantity"=>$gModifier["minAmount"],
                     "maxQuantity"=>$gModifier["maxAmount"],
                     "required"=>$gModifier["required"],
                     "byDefault"=>$gModifier["defaultAmount"], 
                     "freeQuantity"=>$gModifier["freeOfChargeAmount"],                    
-                ]                
+                ],
+                "childModifiers"=>$childModifiers,                
             ];                        
         }
         

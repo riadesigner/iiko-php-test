@@ -1,6 +1,6 @@
 <?php
 /**
- * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU (v-2.2.1)
+ * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU (v-2.3.1)
  * 
  * для виртуального размерного ряда:
  * - добавлено поле originalPrice (из modifier->sizes[0]->price) 
@@ -103,11 +103,11 @@ class Conv_unimenu_to_chefs {
     }
 
     // собираем группы модификаторов
-    private function get_modifiers_goups(array $menu, array $groupModifiers): array {
+    private function get_modifiers_goups(array $menu, array $groupModifiers): array {        
 
         $gModifiers = array_map(fn($e) => [
-            "modifierGroupId" => $e["groupId"],            
-            "name" =>  $menu["groups"][$e["groupId"]]["name"]??"",
+            "modifierGroupId" => $e["modifierGroupId"],            
+            "name" =>  $menu["groups"][$e["modifierGroupId"]]["name"]??"",
             "restrictions"=>[
                 "minQuantity"=> $e["restrictions"]["minQuantity"],
                 "maxQuantity"=> $e["restrictions"]["maxQuantity"],
@@ -115,7 +115,7 @@ class Conv_unimenu_to_chefs {
                 "freeQuantity"=> $e["restrictions"]["freeQuantity"],
                 "byDefault"=> $e["restrictions"]["byDefault"],                
             ],
-            "items"=> $this->get_modifiers_items($menu, $e["groupId"]),
+            "items"=> $this->get_modifiers_items($menu, $e["modifierGroupId"], $e["childModifiers"]),
             ],$groupModifiers);
 
         // ФИШКА PIZZAIOLO:
@@ -130,17 +130,27 @@ class Conv_unimenu_to_chefs {
     }
 
     // собираем модификаторы
-    private function get_modifiers_items(array $menu, string $modifierGroupId): array {
+    private function get_modifiers_items(array $menu, string $modifierGroupId, array $childModifiers): array {
+        // отбираем модификаторы группы
         $items = array_filter($menu['products'], fn($e) => ($e["parentGroup"] === $modifierGroupId));
-        $items_parsed = array_map(fn($e) => [
-            "modifierId" => $e["itemId"],
+        // пересобираем их в chefs структуру
+        $items_parsed = array_map(function($e) use($childModifiers) { 
+            // собираем параметры restrictions у модификатора
+            $modifierId = $e["itemId"];
+            $mo = array_filter($childModifiers, function($cm) use($modifierId) { return $cm["modifierId"] === $modifierId; });
+            $norestrictions = ["minQuantity" => 0, "maxQuantity" => 0, "required" => false, "byDefault" => 0, "freeQuantity" => 0];
+            $restrictions = $mo[array_key_first($mo)]["restrictions"]??$norestrictions;
+            return [
+            "modifierId" => $modifierId,
             "modifierGroupId"=> $e["parentGroup"],
             "name" => $e["name"],
             "description" => $e["description"],
             "imageUrl"=> $e["imageUrl"],
             "portionWeightGrams"=>$e["itemSizes"][0]["weightGrams"]??0,
             "price"=>$e["itemSizes"][0]["price"]??0,
-        ], $items);
+            "restrictions"=>$restrictions,
+            ];
+    }, $items);
         return $this->assoc_to_array($items_parsed);
     }
 
