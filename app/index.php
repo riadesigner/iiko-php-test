@@ -261,19 +261,30 @@ function new_full_nomencl_parser($id_org, $api_key){
     print_r($temp_file_names);
     echo "</pre>";
 
+    $groups_as_category = false;
     $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($temp_file_names);    
-    $PARSER_TO_UNIMENU->parse();
+    $PARSER_TO_UNIMENU->parse($groups_as_category);
     $data = $PARSER_TO_UNIMENU->get_data();
 
-    // $NOMENCL_DIVIDER->clean();
-    // $NOMCL_LOADER->clean();    
+    echo "<h2>Парсинг и перевод в UNIMENU выполнен, всего меню: ".$data['TotalMenus']."</h2>";
+    foreach($data['Menus'] as $menu){
+        echo sprintf("<p>Меню: %s, id=%s </p>", $menu['name'], $menu['menuId']);
+    }
 
+    $id_menu = "9da77ff8-862d-45e4-a7f2-a5117910fa66"; // pizza-vl
+    $selected_unimenu = $data["Menus"][$id_menu];
+    $CHEFS_CONVERTER = new Conv_unimenu_to_chefs($selected_unimenu);
+    $chefsdata = $CHEFS_CONVERTER->get_data();
+    
+    echo sprintf("<p>Конвертирование меню <strong>%s</strong> в CHEFS выполнено</p>", $data["Menus"][$id_menu]['name']);
     echo "<pre>";
-    print_r($data);
-    echo "</pre>";
+    print_r($chefsdata);
+    echo "</pre>";    
 
-    // $PARSER_NOMENCL->clean();
-
+    $NOMENCL_DIVIDER->clean();
+    $NOMCL_LOADER->clean(); 
+    
+    
 }
 
 
