@@ -6,7 +6,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  * 
  *  @param <int> $id_cafe
  *  @param <string> $iiko_api_key
- * 
  *  @return <Iiko_params> $this
 */
 class Iiko_params_test{

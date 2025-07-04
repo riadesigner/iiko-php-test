@@ -1,14 +1,10 @@
 <?php
 /**
- * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ (v-3.0.0)
+ * ДВА ВАРИАНТА ПАРСИНГА МЕНЮ (v-2.0.0)
  * 
  * добавлена возможность выбора, что парсить
- * 
- * - (string) json_file // парсим целиком файл номенклатуры
- * - (array) jsonl_files_parts // парсим части номенклатуры
- * - (array) iiko_response // парсим ответ от сервера iiko
- * 
- * есть два варианта парсинга меню:
+ * - json_file 
+ * - iiko_response
  * 
  * 1. Строим структуру меню как копию структуры импортированных вложенных папок
  * 2. Строим структуру меню с учетом указанных категорий товаров
@@ -21,7 +17,7 @@
 
 class Iiko_parser_to_unimenu {
     private array $IIKO_RESPONSE;
-    private string|array $JSON_FILE_PATH="";
+    private string $JSON_FILE_PATH="";
     private array $DATA;    
     private array $menuGroupsFlatten;
     private array $productsById;
@@ -30,42 +26,17 @@ class Iiko_parser_to_unimenu {
     private array $categoriesById;          
     private bool $GROUPS_AS_CATEGORY;
 
-    // НА ВХОД ПРИНИМАЕТ ТРИ ВАРИАНТА ДАННЫХ.
-    // действует в зависимости от того, что передали в конструктор:
-    // @param string|array $json_file_path 
-    // 1. путь к файлу номенклатуры 
-    // 2. пути к частям номенклатуры 
-    // @param array $iiko_response
-    // 3. ответ от iiko 
-	function __construct(string|array $json_file_path = "", array $iiko_response = []){				
-        $this->JSON_FILE_PATH = $json_file_path; 
+	function __construct(string $json_file_path = "", array $iiko_response = []){				
+        $this->JSON_FILE_PATH = $json_file_path;
         $this->IIKO_RESPONSE = $iiko_response;
 		return $this;
 	}
 
     public function parse(bool $groups_as_category = false): void {
-
         $this->GROUPS_AS_CATEGORY = $groups_as_category;
-        
-        // если первый аргумент не пустой
-        // значит предполагаем, что передали путь к файлу (файлам) номенклатуры
-
         if(!empty($this->JSON_FILE_PATH)){
-            // если первый аргумент - это массив
-            // значит предполагаем, что передали массив с сылками 
-            // к файлам с частями номенклатуры
-            if(is_array($this->JSON_FILE_PATH)){
-                // парсим по частям
-                $this->DATA = $this->build_all_menu_by_parts($this->JSON_FILE_PATH);
-            }else{
-                // если первый аргумент - строка
-                // значит предполагаем, что передали путь 
-                // к целому файлу с номенклатурой
-                $res = $this->load_json_file($this->JSON_FILE_PATH);
-                $this->DATA = $this->build_all_menus($res);
-            }
-            
-        // иначе предполагаем, что передали ответ от iiko
+            $res = $this->load_json_file($this->JSON_FILE_PATH);
+            $this->DATA = $this->build_all_menus($res);
         }else{
             $this->DATA = $this->build_all_menus($this->IIKO_RESPONSE);        
         }
@@ -75,77 +46,22 @@ class Iiko_parser_to_unimenu {
         return $this->DATA;
     }
 
-    // на вход принимает массив имен файлов (частей номенклатуры) в формате .jsonl    
-    // возможные: categories, groups, dish, modifiers, service
+    private function load_json_file(string $json_file_path): array {
+		// Step 1: Read the file
+		$jsonString = file_get_contents($json_file_path);
+		
+		if ($jsonString === false) {			
+			throw new RuntimeException("Error: Unable to read the JSON file.");
+		}
+		
+		// Step 2: Decode the JSON
+		$data = json_decode($jsonString, true);
 
-    private function build_all_menu_by_parts($parts_names): array {
-        
-        // Собираем категории
-        $jsonl_file = $parts_names['categories'];
-        $categoriesById = [];
-        foreach ($this->readJsonlFile($jsonl_file) as $cat) {
-            $categoriesById[$cat['id']] = $cat;            
-        }
-
-        // Собираем группы модификаторов 
-        $jsonl_file = $parts_names['groups'];
-        $groupsModifiersById = [];
-        $onlyMenuGroups=[];
-        foreach ($this->readJsonlFile($jsonl_file) as $group) {
-            if ($group['isGroupModifier']) {
-                // группы, которые являются модификаторами
-                $groupsModifiersById[$group['id']] = $group;
-            }else{
-                // группы, которые не являются модификаторами
-                $onlyMenuGroups[] = $group;
-            }
-        }
-
-        // Строим дерево групп (тольк Папок меню )
-        $menuGoupsTree = $this->build_groups_tree($onlyMenuGroups);
-
-        // Делаем дерево плоским
-        $menuGroupsFlatten = $this->flatten_groups_tree($menuGoupsTree);
-
-
-        // Собираем товары, 
-        $jsonl_file = $parts_names['dish'];
-        $productsById = [];
-        foreach ($this->readJsonlFile($jsonl_file) as $dish) {
-            $productsById[$dish['id']] = $dish;            
-        }        
-
-        // Собираем услуги
-        $jsonl_file = $parts_names['service'];
-        $servicesById = [];
-        foreach ($this->readJsonlFile($jsonl_file) as $service) {
-            $servicesById[$service['id']] = $service;            
-        }                
-
-        // Собираем модификаторы
-        $modifiersById = [];
-        $jsonl_file = $parts_names['modifiers'];
-        foreach ($this->readJsonlFile($jsonl_file) as $modifier) {
-            $modifiersById[$modifier['id']] = $modifier;            
-        }          
-
-        $this->menuGroupsFlatten = $menuGroupsFlatten;
-        $this->productsById = $productsById;
-        $this->modifiersById = $modifiersById;
-        $this->groupsModifiersById = $groupsModifiersById;
-        $this->categoriesById = $categoriesById;                        
-
-        if($this->GROUPS_AS_CATEGORY){
-            $menus = $this->build_menus_from_groups();
-        }else{
-            $menus = $this->build_menus_from_categories();
-        }        
-        return [
-            "SourceMenus" => "NOMENCLATURE",
-            "TypeMenus" => "UNIMENU",
-            "TotalMenus" => count($menus),
-            "Menus" => $menus,            
-        ];
+		// Check for JSON decoding errors
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			throw new RuntimeException("Error decoding JSON: " . json_last_error_msg());
+		}
+        return $data;
     }
 
     private function build_all_menus($data): array {        
@@ -218,7 +134,8 @@ class Iiko_parser_to_unimenu {
             // создаем меню
             $menu = [
                 "menuId"=>$rootGroup['id'], 
-                "name" => $rootGroup["name"],
+                "name" => $rootGroup["name"],                 
+                "description"=>$rootGroup["description"],                
                 "groups"=>[],
                 "products"=>[]
             ];
@@ -273,6 +190,7 @@ class Iiko_parser_to_unimenu {
             $menu = [
                 "menuId"=>$rootGroup["id"],
                 "name"=>$rootGroup["name"],
+                "description"=>$rootGroup["description"],
                 "groups"=>[],
                 "products"=>[]
             ];
@@ -359,8 +277,7 @@ class Iiko_parser_to_unimenu {
 
         foreach ($prod['groupModifiers'] as $gModifier) {
             
-            $gm = $this->groupsModifiersById[$gModifier["id"]]??null;
-            if(!$gm) break;
+            $gm = $this->groupsModifiersById[$gModifier["id"]];
 
             $readyGroupModifiers = [
                 "groupId" => $gModifier["id"],
@@ -503,37 +420,6 @@ class Iiko_parser_to_unimenu {
 			$this->flatten_groups_tree_helper($subs, $result);		
 		}		
 	}
-
-    // читаем jsonl файл (ЦЕЛИКОМ)
-    private function load_json_file(string $json_file_path): array {
-		// Step 1: Read the file
-		$jsonString = file_get_contents($json_file_path);
-		
-		if ($jsonString === false) {			
-			throw new RuntimeException("Error: Unable to read the JSON file.");
-		}
-		
-		// Step 2: Decode the JSON
-		$data = json_decode($jsonString, true);
-
-		// Check for JSON decoding errors
-		if (json_last_error() !== JSON_ERROR_NONE) {
-			throw new RuntimeException("Error decoding JSON: " . json_last_error_msg());
-		}
-        return $data;
-    }
-
-    // читаем jsonl файл (ПОСТРОЧНО!)
-    private function readJsonlFile(string $filename): Generator {
-        $handle = fopen($filename, 'r');
-        
-        while (($line = fgets($handle)) !== false) {
-            yield json_decode(trim($line), true, 512, JSON_THROW_ON_ERROR);
-        }
-        
-        fclose($handle);
-    }    
-
 
    
 }

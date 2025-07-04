@@ -1,3 +1,20 @@
+<?php
+
+define("BASEPATH",__file__);
+
+require_once('config.php');
+require_once('common.php');
+require_once('libs/class.iiko_params_test.php');
+require_once('libs/class.iiko_nomenclature_loader.php');
+require_once('libs/class.iiko_nomenclature_parse.php');
+require_once('libs/class.iiko_nomenclature_parse2.php');
+require_once('libs/class.iiko_parser_to_unimenu.php');
+require_once('libs/class.iiko_extmenu_loader.php');
+require_once('libs/class.conv_unimenu_to_chefs.php');
+require_once('libs/class.iiko_nomenclature_divider.php');
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,23 +46,10 @@
         <li><a href="/reload">Релоад номенкл.</a></li>        
         <li><a href="/parse-to-unimenu">Парс. в -> unimenu</a></li></li>
         <li><a href="/unimenu-to-chefs">unimenu -> chefs</a></li></li>
+        <li><a href="/new-load-numenc">Новая загруз. номенкл.</a></li></li>
     </ul>
 
-
-    <?php
-
-define("BASEPATH",__file__);
-
-require_once('config.php');
-require_once('common.php');
-require_once('libs/class.iiko_params_test.php');
-require_once('libs/class.iiko_nomenclature.php');
-require_once('libs/class.iiko_nomenclature_parse.php');
-require_once('libs/class.iiko_nomenclature_parse2.php');
-require_once('libs/class.iiko_parser_to_unimenu.php');
-require_once('libs/class.iiko_extmenu_loader.php');
-require_once('libs/class.conv_unimenu_to_chefs.php');
-
+<?php
 
 /**
  * --------------------------
@@ -72,20 +76,20 @@ $routes = [
         echo "<p>пауза...</p>";        
         // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
         // $id_dev_extmenu = "11215"; // Тестовое меню 2        
-        // reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_dev_key);
+        // reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_test_key);
     },       
     '/reload' => function () {
         global $CFG;
         echo "<h2>загрузка номенклатуры</h2>";
         // echo "<p>пауза...</p>";
         // $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // pizza
-        // $apikey = $CFG->api_key;
+        // $api_key = $CFG->api_key;
 
         $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // test
-        $apikey = $CFG->api_dev_key;
+        $api_key = $CFG->api_test_key;
 
-       reload_nomenclature($id_org, $apikey);
-    },    
+       reload_nomenclature($id_org, $api_key);
+    },       
     // /parse/1 or /parse/2  ...
     '#^/parse/(\d+)$#' => function ($id) {
         $id = htmlspecialchars($id);
@@ -99,8 +103,9 @@ $routes = [
         global $CFG;
         echo "<h2>парсинг номенклатуры в формат UNIMENU</h2>";
         // echo "<p>пауза...</p>";
-        // $file_name = "json-info-formated-full-new3.json";
-        $file_name = "nomenc-my-full-4.json"; // мой        
+        $file_name = "json-info-formated-full-new3.json";
+        //  $file_name = __dir__."/files/json-info-formated-full-new3.json";        
+        // $file_name = "nomenc-my-full-4.json"; // мой        
         parse_to_std_unimenu($file_name);
     },
     '/unimenu-to-chefs' => function () {
@@ -110,7 +115,19 @@ $routes = [
         // $file_name = "json-info-formated-full-new3.json";
         $file_name = "nomenc-my-full-4.json"; // мой        
         convert_unimenu_to_chefs($file_name);
-    },    
+    }, 
+    '/new-load-numenc' => function () {
+        global $CFG;
+        echo "<h2>Новая загрузка номенклатуры</h2>";
+        
+        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // pizza
+        $api_key = $CFG->api_key;
+
+        // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // test
+        // $api_key = $CFG->api_test_key;        
+
+        new_full_nomencl_parser($id_org, $api_key);
+    }       
 ];
 
 // ---------------------- private -------------------------------
@@ -178,22 +195,17 @@ function parse_nomenclature($file_name, $var = 1){
 
 function reload_nomenclature($id_org, $api_key){
     global $CFG;
-    $NOMCL = new Iiko_nomenclature($id_org, $api_key);    
-    $NOMCL->reload();
-    $data = $NOMCL->get_data();
-    try {        
-        $savedFile = saveArrayToUniqueJson($data);
-        echo "<br>File saved: " . $savedFile;
-    } catch (RuntimeException $e) {
-        echo "<br>Error: " . $e->getMessage();
-    }      
+    $NOMCL_LOADER = new Iiko_nomenclature_loader($id_org, $api_key);    
+    $NOMCL_LOADER->reload(true);
+    echo "меню загружено: ". $NOMCL_LOADER->get_file_path();
+
 }
 
 function parse_to_std_unimenu($file_name){
     $json_file_path = __dir__."/files/$file_name";
     $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($json_file_path);
     
-    $groups_as_category = true; // fo my test server   
+    $groups_as_category = false; // fo my test server   
     $PARSER_TO_UNIMENU->parse($groups_as_category);    
     $data = $PARSER_TO_UNIMENU->get_data();
 
@@ -233,7 +245,38 @@ function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
     }      
 }
 
-// print_r(glob('exports/*.json'));
+function new_full_nomencl_parser($id_org, $api_key){
+    
+    $NOMCL_LOADER = new Iiko_nomenclature_loader($id_org, $api_key);    
+    $NOMCL_LOADER->reload(true, true);
+    $json_file_path = $NOMCL_LOADER->get_file_path();        
+
+    echo "<p>Загружен файл: $json_file_path</p>";
+
+    $NOMENCL_DIVIDER = new Iiko_nomenclature_divider($json_file_path);
+    $temp_file_names = $NOMENCL_DIVIDER->get();
+
+    echo "<p>Разделенные файлы:</p>";
+    echo "<pre>";
+    print_r($temp_file_names);
+    echo "</pre>";
+
+    $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($temp_file_names);    
+    $PARSER_TO_UNIMENU->parse();
+    $data = $PARSER_TO_UNIMENU->get_data();
+
+    // $NOMENCL_DIVIDER->clean();
+    // $NOMCL_LOADER->clean();    
+
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+
+    // $PARSER_NOMENCL->clean();
+
+}
+
+
 
 function render_index_page(){
     ?>

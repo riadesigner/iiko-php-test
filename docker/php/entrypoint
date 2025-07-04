@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+php-fpm -F &
+
+# Копируем задания из текстового файла в crontab
+# cat /etc/crontab.txt > /etc/crontabs/root
+
+# Устанавливаем нужные права для cron-файла
+# chmod 600 /etc/crontabs/root
+
+# Запускаем cron в фоновом режиме
+# exec crond -f -l 2
+
+exec php -S 0.0.0.0:8000 #-t /var/www/app

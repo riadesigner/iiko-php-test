@@ -2,18 +2,19 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * 	ПОЛУЧАЕМ НОМЕНКЛАТУРУ ИЗ IIKO
+ * 	ПОЛУЧАЕМ НОМЕНКЛАТУРУ ИЗ IIKO v-1.0.0
  * 
  *  @param <string> $id_organization
  *  @param <string> $iiko_api_key
  * 
 */
-class Iiko_nomenclature{
+class Iiko_nomenclature_loader{
 
 	private string $ID_ORG;
 	private string $IIKO_API_KEY;
 	private array $DATA;
 	private string $TOKEN;
+	private string $PATH_TO_TEMP_FILE;
 	
 	/**
 	 * @param <string> $id_org
@@ -31,14 +32,39 @@ class Iiko_nomenclature{
 		return $this;
 	}
 
-	public function reload(): void{
+	// @param <bool> $create_temp_file // если true, то создаем временный файл
+	// @param <bool> $auto_clear_data // если true, то очищаем данные сразу после сохранения файла
+	public function reload(bool $create_temp_file = false, bool $auto_clear_data = false): void{		
 		if(empty($this->TOKEN)){ $this->TOKEN = $this->reload_token(); }
 		$this->DATA = $this->load_nomenclature();
+		if($create_temp_file){
+			// SAVING TO TEMP FILE
+			$this->PATH_TO_TEMP_FILE = saveArrayToUniqueJson($this->DATA);
+		};
+		if($auto_clear_data){
+			unset($this->DATA);
+		}
 	}
 
 	public function get_data(): array{
 		return $this->DATA;
 	}
+	
+	public function get_file_path(): string{
+		return $this->PATH_TO_TEMP_FILE;
+	}
+	
+	public function clean(): never{
+		// очищаем данные
+		unset($this->DATA);
+		//удаляем временный файл
+		unlink($this->PATH_TO_TEMP_FILE);
+		exit();
+	}
+
+	// ---------------
+	// PRIVATE METHODS
+	// ---------------
 	private function reload_token(): string {
 		// GETTING TOKEN FROM IIKO 
 		$url     = 'api/1/access_token';
