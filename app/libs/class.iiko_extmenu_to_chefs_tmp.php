@@ -1,0 +1,262 @@
+<?php
+/**
+ * ПРЕОБРАЗУЕМ ВНЕШНЕЕ МЕНЮ В CHEFSMENU (v-1.0.0)
+ *  
+ * до этого делали это в js
+ * принято решение передать эту функцию в php, 
+ * т.к. изменился подход в передаче данных,
+ * теперь при загрузке внешнего меню, преобразуется и сохраняется в базе данных
+ * а на фронт передается только id загруженного меню.
+ *  
+ * далее фронт дает команду обновить (апгрейдить) меню в соответствии с новыми данными
+ * и также передает на бэк только id загруженного меню. 
+ * 
+ * ОБЪЯСНЕНИЕ
+ * т.к. загрузка внешнего меню происходит на стороне сервера и обновление (апгрейд) также на стороне, 
+ * то гораздо эффективнее оставаться в нем (в php), а не проеобразовывать меню в js только для того, 
+ * чтобы перестроить структуру и снова отдать на сервер, преобразуя в php.
+ * 
+ * РЕАДИЗАЦИЯ
+ * особенность формата chefsmenu в том (в том числе), что 
+ * CATEGORIES и ITEMS (ТОВАРЫ) - хранятся как ассоциативный массив (с id ключами ),
+ * а MODIFIERS и ITEMS (ГРУППЫ МОДИФИКАТОРОВ и МОДИФИКАТОРЫ) - как обычные массивы (с индексами 0, 1, 2, ...);
+ * 
+ * */
+
+class Iiko_extmenu_to_chefs {
+    
+    private array $DATA; 
+
+	function __construct(array $extmenu){				        
+        $this->DATA = $this->convert_menu($extmenu);
+		return $this;
+	}
+
+    public function get_data(): array {
+          return [
+            "SourceMenu" => "EXTMENU",
+            "TypeMenu" => "CHEFSMENU",
+            "Menu" => $this->DATA,            
+        ];
+    }
+
+    // ----------------
+    // PRIVATE METHODS
+    // ----------------
+    private function convert_menu(array $extmenu): array {
+
+        $MENU = [
+            "id"=>$extmenu["id"],
+            "name"=>$extmenu["name"],
+            "categories"=>[],
+            "description"=$extmenu["description"],
+        ];
+		
+        $cats = $extmenu["itemCategories"];        
+
+        if(!count($cats)) return $MENU;
+   
+        foreach($cats as $cat){
+
+			$category = [				
+				"id" => $cat["id"],
+				"name" => $cat["name"],
+				"items" => [],
+            ]; 
+
+        }
+
+        // $data = array();
+        // $data['id'] = $menu['menuId'];
+        // $data['name'] = $menu['name'];        
+        // $data['categories'] = $this->get_categoties($menu['groups']);        
+        // $counter = 0;
+        // foreach($data['categories'] as &$category){
+        //     $counter++;
+        //     $category['items'] = $this->get_items($menu, $category["id"]);
+        // }
+        // return $data;
+
+        return [];
+    }
+
+    // собираем категории
+    private function get_categoties(array $groups): array {        
+        $categories = array_filter($groups, fn($e) => $e["type"] === "CATEGORY");
+        $categories = array_map(fn($e) => [
+            "id" => $e["groupId"],
+            "name" => $e["name"],
+        ], $categories);
+        return $categories;
+    }
+
+    // собираем товары
+    private function get_items(array $menu, string $category_id): array {
+       
+        $items = array_filter($menu['products'], fn($e) => $e["parentGroup"] === $category_id);
+        
+        $items_parsed = array_map(function($e) use($menu) { 
+                        
+            [$gNormalModifiers, $gSizesModifiers] = $this->get_modifiers_goups($menu, $e["groupModifiers"]);
+
+            $gNormalModifiers = $this->assoc_to_array($gNormalModifiers);
+            
+            $sizes = $this->get_item_sizes($e["itemSizes"], $gSizesModifiers);
+
+            return [
+            "id" => $e["itemId"],
+            "name" => $e["name"],
+            "description" => $e["description"],
+            "imageUrl"=> $e["imageUrl"],
+            "sizes"=> $sizes,
+            "modifiers"=> $gNormalModifiers,
+            "orderItemType"=>"",
+            "sku"=>"",        
+        ];}, $items);
+        return $items_parsed;
+    }
+
+    // собираем группы модификаторов
+    private function get_modifiers_goups(array $menu, array $groupModifiers): array {        
+
+        $gModifiers = array_map(fn($e) => [
+            "modifierGroupId" => $e["modifierGroupId"],            
+            "name" =>  $menu["groups"][$e["modifierGroupId"]]["name"]??"",
+            "restrictions"=>[
+                "minQuantity"=> $e["restrictions"]["minQuantity"],
+                "maxQuantity"=> $e["restrictions"]["maxQuantity"],
+                "required"=>$e["restrictions"]["required"],
+                "freeQuantity"=> $e["restrictions"]["freeQuantity"],
+                "byDefault"=> $e["restrictions"]["byDefault"],                
+            ],
+            "items"=> $this->get_modifiers_items($menu, $e["modifierGroupId"], $e["childModifiers"]),
+            ],$groupModifiers);
+
+        // ФИШКА PIZZAIOLO:
+        // делим группы модификаторов
+        // на ОБЫЧНЫЕ и на МОДИФИКАТОРЫ РАЗМЕРА
+        // (если в названии группы модификаторов есть слово "размер")
+        $gNormalModifiers = array_filter($gModifiers, fn($e) => !str_contains(mb_strtolower($e["name"]), "размер"));
+        $gSizesModifiers = array_filter($gModifiers, fn($e) => str_contains(mb_strtolower($e["name"]), "размер"));
+
+        return [$gNormalModifiers, $gSizesModifiers];
+
+    }
+
+    // собираем модификаторы
+    private function get_modifiers_items(array $menu, string $modifierGroupId, array $childModifiers): array {
+        // отбираем модификаторы группы
+        $items = array_filter($menu['products'], fn($e) => ($e["parentGroup"] === $modifierGroupId));
+        // пересобираем их в chefs структуру
+        $items_parsed = array_map(function($e) use($childModifiers) { 
+            // собираем параметры restrictions у модификатора
+            $modifierId = $e["itemId"];
+            $mo = array_filter($childModifiers, function($cm) use($modifierId) { return $cm["modifierId"] === $modifierId; });
+            $norestrictions = ["minQuantity" => 0, "maxQuantity" => 0, "required" => false, "byDefault" => 0, "freeQuantity" => 0];
+            $restrictions = $mo[array_key_first($mo)]["restrictions"]??$norestrictions;
+            return [
+            "modifierId" => $modifierId,
+            "modifierGroupId"=> $e["parentGroup"],
+            "name" => $e["name"],
+            "description" => $e["description"],
+            "imageUrl"=> $e["imageUrl"],
+            "portionWeightGrams"=>$e["itemSizes"][0]["weightGrams"]??0,
+            "price"=>$e["itemSizes"][0]["price"]??0,
+            "restrictions"=>$restrictions,
+            ];
+    }, $items);
+        return $this->assoc_to_array($items_parsed);
+    }
+
+    // собираем размеры товара
+    private function get_item_sizes(array $sizes, array $gSizesModifiers=null): array {
+        
+        // фишка PIZZAIOLO:
+        // если есть специальный модификатор для размеров, 
+        // то строим размерный ряд из него        
+        if($gSizesModifiers!==null && count($gSizesModifiers)>0){
+
+            $gSizesModifier = $gSizesModifiers[array_key_first($gSizesModifiers)];            
+            $mainPrice = (int) $sizes[0]["price"];
+            $measureUnitType = $sizes[0]["measureUnitType"];
+            $weightGrams = (int) $sizes[0]["weightGrams"];
+
+            $sizes_parsed = [];
+
+            $count = 0;
+            foreach($gSizesModifier["items"] as $item){             
+                // устанавливаем по умолчанию второй по счету размер; 
+                $isDefault = $count==1; $count++;                
+                $sizes_parsed[] = [
+                    "sizeCode"=>"",
+                    "sizeId" => $item["modifierId"],
+                    "sizeName" => $item["name"],
+                    "isDefault"=> $isDefault,
+                    "price" => (int) $item["price"] + $mainPrice,
+                    "originalPrice" => (int) $item["price"],
+                    "sizeGroupId"=> $item["modifierGroupId"],
+                    "measureUnitType"=> $measureUnitType,
+                    "portionWeightGrams" => (int) $item["portionWeightGrams"] + $weightGrams,
+                ];
+            }
+
+        // иначе, применяем обычные размеры
+        }else{            
+            $sizes_parsed = array_map(fn($e)=>[
+                "sizeCode"=>"",
+                "sizeId" => $e["sizeId"],
+                "sizeName" => $e["sizeName"],
+                "isDefault"=> false,
+                "price" => $e["price"],
+                "originalPrice" => null,
+                "sizeGroupId"=> "",
+                "measureUnitType"=>$e["measureUnitType"],
+                "portionWeightGrams" => $e["weightGrams"],
+            ], $sizes);
+            // устанавливаем первый по счету размер по умолчанию
+            $sizes_parsed[0]["isDefault"] = true;
+            // ------------------------------------------------------------------
+            // если названия хотябы одного размера не укзано, 
+            // то присваеваем всем размерам свои названия S, M, L, XL, XXL, XXXL;
+            // ------------------------------------------------------------------
+            // ищем пустые названия размеров            
+            if((in_array('', array_column($sizes_parsed, 'sizeName'), true))){
+                // если есть хоть одно пустое название:
+                // сортируем по цене
+                usort($sizes_parsed, function($a, $b) {
+                    return $a['price'] <=> $b['price'];
+                });
+                // Добавляем размеры
+                foreach ($sizes_parsed as $index => &$item) {
+                    if ($index == 0) {
+                        $item['sizeName'] = 'S';
+                    } elseif ($index == 1) {
+                        $item['sizeName'] = 'M';
+                    } elseif ($index == 2) {
+                        $item['sizeName'] = 'L';
+                    } else {
+                        $xCount = $index - 2; // Количество "X" = позиция - 2
+                        $item['sizeName'] = str_repeat('X', $xCount) . 'L';
+                    }
+                }
+                unset($item); // Разрываем ссылку после цикла
+            }
+        }
+
+        return $sizes_parsed;
+    }
+
+    private function assoc_to_array($assoc) {
+        $new_array = [];
+        foreach ($assoc as $key => $value) {
+            $new_array[] = $value;
+        }
+        return $new_array;
+    }
+
+}
+
+
+
+
+?>

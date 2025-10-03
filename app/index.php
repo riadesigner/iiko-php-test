@@ -12,6 +12,7 @@ require_once('libs/class.iiko_parser_to_unimenu.php');
 require_once('libs/class.iiko_extmenu_loader.php');
 require_once('libs/class.conv_unimenu_to_chefs.php');
 require_once('libs/class.iiko_nomenclature_divider.php');
+require_once('libs/class.iiko_extmenu_to_chefs.php');
 
 
 ?>
@@ -40,8 +41,9 @@ require_once('libs/class.iiko_nomenclature_divider.php');
     <ul class="top-menu">
         <li><a href="/">Главная</a></li>
         <li><a href="/reload-dev-extmenu">reload dev extmenu</a></li>
+        <li><a href="/convert-extmenu-to-chefs">convert extmenu->chefs</a></li>
         <li><a href="/params">Загр. параметры iiko</a></li>
-        <li><a href="/new-load-numenc">Новая загруз. номенкл.</a></li></li>
+        <li><a href="/new-load-numenc">Новая загруз. номенкл.</a></li></li>        
     </ul>
 
 <?php
@@ -60,21 +62,30 @@ $routes = [
         render_index_page();
     },
 
+    '/reload-dev-extmenu' => function () {
+        global $CFG;
+        echo "<h2>загрузка внешнего меню из тестового сервера</h2>";
+        // echo "<p>пауза...</p>";        
+        $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
+        $id_dev_extmenu = "11215"; // Тестовое меню 2        
+        reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_test_key);
+    }, 
+
     '/params' => function () {
         global $CFG;
         echo "<h2>загрузка параметров iiko</h2>";        
         echo "<p>пауза...</p>";
         // get_and_save_iiko_params(100, $CFG->api_key);        
     },  
-
-    '/reload-dev-extmenu' => function () {
+   
+    '/convert-extmenu-to-chefs' => function () {
         global $CFG;
-        echo "<h2>загрузка внешнего меню из тестового сервера</h2>";
-        echo "<p>пауза...</p>";        
-        // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
-        // $id_dev_extmenu = "11215"; // Тестовое меню 2        
-        // reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_test_key);
-    },    
+        echo "<h2>Конверт Внешнего меню в форма CHEFS</h2>";        
+        // echo "<p>пауза...</p>";
+        convert_extmenu_to_chefs();
+    },  
+       
+    
 
     // /parse/1 or /parse/2  ...
     // '#^/parse/(\d+)$#' => function ($id) {
@@ -147,6 +158,26 @@ function get_and_save_iiko_params($id_cafe, $api_key): void {
         echo "<br>Error: " . $e->getMessage();
     }    
 }
+
+
+function convert_extmenu_to_chefs(): void {
+
+    $file_name= "json-dev-extmenu.json";
+    $json_file_path = __dir__."/files/$file_name";
+    $extmenu = loadJsonFile($json_file_path);
+
+    $data = Iiko_extmenu_to_chefs::parse($extmenu);
+    
+    try {        
+        $savedFile = saveArrayToUniqueJson($data);
+        echo "<br>File saved: " . $savedFile;
+    } catch (RuntimeException $e) {
+        echo "<br>Error: " . $e->getMessage();
+    }  
+    
+    echo "<p>ok</p>";
+}
+
 
 
 // function parse_nomenclature($file_name, $var = 1){
@@ -232,15 +263,12 @@ function render_index_page(){
 
         3. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
            (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
-        
-        4. [Парсинг 1] - Показывает некоторые данные из файла nomeclature.json 
-        
-        5. [Парсинг 2] - Показывает некоторые данные из файла nomeclature.json         
-
-        6. [Релоад номенкл.] - Загружает номенклатуру iiko в файл json и выводит название файла 
-           (groups, productCategories, products)
-
-        7. [Парс. в -> UNIMENU] – парсинг номенклатуры в универсальный формат
+                
+        4. [Релоад номенкл.] - 
+            - Загружает номенклатуру iiko в файл json
+            - Делит ее на файлы. 
+            - [Парсит в -> UNIMENU] 
+            - [UNIMENU -> CMEFS]        
                 
 
     </pre>

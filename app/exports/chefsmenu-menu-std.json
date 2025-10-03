@@ -68,7 +68,7 @@
                     ]
                 }
             ],
-            "groupModifiers":[
+            "modifiersGroups":[
                 {
                     "groupId":"1",
                     "type": "MODIFIERS_GROUP",
