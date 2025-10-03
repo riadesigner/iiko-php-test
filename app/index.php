@@ -261,10 +261,12 @@ function render_index_page(){
 
         2. [reload dev extmenu] – загрузка внешнего (тестового) меню iiko в файл json
 
-        3. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
+        3. [conv extmenu->chefs] - аналог js функции
+
+        4. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
            (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
                 
-        4. [Релоад номенкл.] - 
+        5. [Релоад номенкл.] - 
             - Загружает номенклатуру iiko в файл json
             - Делит ее на файлы. 
             - [Парсит в -> UNIMENU] 
