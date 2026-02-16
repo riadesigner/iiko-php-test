@@ -1,0 +1,460 @@
+{
+    "id": "3ca67915-e6b1-4e33-bcee-7777b18fd7b1",
+    "name": "Молочные коктейли",
+    "description": "",
+    "buttonImageUrl": null,
+    "headerImageUrl": null,
+    "iikoGroupId": null,
+    "items": [
+        {
+            "sku": "04622",
+            "name": "Молочный с соком 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "04622",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 6.35,
+                        "proteins": 1.585,
+                        "carbs": 12.613,
+                        "energy": 113.94,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 479
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 6.35,
+                            "proteins": 1.585,
+                            "carbs": 12.613,
+                            "energy": 113.94,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/56a6e43e4c9c8d7d2bce9df490cd796e.JPEG"
+                }
+            ],
+            "itemId": "f3b077eb-c4cd-44b7-a1fc-0f379928f25d",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "04623",
+            "name": "Молочный с сиропом 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "04623",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 6.81,
+                        "proteins": 2.5,
+                        "carbs": 14.9,
+                        "energy": 130.89,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 479
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 6.81,
+                            "proteins": 2.5,
+                            "carbs": 14.9,
+                            "energy": 130.89,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/56a6e43e4c9c8d7d2bce9df490cd796e.JPEG"
+                }
+            ],
+            "itemId": "d4925eef-e606-48d7-b075-cda36c85d9d3",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "04621",
+            "name": "Молочный классический 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "04621",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 5.108,
+                        "proteins": 2.25,
+                        "carbs": 9.8,
+                        "energy": 94.168,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 399
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 5.108,
+                            "proteins": 2.25,
+                            "carbs": 9.8,
+                            "energy": 94.168,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/d9e40f52ed64d2254ff81bc8c2157938.JPEG"
+                }
+            ],
+            "itemId": "acf8d02c-e4d8-453f-9865-e77f01c68864",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "04620",
+            "name": "Коктейль Сникерс",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "04620",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 350,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 11.549,
+                        "proteins": 4.911,
+                        "carbs": 17.503,
+                        "energy": 193.594,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 449
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 11.549,
+                            "proteins": 4.911,
+                            "carbs": 17.503,
+                            "energy": 193.594,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/d3691cf17b8d328c1ad4a6c5ff8c9353.JPEG"
+                }
+            ],
+            "itemId": "1ff79e1c-3571-427b-b4fc-c7b5bc18e129",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "04618",
+            "name": "Коктейль Орео",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "04618",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 350,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 9.377,
+                        "proteins": 2.811,
+                        "carbs": 19.246,
+                        "energy": 172.623,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 449
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 9.377,
+                            "proteins": 2.811,
+                            "carbs": 19.246,
+                            "energy": 172.623,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/78008e4ddd8854ee99382c0ed3598879.JPEG"
+                }
+            ],
+            "itemId": "d7ecdfb9-1859-4461-bd1e-bf77bdce0267",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "04619",
+            "name": "Коктейль Баунти",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "04619",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 350,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 7.667,
+                        "proteins": 2.707,
+                        "carbs": 21.606,
+                        "energy": 166.256,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 449
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 7.667,
+                            "proteins": 2.707,
+                            "carbs": 21.606,
+                            "energy": 166.256,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/5b2b610e36f43a33c665e4801e45c2ba.JPEG"
+                }
+            ],
+            "itemId": "71a9acac-3f01-4723-8f73-0a9a5c4c435b",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        }
+    ],
+    "scheduleId": null,
+    "scheduleName": null,
+    "schedules": [],
+    "isHidden": false,
+    "tags": [],
+    "labels": []
+}

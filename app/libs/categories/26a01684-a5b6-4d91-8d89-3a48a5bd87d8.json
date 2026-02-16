@@ -1,0 +1,1383 @@
+{
+    "id": "26a01684-a5b6-4d91-8d89-3a48a5bd87d8",
+    "name": "Лимонады",
+    "description": "",
+    "buttonImageUrl": null,
+    "headerImageUrl": null,
+    "iikoGroupId": null,
+    "items": [
+        {
+            "sku": "00430",
+            "name": "Классический мохито б\/а",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00430",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 300,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.038,
+                        "proteins": 0.148,
+                        "carbs": 14.42,
+                        "energy": 58.618,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 349
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.038,
+                            "proteins": 0.148,
+                            "carbs": 14.42,
+                            "energy": 58.618,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/301ad222066083196fdec303450fe148.JPEG"
+                }
+            ],
+            "itemId": "2fc52028-8e95-4810-a5e1-a9e243677fca",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00431",
+            "name": "Апельсиновый мохито б\/а",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00431",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 300,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.038,
+                        "proteins": 0.448,
+                        "carbs": 17.22,
+                        "energy": 71.018,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 369
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.038,
+                            "proteins": 0.448,
+                            "carbs": 17.22,
+                            "energy": 71.018,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/eb27b898319cb0144c528719f9feeb5a.JPEG"
+                }
+            ],
+            "itemId": "46572262-4bca-4eb2-82f0-b656fabb089c",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00941",
+            "name": "Горячий мохито",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00941",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 200,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.067,
+                        "proteins": 0.263,
+                        "carbs": 9.904,
+                        "energy": 41.271,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 289
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.067,
+                            "proteins": 0.263,
+                            "carbs": 9.904,
+                            "energy": 41.271,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": null
+                }
+            ],
+            "itemId": "1d08e5af-7d73-44cb-870a-629353764842",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00940",
+            "name": "Глинтвейн б\/алкогольный",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00940",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 200,
+                    "itemModifierGroups": [
+                        {
+                            "name": "Для глинтвейна",
+                            "description": "",
+                            "restrictions": {
+                                "minQuantity": 1,
+                                "maxQuantity": 1,
+                                "freeQuantity": 0,
+                                "byDefault": 0,
+                                "hideIfDefaultQuantity": false
+                            },
+                            "items": [
+                                {
+                                    "sku": "05494",
+                                    "name": "- сок вишня",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "891e25b6-a4ec-4a62-97c8-a1883074bb52",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 0,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "05495",
+                                    "name": "- сок яблоко",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "c7cb17c6-deda-4c1c-8e99-f9b7651449ab",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 1,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                }
+                            ],
+                            "canBeDivided": false,
+                            "itemGroupId": "08258834-4962-44b1-8263-9374eff5192c",
+                            "isHidden": false,
+                            "childModifiersHaveMinMaxRestrictions": false,
+                            "sku": "0617"
+                        }
+                    ],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.119,
+                        "proteins": 0.72,
+                        "carbs": 23.071,
+                        "energy": 100.641,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.119,
+                            "proteins": 0.72,
+                            "carbs": 23.071,
+                            "energy": 100.641,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": null
+                }
+            ],
+            "itemId": "fbb28dbd-5b8d-42a0-bb30-e4527d581334",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "01353",
+            "name": "Яблочный лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "01353",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.118,
+                        "carbs": 11.883,
+                        "energy": 48,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.118,
+                            "carbs": 11.883,
+                            "energy": 48,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/5775fee61b305a45c5167c9aa9210b3b.JPEG"
+                }
+            ],
+            "itemId": "1e05c65c-6ecc-4fa1-ae66-5a1908d8fdd3",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "01354",
+            "name": "Огуречный лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "01354",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.148,
+                        "carbs": 13.19,
+                        "energy": 53.35,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.148,
+                            "carbs": 13.19,
+                            "energy": 53.35,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/9a5709773c7ac2807d8ee159a6b61ea3.JPEG"
+                }
+            ],
+            "itemId": "841077f0-5305-4808-bfdf-1b75fc6b3a81",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00427",
+            "name": "Облепиховый лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00427",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.675,
+                        "proteins": 0.218,
+                        "carbs": 7.719,
+                        "energy": 37.821,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.675,
+                            "proteins": 0.218,
+                            "carbs": 7.719,
+                            "energy": 37.821,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/f8e5023ca87678c380cae41aeed604f1.JPEG"
+                }
+            ],
+            "itemId": "9d4f272e-3b64-4f8b-8dc1-47337b8a1f50",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "1006527",
+            "name": "Лав ис лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "1006527",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.03,
+                        "proteins": 0.06,
+                        "carbs": 9.488,
+                        "energy": 38.46,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.03,
+                            "proteins": 0.06,
+                            "carbs": 9.488,
+                            "energy": 38.46,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/871dd2d4378d18d88537399911758d67.JPEG"
+                }
+            ],
+            "itemId": "a3351133-c50a-460a-b8d3-b7a98fa27e4e",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "1006526",
+            "name": "Клюквенный лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "1006526",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.025,
+                        "proteins": 0.11,
+                        "carbs": 11.223,
+                        "energy": 45.558,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.025,
+                            "proteins": 0.11,
+                            "carbs": 11.223,
+                            "energy": 45.558,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/9c91a8260e5a4d0080d00416b0150908.JPEG"
+                }
+            ],
+            "itemId": "c5780ade-02dd-45c7-99c5-acfe29c1f7b6",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00426",
+            "name": "Домашний лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00426",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.068,
+                        "carbs": 12.695,
+                        "energy": 51.05,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 289
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.068,
+                            "carbs": 12.695,
+                            "energy": 51.05,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/2d3f5f0ae515dc2a5ddc0792f43af590.JPEG"
+                }
+            ],
+            "itemId": "9a05a1c0-5774-4583-b6ae-c052f1989517",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00425",
+            "name": "Горячий имбирный лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00425",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.023,
+                        "proteins": 0.151,
+                        "carbs": 3.702,
+                        "energy": 15.614,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 289
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.023,
+                            "proteins": 0.151,
+                            "carbs": 3.702,
+                            "energy": 15.614,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/357c852336300507482d99a16dba0eb3.JPEG"
+                }
+            ],
+            "itemId": "258486c3-6cb7-4b84-843c-8c0aebcf7ed7",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "01352",
+            "name": "Апельсиново-мандариновый лимонад 0,4л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "01352",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 400,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.113,
+                        "carbs": 8.34,
+                        "energy": 33.81,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 329
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.113,
+                            "carbs": 8.34,
+                            "energy": 33.81,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/e922258792667c607eee39aa64eb6224.JPEG"
+                }
+            ],
+            "itemId": "6c63290b-f7e0-456d-aaeb-e3d04b2a235b",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "1005059",
+            "name": "Яблочный лимонад 1л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "1005059",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 1000,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.077,
+                        "carbs": 16.384,
+                        "energy": 65.844,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 659
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.077,
+                            "carbs": 16.384,
+                            "energy": 65.844,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/5775fee61b305a45c5167c9aa9210b3b.JPEG"
+                }
+            ],
+            "itemId": "60c22ff7-96ca-400c-80f4-ce067f8e407d",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "1005793",
+            "name": "Огуречный лимонад 1л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "1005793",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 1000,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.084,
+                        "carbs": 15.494,
+                        "energy": 62.312,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 659
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.084,
+                            "carbs": 15.494,
+                            "energy": 62.312,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/9a5709773c7ac2807d8ee159a6b61ea3.JPEG"
+                }
+            ],
+            "itemId": "3e73be9c-f206-49e5-b0a1-d060c864b17b",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00429",
+            "name": "Облепиховый лимонад 1л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00429",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 1000,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0.54,
+                        "proteins": 0.174,
+                        "carbs": 8.87,
+                        "energy": 41.035,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 659
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0.54,
+                            "proteins": 0.174,
+                            "carbs": 8.87,
+                            "energy": 41.035,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/f8e5023ca87678c380cae41aeed604f1.JPEG"
+                }
+            ],
+            "itemId": "b0929c3a-b3b9-4230-a1ed-45e4e5dd2503",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00428",
+            "name": "Домашний Лимонад 1л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00428",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 1000,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.054,
+                        "carbs": 15.126,
+                        "energy": 60.72,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 599
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.054,
+                            "carbs": 15.126,
+                            "energy": 60.72,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/2d3f5f0ae515dc2a5ddc0792f43af590.JPEG"
+                }
+            ],
+            "itemId": "bb23b765-f4e3-468e-a104-8cea7eda24c2",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "1005060",
+            "name": "Апельсиново-мандариновый лимонад 1л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "1005060",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 1000,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.09,
+                        "carbs": 15.948,
+                        "energy": 64.152,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 659
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.09,
+                            "carbs": 15.948,
+                            "energy": 64.152,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/e922258792667c607eee39aa64eb6224.JPEG"
+                }
+            ],
+            "itemId": "6f5d6749-5e93-4f1f-8e60-a2b9ec1fd4ef",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        }
+    ],
+    "scheduleId": null,
+    "scheduleName": null,
+    "schedules": [],
+    "isHidden": false,
+    "tags": [],
+    "labels": []
+}

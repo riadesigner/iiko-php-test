@@ -1,0 +1,1880 @@
+{
+    "id": "01f1a096-8e46-4f6e-a345-e955cf21099d",
+    "name": "Напитки",
+    "description": "",
+    "buttonImageUrl": null,
+    "headerImageUrl": null,
+    "iikoGroupId": null,
+    "items": [
+        {
+            "sku": "200701732",
+            "name": "Сок 500 мл",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "200701732",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 500,
+                    "itemModifierGroups": [
+                        {
+                            "name": "Соки",
+                            "description": "",
+                            "restrictions": {
+                                "minQuantity": 0,
+                                "maxQuantity": 5,
+                                "freeQuantity": 0,
+                                "byDefault": 0,
+                                "hideIfDefaultQuantity": false
+                            },
+                            "items": [
+                                {
+                                    "sku": "02756",
+                                    "name": "Виноград",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "d73d22e1-ee43-4391-8d3d-01ee6d7149ad",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 0,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02752",
+                                    "name": "Вишня",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "0350d74e-86a5-4679-bb0c-2de5c4681105",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 1,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02750",
+                                    "name": "Ананас",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 1000,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "cdd276af-94ac-411c-9213-44efe38bf176",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 2,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02751",
+                                    "name": "Апельсин",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "77016a12-d2af-42c4-9908-5149e87cb726",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 3,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02753",
+                                    "name": "Персик",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "01e33dc0-bfd4-4dab-a525-5ff1fc4b0401",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 4,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02755",
+                                    "name": "Томатный",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "f1eeed80-b0ee-4ab1-baca-958829de8783",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 5,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02758",
+                                    "name": ".Теплый",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "7c6592bb-29dd-4970-b39d-bcfe4de6566e",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 7,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02759",
+                                    "name": ".Со льдом",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "b49a0e4b-5fab-4ba7-a2cf-c3fcd484682c",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 9,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02754",
+                                    "name": "Яблоко",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "0bfc341d-73c0-415e-b20b-f7f9351c6b03",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 10,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                }
+                            ],
+                            "canBeDivided": false,
+                            "itemGroupId": "bcd5468c-4c95-454f-876e-80b9aac6772d",
+                            "isHidden": false,
+                            "childModifiersHaveMinMaxRestrictions": false,
+                            "sku": "0225"
+                        }
+                    ],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.1,
+                        "carbs": 9.5,
+                        "energy": 38.4,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 289
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.1,
+                            "carbs": 9.5,
+                            "energy": 38.4,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/1fc9127fba2533a85a8e947473c49a22.JPEG"
+                }
+            ],
+            "itemId": "93b6d2d0-8b81-4f2c-8eb3-5e9b1b79cf26",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "02749",
+            "name": "Сок 250 мл",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "02749",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 250,
+                    "itemModifierGroups": [
+                        {
+                            "name": "Соки",
+                            "description": "",
+                            "restrictions": {
+                                "minQuantity": 0,
+                                "maxQuantity": 5,
+                                "freeQuantity": 0,
+                                "byDefault": 0,
+                                "hideIfDefaultQuantity": false
+                            },
+                            "items": [
+                                {
+                                    "sku": "02756",
+                                    "name": "Виноград",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "d73d22e1-ee43-4391-8d3d-01ee6d7149ad",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 0,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02752",
+                                    "name": "Вишня",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "0350d74e-86a5-4679-bb0c-2de5c4681105",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 1,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02750",
+                                    "name": "Ананас",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 1000,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "cdd276af-94ac-411c-9213-44efe38bf176",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 2,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02751",
+                                    "name": "Апельсин",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "77016a12-d2af-42c4-9908-5149e87cb726",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 3,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02753",
+                                    "name": "Персик",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "01e33dc0-bfd4-4dab-a525-5ff1fc4b0401",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 4,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02755",
+                                    "name": "Томатный",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "f1eeed80-b0ee-4ab1-baca-958829de8783",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 5,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02758",
+                                    "name": ".Теплый",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "7c6592bb-29dd-4970-b39d-bcfe4de6566e",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 7,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02759",
+                                    "name": ".Со льдом",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "b49a0e4b-5fab-4ba7-a2cf-c3fcd484682c",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 9,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02754",
+                                    "name": "Яблоко",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "0bfc341d-73c0-415e-b20b-f7f9351c6b03",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 10,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                }
+                            ],
+                            "canBeDivided": false,
+                            "itemGroupId": "bcd5468c-4c95-454f-876e-80b9aac6772d",
+                            "isHidden": false,
+                            "childModifiersHaveMinMaxRestrictions": false,
+                            "sku": "0225"
+                        }
+                    ],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.1,
+                        "carbs": 9.5,
+                        "energy": 38.4,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 169
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.1,
+                            "carbs": 9.5,
+                            "energy": 38.4,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/1fc9127fba2533a85a8e947473c49a22.JPEG"
+                }
+            ],
+            "itemId": "85850a79-cf63-439a-99ca-60f0e7df739c",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "100626",
+            "name": "Сок 1 л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "100626",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 970,
+                    "itemModifierGroups": [
+                        {
+                            "name": "Соки",
+                            "description": "",
+                            "restrictions": {
+                                "minQuantity": 0,
+                                "maxQuantity": 5,
+                                "freeQuantity": 0,
+                                "byDefault": 0,
+                                "hideIfDefaultQuantity": false
+                            },
+                            "items": [
+                                {
+                                    "sku": "02756",
+                                    "name": "Виноград",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "d73d22e1-ee43-4391-8d3d-01ee6d7149ad",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 0,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02752",
+                                    "name": "Вишня",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "0350d74e-86a5-4679-bb0c-2de5c4681105",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 1,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02750",
+                                    "name": "Ананас",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 1000,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "cdd276af-94ac-411c-9213-44efe38bf176",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 2,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02751",
+                                    "name": "Апельсин",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "77016a12-d2af-42c4-9908-5149e87cb726",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 3,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02753",
+                                    "name": "Персик",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "01e33dc0-bfd4-4dab-a525-5ff1fc4b0401",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 4,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02755",
+                                    "name": "Томатный",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "f1eeed80-b0ee-4ab1-baca-958829de8783",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 5,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02758",
+                                    "name": ".Теплый",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "7c6592bb-29dd-4970-b39d-bcfe4de6566e",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 7,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02759",
+                                    "name": ".Со льдом",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "b49a0e4b-5fab-4ba7-a2cf-c3fcd484682c",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 9,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                },
+                                {
+                                    "sku": "02754",
+                                    "name": "Яблоко",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 0,
+                                        "freeQuantity": 0,
+                                        "byDefault": 0,
+                                        "hideIfDefaultQuantity": false
+                                    },
+                                    "allergenGroups": [],
+                                    "nutritionPerHundredGrams": {
+                                        "fats": 0,
+                                        "proteins": 0,
+                                        "carbs": 0,
+                                        "energy": 0,
+                                        "organizations": [],
+                                        "saturatedFattyAcid": null,
+                                        "salt": null,
+                                        "sugar": null
+                                    },
+                                    "portionWeightGrams": 0,
+                                    "tags": [],
+                                    "labels": [],
+                                    "itemId": "0bfc341d-73c0-415e-b20b-f7f9351c6b03",
+                                    "isHidden": false,
+                                    "prices": [
+                                        {
+                                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                                            "price": 0
+                                        }
+                                    ],
+                                    "position": 10,
+                                    "independentQuantity": false,
+                                    "productCategoryId": "6316d3b4-5975-896e-0192-e34f80803e20",
+                                    "customerTagGroups": [],
+                                    "paymentSubject": null,
+                                    "outerEanCode": null,
+                                    "isMarked": false,
+                                    "measureUnitType": "GRAM",
+                                    "paymentSubjectCode": "1",
+                                    "barcodes": null,
+                                    "buttonImageUrl": null
+                                }
+                            ],
+                            "canBeDivided": false,
+                            "itemGroupId": "bcd5468c-4c95-454f-876e-80b9aac6772d",
+                            "isHidden": false,
+                            "childModifiersHaveMinMaxRestrictions": false,
+                            "sku": "0225"
+                        }
+                    ],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0.1,
+                        "carbs": 9.5,
+                        "energy": 38.4,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 429
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0.1,
+                            "carbs": 9.5,
+                            "energy": 38.4,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/1fc9127fba2533a85a8e947473c49a22.JPEG"
+                }
+            ],
+            "itemId": "d084057b-c339-45ba-b93a-e955d9763a25",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "1005919",
+            "name": "Морс, 500 мл",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "1005919",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 250,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0,
+                        "carbs": 14.576,
+                        "energy": 58.306,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 229
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0,
+                            "carbs": 14.576,
+                            "energy": 58.306,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/aedcbd431c2de42b3d9bfe628aa5b176.JPEG"
+                }
+            ],
+            "itemId": "2fc90207-4a40-42c5-96cb-80593f409d2e",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "00414",
+            "name": "Морс, 250 мл",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "00414",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 250,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0,
+                        "carbs": 7.288,
+                        "energy": 29.153,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 149
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0,
+                            "carbs": 7.288,
+                            "energy": 29.153,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/aedcbd431c2de42b3d9bfe628aa5b176.JPEG"
+                }
+            ],
+            "itemId": "475cda9a-4040-4907-a5af-311a3468280f",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "10320",
+            "name": "Морс, 1 л",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "10320",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 1000,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0,
+                        "carbs": 29.152,
+                        "energy": 116.612,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 399
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0,
+                            "carbs": 29.152,
+                            "energy": 116.612,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "MILLILITER",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/aedcbd431c2de42b3d9bfe628aa5b176.JPEG"
+                }
+            ],
+            "itemId": "d5899b45-4f54-4c78-849e-8e97ada6b95a",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": "COMMODITY",
+            "paymentSubjectCode": "1",
+            "outerEanCode": null,
+            "isMarked": false,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "10069900",
+            "name": "Кока-Кола 0,5 л (лад)",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "10069900",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 500,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0,
+                        "carbs": 0,
+                        "energy": 0,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 199
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0,
+                            "carbs": 0,
+                            "energy": 0,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/d29cb839bfceed03f9767c5b87540a96.JPEG"
+                }
+            ],
+            "itemId": "4d3b5b4e-bec7-4787-984b-85f5c628c68f",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "порц",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": null,
+            "paymentSubjectCode": "31",
+            "outerEanCode": "2202100000",
+            "isMarked": true,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        },
+        {
+            "sku": "10069924",
+            "name": "Вода Пиццайоло 0,5л. негаз (лаг)",
+            "description": "",
+            "allergens": [],
+            "tags": [],
+            "labels": [],
+            "itemSizes": [
+                {
+                    "sku": "10069924",
+                    "sizeCode": null,
+                    "sizeName": "",
+                    "isDefault": true,
+                    "portionWeightGrams": 0,
+                    "itemModifierGroups": [],
+                    "sizeId": null,
+                    "nutritionPerHundredGrams": {
+                        "fats": 0,
+                        "proteins": 0,
+                        "carbs": 0,
+                        "energy": 0,
+                        "organizations": [],
+                        "saturatedFattyAcid": null,
+                        "salt": null,
+                        "sugar": null
+                    },
+                    "prices": [
+                        {
+                            "organizationId": "0c6f6201-c526-4096-a096-d7602e3f2cfd",
+                            "price": 149
+                        }
+                    ],
+                    "nutritions": [
+                        {
+                            "fats": 0,
+                            "proteins": 0,
+                            "carbs": 0,
+                            "energy": 0,
+                            "organizations": [
+                                "0c6f6201-c526-4096-a096-d7602e3f2cfd"
+                            ],
+                            "saturatedFattyAcid": null,
+                            "salt": null,
+                            "sugar": null
+                        }
+                    ],
+                    "isHidden": false,
+                    "measureUnitType": "GRAM",
+                    "buttonImageUrl": "https:\/\/16a9564f-f8ec-42ba-a998-3027aa809e50.selstorage.ru\/pitstsayollo-cheyn\/41094\/64136\/images\/items\/ae494be5679a39929f1f6b55555ed8c0.JPEG"
+                }
+            ],
+            "itemId": "6d840d2d-487a-42a8-8134-96d63ecf291b",
+            "modifierSchemaId": null,
+            "taxCategory": {
+                "id": "2a66dbfa-72a2-44d8-b047-69c7d658ea5f",
+                "name": "0%",
+                "percentage": 0
+            },
+            "modifierSchemaName": "",
+            "type": "DISH",
+            "canBeDivided": false,
+            "canSetOpenPrice": false,
+            "useBalanceForSell": false,
+            "measureUnit": "шт",
+            "productCategoryId": "281c46fe-439e-91fa-0170-c30d414b7d42",
+            "customerTagGroups": [],
+            "paymentSubject": null,
+            "paymentSubjectCode": "33",
+            "outerEanCode": "04650325400021",
+            "isMarked": true,
+            "isHidden": false,
+            "barcodes": null,
+            "orderItemType": "Product"
+        }
+    ],
+    "scheduleId": null,
+    "scheduleName": null,
+    "schedules": [],
+    "isHidden": false,
+    "tags": [],
+    "labels": []
+}

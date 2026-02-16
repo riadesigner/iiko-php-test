@@ -13,7 +13,7 @@ require_once('libs/class.iiko_extmenu_loader.php');
 require_once('libs/class.conv_unimenu_to_chefs.php');
 require_once('libs/class.iiko_nomenclature_divider.php');
 require_once('libs/class.iiko_extmenu_to_chefs.php');
-
+require_once('libs/class.iiko_category_processor.php');
 
 ?>
 <!DOCTYPE html>
@@ -201,18 +201,48 @@ function reload_external_menu($id_org, $api_key, $current_menu_id): void{
 function new_load_external_menu($id_org, $api_key, $current_menu_id): void{
     global $CFG;
 
-    echo "TEST!";
+    // Создаем экземпляр процессора
+    $processor = new IikoCategoryProcessor();
 
-    // try {        
-    //     $savedFile = saveArrayToUniqueJson($data);
-    //     echo "<br>File saved: " . $savedFile;
-    //     echo "<hr>";
-    //     echo "<pre>";
-    //     print_r($meta_info);
-    //     echo "</pre>";
-    // } catch (RuntimeException $e) {
-    //     echo "<br>Error: " . $e->getMessage();
-    // }      
+    try {
+
+        // -----------------------         
+        // GETTING TOKEN FROM IIKO         		
+        // -----------------------
+		$url     = 'api/1/access_token';
+		$headers = ["Content-Type"=>"application/json"];
+		$params  = ["apiLogin" => $api_key];
+		$res = iiko_get_info($url,$headers,$params);		
+		if(!isset($res['token'])){
+			glogError(print_r($res,1));
+			$errMessage = $res['errorDescription']??"";
+			die("неправильный API KEY! ".$api_key.",<br> ".$errMessage);		
+		}	
+		$TOKEN = $res['token'];
+
+		// ----------------------------------------------------
+		// получаем Меню по его Id с Базовой ценовой категорией
+		// ----------------------------------------------------
+		$url     = 'api/2/menu/by_id';
+		$headers = [
+			"Content-Type"=>"application/json",
+			"Authorization" => 'Bearer '.$TOKEN
+		]; 
+		$params  = [
+			'externalMenuId' => $current_menu_id,
+			'organizationIds' => [$id_org], 
+			"version" => 2,
+			"startRevision"=>0,
+		];	
+        
+        // Запускаем извлечение и обработку
+        $files = $processor->extractCategories($url, $headers, $params);
+        
+        echo "Всего обработано файлов: " . count($files) . "\n";
+        
+    } catch (Exception $e) {
+        echo "Ошибка: " . $e->getMessage() . "\n";
+    }    
 }
 
 
