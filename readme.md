@@ -2,14 +2,12 @@
 
 ## СТРУКТУРА ПРОЕКТА
 
-- /files - папка для хранения исходников
 - /exports - папка для экспорта json файлов
 - /libs - папка для хранения классов и функций
 
 ## ФАЙЛЫ ДЛЯ ПАРСИНГА JSON
 
-- [json-dev-extmenu.json](app/files/json-dev-extmenu.json) / ответ от iiko - внешнее меню "Тестовое меню 2"
-- [json-info-formated-full-new.json](app/files/json-info-formated-full-new.json) / ответ от iiko - номенклатура "pizzaiolo"
+- [json-info-formated-full-new.json](app/exports/json-info-formated-full-new.json) / ответ от iiko - номенклатура "pizzaiolo"
 
 
 ## КЛАССЫ / ФУНКЦИИ
@@ -21,6 +19,10 @@ Iiko_nomenclature_parse2 - класс для изучения структуры
 
 - [Iiko_parser_to_unimenu](app/libs/class.iiko_parser_to_unimenu.php) / класс для парсинга json от iiko в формат UNIMENU.
 - [Conv_unimenu_to_chefs](app/libs/class.conv_unimenu_to_chefs.php) / класс для конвертации json UNIMENU в текущий формат CHEFSMENU.
+
+## UMENU
+
+UMENU - это промежуточный облегченный формат номенклатуры
 
 
 ## ВЫВОДЫ О СТРУКТУРЕ ВЫГРУЖЕННОЙ НОМЕНКЛАТУРЫ

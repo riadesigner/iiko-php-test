@@ -1,7 +1,9 @@
 <?php
 /**
- * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU (v-2.4.0)
+ * ПРЕОБРАЗУЕМ ФОРМАТ UNIMENU В CHEFSMENU (v-2.5.0)
  *  
+ * добавлен calc_meta_info
+ * 
  * убрали конвертирование сразу нескольких меню 
  * теперь на вход конструктор принимает только одно меню
  * 
@@ -24,10 +26,12 @@
 
 class Conv_unimenu_to_chefs {
     
-    private array $DATA; 
+    private array $DATA;
+    private string $INFO;
 
 	function __construct(array $unimenu){				        
         $this->DATA = $this->convert_menu($unimenu);
+        $this->INFO = $this->calc_meta_info($this->DATA);
 		return $this;
 	}
 
@@ -37,6 +41,10 @@ class Conv_unimenu_to_chefs {
             "TypeMenu" => "CHEFSMENU",
             "Menu" => $this->DATA,            
         ];
+    }
+
+    public function get_info(): string {
+        return $this->INFO;
     }
 
     // ----------------
@@ -228,6 +236,30 @@ class Conv_unimenu_to_chefs {
         }
         return $new_array;
     }
+    
+
+    private function calc_meta_info($chefsdata): string {
+        // Размер финальных данных:
+        $size_chefs = strlen(json_encode($chefsdata));
+        $size_chefs = round($size_chefs / 1048576, 2) . " MB";
+        $vars_chefs =  $this->count_vars($chefsdata);
+        $infoMsg = "Converted menu from UNIMENU to CHEFSMENU: ";
+        $infoMsg .="Размер chefsdata: ~" . $size_chefs.", ";
+        $infoMsg .= 'Переменных в chefsdata: ' . $vars_chefs;
+        return $infoMsg;
+    }
+
+    // Подсчет переменных:
+    private function count_vars($data) {
+        $count = 0;
+        foreach ($data as $key => $value) {
+            $count++;
+            if (is_array($value)) {
+                $count += $this->count_vars($value);
+            }
+        }
+        return $count;
+    }    
 
 }
 

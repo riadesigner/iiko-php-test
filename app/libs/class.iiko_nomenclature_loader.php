@@ -71,6 +71,7 @@ class Iiko_nomenclature_loader{
 		$headers = ["Content-Type"=>"application/json"];
 		$params  = ["apiLogin" => $this->IIKO_API_KEY];
 		$res = iiko_get_info($url,$headers,$params);		
+		if(!isset($res['token'])) die("Неправильный IIKO_API_KEY");
 		return $res['token'];
 	}
 

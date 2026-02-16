@@ -40,10 +40,11 @@ require_once('libs/class.iiko_extmenu_to_chefs.php');
 
     <ul class="top-menu">
         <li><a href="/">Главная</a></li>
-        <li><a href="/reload-dev-extmenu">reload dev extmenu</a></li>
+        <li><a href="/reload-extmenu">reload external menu</a></li>
         <li><a href="/convert-extmenu-to-chefs">convert extmenu->chefs</a></li>
         <li><a href="/params">Загр. параметры iiko</a></li>
         <li><a href="/new-load-numenc">Новая загруз. номенкл.</a></li></li>        
+        <li><a href="/new-load-external-menu">Новая загруз. внешнего меню</a></li></li>                
     </ul>
 
 <?php
@@ -62,21 +63,14 @@ $routes = [
         render_index_page();
     },
 
-    '/reload-dev-extmenu' => function () {
+    '/reload-extmenu' => function () {
         global $CFG;
         echo "<h2>загрузка внешнего меню из тестового сервера</h2>";
         // echo "<p>пауза...</p>";        
-        $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // Мой ресторан
-        $id_dev_extmenu = "11215"; // Тестовое меню 2        
-        reload_dev_menu($id_org, $id_dev_extmenu, $CFG->api_test_key);
+        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // Pizzaiolo
+        $current_menu_id = "64136"; // Меню онлайн Ладыгина                
+        reload_external_menu($id_org, $CFG->api_key, $current_menu_id);
     }, 
-
-    '/params' => function () {
-        global $CFG;
-        echo "<h2>загрузка параметров iiko</h2>";        
-        echo "<p>пауза...</p>";
-        // get_and_save_iiko_params(100, $CFG->api_key);        
-    },  
    
     '/convert-extmenu-to-chefs' => function () {
         global $CFG;
@@ -84,28 +78,29 @@ $routes = [
         // echo "<p>пауза...</p>";
         convert_extmenu_to_chefs();
     },  
-       
-    
 
-    // /parse/1 or /parse/2  ...
-    // '#^/parse/(\d+)$#' => function ($id) {
-    //     $id = htmlspecialchars($id);
-    //     echo "<h2>парсинг меню. Версия {$id}</h2>"; 
-    //     parse_nomenclature($file_name, $id);
-    // },
-
+    '/params' => function () {
+        global $CFG;
+        echo "<h2>загрузка параметров iiko</h2>";        
+        // echo "<p>пауза...</p>";
+        get_and_save_iiko_params(100, $CFG->api_key);        
+    }, 
+        
     '/new-load-numenc' => function () {
         global $CFG;
-        echo "<h2>Новая загрузка номенклатуры</h2>";
-        
+        echo "<h2>Новая загрузка номенклатуры</h2>";        
         $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // pizza
-        $api_key = $CFG->api_key;
+        new_full_nomencl_parser($id_org, $CFG->api_key);
+    },
 
-        // $id_org = "3336e8d3-85c7-4ded-8c3e-28f0640c467b"; // test
-        // $api_key = $CFG->api_test_key;        
+    '/new-load-external-menu' => function () {
+        global $CFG;
+        echo "<h2>Новая загрузка внешнего меню</h2>";        
+        $id_org = "0c6f6201-c526-4096-a096-d7602e3f2cfd"; // Pizzaiolo
+        $current_menu_id = "64136"; // Меню онлайн Ладыгина                
+        new_load_external_menu($id_org, $CFG->api_key, $current_menu_id);
 
-        new_full_nomencl_parser($id_org, $api_key);
-    }       
+    }           
 ];
 
 // ---------------------- private -------------------------------
@@ -160,10 +155,16 @@ function get_and_save_iiko_params($id_cafe, $api_key): void {
 }
 
 
+/**
+ *  -----------------------
+ *  ALL ABOUT EXTERNAL MENU
+ *  -----------------------
+ */
+
 function convert_extmenu_to_chefs(): void {
 
-    $file_name= "json-dev-extmenu.json";
-    $json_file_path = __dir__."/files/$file_name";
+    $file_name= "json-info-formated-full-new.json";
+    $json_file_path = __dir__."/exports/$file_name";
     $extmenu = loadJsonFile($json_file_path);
 
     $data = Iiko_extmenu_to_chefs::parse($extmenu);
@@ -179,34 +180,52 @@ function convert_extmenu_to_chefs(): void {
 }
 
 
-
-// function parse_nomenclature($file_name, $var = 1){
-//     $json_file_path = __dir__."/files/$file_name";
-//     if($var==1){        
-//         $n = new Iiko_nomenclature_parse($json_file_path);    
-//     }elseif($var==2){
-//         $n = new Iiko_nomenclature_parse2($json_file_path);    
-//     }else{
-//         throw new Exception("Invalid var");
-//     }
-// }
-
-
-
-function reload_dev_menu($id_org, $id_dev_extmenu, $api_key): void{
+function reload_external_menu($id_org, $api_key, $current_menu_id): void{
     global $CFG;
-    $EXTM_LOADER = new Iiko_extmenu_loader($id_org, $id_dev_extmenu, $api_key);    
+    $EXTM_LOADER = new Iiko_extmenu_loader($id_org, $api_key, $current_menu_id);    
     $EXTM_LOADER->reload();
     $data = $EXTM_LOADER->get_data();
+    $meta_info = $EXTM_LOADER->get_info();
     try {        
         $savedFile = saveArrayToUniqueJson($data);
         echo "<br>File saved: " . $savedFile;
+        echo "<hr>";
+        echo "<pre>";
+        print_r($meta_info);
+        echo "</pre>";
     } catch (RuntimeException $e) {
         echo "<br>Error: " . $e->getMessage();
     }      
 }
 
+function new_load_external_menu($id_org, $api_key, $current_menu_id): void{
+    global $CFG;
+
+    echo "TEST!";
+
+    // try {        
+    //     $savedFile = saveArrayToUniqueJson($data);
+    //     echo "<br>File saved: " . $savedFile;
+    //     echo "<hr>";
+    //     echo "<pre>";
+    //     print_r($meta_info);
+    //     echo "</pre>";
+    // } catch (RuntimeException $e) {
+    //     echo "<br>Error: " . $e->getMessage();
+    // }      
+}
+
+
+
+
+/**
+ *  -----------------------
+ *  ALL ABOUT NOMENCLATURES
+ *  -----------------------
+ */
+
 function new_full_nomencl_parser($id_org, $api_key){
+    
     
     $NOMCL_LOADER = new Iiko_nomenclature_loader($id_org, $api_key);    
     $NOMCL_LOADER->reload(true, true);
@@ -222,6 +241,8 @@ function new_full_nomencl_parser($id_org, $api_key){
     print_r($temp_file_names);
     echo "</pre>";
 
+    die('TEST STOP!'); // ------------------------------------------ дальше что-то идет не так....
+
     $groups_as_category = false;
     $PARSER_TO_UNIMENU = new Iiko_parser_to_unimenu($temp_file_names);    
     $PARSER_TO_UNIMENU->parse($groups_as_category);
@@ -236,8 +257,14 @@ function new_full_nomencl_parser($id_org, $api_key){
     $selected_unimenu = $data["Menus"][$id_menu];
     $CHEFS_CONVERTER = new Conv_unimenu_to_chefs($selected_unimenu);
     $chefsdata = $CHEFS_CONVERTER->get_data();
-    
+    $infodata = $CHEFS_CONVERTER->get_info();    
+
     echo sprintf("<p>Конвертирование меню <strong>%s</strong> в CHEFS выполнено</p>", $data["Menus"][$id_menu]['name']);
+
+    echo "<pre>";
+    print_r($infodata);
+    echo "</pre>";
+
     echo "<pre>";
     print_r($chefsdata);
     echo "</pre>";    
@@ -245,9 +272,14 @@ function new_full_nomencl_parser($id_org, $api_key){
     $NOMENCL_DIVIDER->clean();
     $NOMCL_LOADER->clean(); 
     
-    
 }
 
+
+/**
+ *  -----------------
+ *  RENDER INDEX PAGE
+ *  -----------------
+ */
 
 
 function render_index_page(){
@@ -259,7 +291,7 @@ function render_index_page(){
 
         1. [Главная страница]
 
-        2. [reload dev extmenu] – загрузка внешнего (тестового) меню iiko в файл json
+        2. [reload external menu] – загрузка внешнего меню iiko в файл json
 
         3. [conv extmenu->chefs] - аналог js функции
 
@@ -270,8 +302,20 @@ function render_index_page(){
             - Загружает номенклатуру iiko в файл json
             - Делит ее на файлы. 
             - [Парсит в -> UNIMENU] 
-            - [UNIMENU -> CMEFS]        
-                
+            - [UNIMENU -> CHEFS]        
+
+        6. [new load external menu] 
+            – загрузка внешнего меню потоком.
+            Ключевые особенности:
+            -- Поэтапная обработка - каждый шаг отдельно
+            -- Мониторинг прогресса - видно сколько обработано
+            -- Очистка памяти - unset и gc_collect_cycles для больших данных
+            -- Гибкость - можно обрабатывать файлы сразу или позже
+            -- Безопасное удаление - все временные файлы удаляются
+
+
+        
+        
 
     </pre>
 
