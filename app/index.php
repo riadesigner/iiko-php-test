@@ -163,7 +163,9 @@ function get_and_save_iiko_params($id_cafe, $api_key): void {
 
 function convert_extmenu_to_chefs(): void {
 
-    $file_name= "json-info-formated-full-new.json";
+    // $file_name= "json-info-formated-full-new.json";
+    $file_name= "2026-02-16_05-49-52_f577c9e9-external.json";
+    
     $json_file_path = __dir__."/exports/$file_name";
     $extmenu = loadJsonFile($json_file_path);
 

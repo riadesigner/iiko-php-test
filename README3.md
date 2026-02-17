@@ -3,15 +3,12 @@
 Загруженное внешнее меню из Pizzaiolo (15-02-2026)
 - [iiko external menu (pizzaiolo)](app/exports/imported_external_menu-pizzaiolo-15-02-2026.json)
 
-## СТРУКТУРА
+## ПРЕОБРАЗОВАНИЕ СТРУКТУРЫ ИМПОРТИРОВАННОГО ИЗ IIKO ВНЕШНОГО МЕНЮ 
 
-В ответе json от iiko во внешнем меню есть:
+### 1 ЭТАП
 
-- itemCategories (__КАТЕГОРИИ__)
-- itemCategories->items (__ТОВАРЫ__)
-
-Внутри товаров есть Размеры, Группы модификаторов, Модификаторы и тд.   
-Из всего меню мы берем только некоторые поля. Вот они:
+Из всего ответа json от iiko во Внешнем меню меню    
+берем только некоторые поля, вот они:
 
 - itemCategories (__КАТЕГОРИИ__)
     {
@@ -19,22 +16,135 @@
     - name
     - items (__ТОВАРЫ__)
         {
+            - itemId
             - name
             - description
-            - 
-        }
+            - itemSizes
+                {
+                    - sizeCode
+                    - sizeName
+                    - isDefault
+                    - portionWeightGrams
+                    - itemModifierGroups (__ГРУППЫ МОДИФИКАТОРОВ__)
+                        {
+                            - name
+                            - description
+                            - restrictions (__ПАРАМЕТРЫ ГРУППУ МОДИФИКАТОРОВ__)
+                                {
+                                    - minQuantity
+                                    - maxQuantity
+                                    - freeQuantity
+                                    - byDefault
+                                }
+                            - items (__МОДИФИКАТОРЫ__)
+                                {
+                                    - name
+                                    - portionWeightGrams
+                                    - itemId
+                                    - prices
+                                        {
+                                            - price
+                                        }
+                                    - position
+                                    - measureUnitType
+                                },
+                                ...
+                        },
+                        ...
+                    - sizeId
+                    - nutritionPerHundredGrams 
+                        {
+                            - fats
+                            - proteins
+                            - carbs
+                            - energy                       
+                        } 
+                    - measureUnitType
+                    - prices 
+                        { 
+                            - price
+                        } 
+                    - isHidden
+                    - buttonImageUrl                                     
+                },
+                ...           
+            - modifiers
+            - orderItemType            
+        },
+        ...
     - isHidden
     },
-    {
-        ...
-    }
-
+    ...
    
 
-## CHEFSMENU PARSED
+### 2 ЭТАП
 
-1-iiko: [iiko external menu just loaded](app/exports/json-iiko-external-loaded.json)   
-2-chefs: [chefsmenu parsed file](app/exports/json-chefsmenu-current-parsed-after-import.json)   
+Переименовываем некоторые поля, а так же упрощаем часть структуры.    
+Получившуюся структуру будем называть __CHEFSMENU__.
 
-1-iiko - это загруженное внешнее меню (с тестового сервера)
-2-chefs - это преобразованное меню в текущий формат chefsmenu 
+Особенность формата chefsmenu в том (в том числе), что CATEGORIES и ITEMS (ТОВАРЫ) - хранятся как ассоциативный массив (с id ключами ), а MODIFIERS и ITEMS (ГРУППЫ МОДИФИКАТОРОВ и МОДИФИКАТОРЫ) - как обычные массивы (с индексами 0, 1, 2, ...);   
+
+При этом файл уменьшается с 7.5 мб до 1.1 мб.  
+
+Вот преобразованное меню в формат CHEFSMENU.  
+File: [chefsmenu parsed file](app/exports/2026-02-17_06-08-04_993a33b2-chefs.json)   
+
+Окончательная струтура:
+
+{
+    - id (EXTERNAL ID MENU)
+    - name 
+    - categories (__КАТЕГОРИИ__) 
+        {
+            - id
+            - name
+            - items (__ТОВАРЫ__)
+                {
+                    - id
+                    - name
+                    - description
+                    - sizes 
+                        {
+                            - sizeCode
+                            - sizeId
+                            - sizeName
+                            - isDefault
+                            - measureUnitType
+                            - portionWeightGrams
+                            - price
+                        },                        
+                        ...
+                    - imageUrl
+                    - modifiers (__ГРУППЫ МОДИФИКАТОРОВ__)
+                        {
+                            - modifierGroupId
+                            - name
+                            - restrictions (__ПАРАМЕТРЫ ГРУППЫ__)
+                                {
+                                    - minQuantity
+                                    - maxQuantity
+                                    - freeQuantity
+                                    - byDefault
+                                }
+                            - items (__МОДИФИКАТОРЫ__)
+                                {
+                                    - modifierId
+                                    - name
+                                    - price
+                                }
+                        }
+                    - orderItemType
+                    - nutritionPerHundredGrams
+                        {
+                            - fats
+                            - proteins
+                            - carbs
+                            - energy                                    
+                        }                    
+                },
+                ...
+        },
+        ...
+        
+}
+
