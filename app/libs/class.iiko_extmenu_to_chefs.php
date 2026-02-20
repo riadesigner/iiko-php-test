@@ -1,10 +1,8 @@
 <?php
 /**
- * ПРЕОБРАЗУЕМ ВНЕШНЕЕ МЕНЮ В CHEFSMENU (v-1.1.0)
+ * ПРЕОБРАЗУЕМ ВНЕШНЕЕ МЕНЮ В CHEFSMENU (v-1.2.0)
  *  
- * 17-02-2026 
- * - убрал лишние поля у модификаторов 
- * - оставил только одно описание калорий
+ * updated: 17-02-2026 
  * 
  * РЕАЛИЗАЦИЯ
  * особенность формата chefsmenu в том (в том числе), что 
@@ -82,18 +80,25 @@ class Iiko_extmenu_to_chefs {
                         $arr_m = [];
                         foreach ($size['itemModifierGroups'] as $modGroup) {
                             $m = [
-                                'modifierGroupId' => $modGroup['itemGroupId'] ?? null,
-                                'name' => $modGroup['name'] ?? null,
-                                'restrictions' => $modGroup['restrictions'] ?? null,
+                                'modifierGroupId' => $modGroup['itemGroupId'] ?? '',
+                                'name' => $modGroup['name'] ?? '',
+                                'restrictions' => [
+                                    'max' => $modGroup['restrictions']['max'] ?? 0,
+                                    'min' => $modGroup['restrictions']['min'] ?? 0,
+                                ],
                                 'items' => []
                             ];
 
                             foreach ($modGroup['items'] as $modifier) {
                                 $m['items'][] = [
-                                    'modifierId' => $modifier['itemId'] ?? null,
-                                    'name' => $modifier['name'] ?? null,
-                                    'price' => $modifier['prices'][0]['price'] ?? null
-                                ];
+                                    'modifierId' => $modifier['itemId'] ?? '',
+                                    'name' => $modifier['name'] ?? '',
+                                    'price' => $modifier['prices'][0]['price'] ?? 0,
+                                    'position' => $modifier['position'] ?? 0,
+                                    'portionWeightGrams' => $modifier['portionWeightGrams'] ?? 0,
+                                    'measureUnitType' => $modifier['measureUnitType'] ?? 'GRAM',
+                                    'byDefault' => $modifier['restrictions']['byDefault'] ?? 0,
+                                ];                                
                             }
 
                             $arr_m[] = $m;

@@ -39,12 +39,12 @@ require_once('libs/class.iiko_category_processor.php');
 <body>
 
     <ul class="top-menu">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/reload-extmenu">reload external menu</a></li>
-        <li><a href="/convert-extmenu-to-chefs">convert extmenu->chefs</a></li>
-        <li><a href="/params">Загр. параметры iiko</a></li>
-        <li><a href="/new-load-numenc">Новая загруз. номенкл.</a></li></li>        
-        <li><a href="/new-load-external-menu">Новая загруз. внешнего меню</a></li></li>                
+        <li><a href="/">1. Главная</a></li>
+        <li><a href="/reload-extmenu">2. reload external menu</a></li>
+        <li><a href="/convert-extmenu-to-chefs">3. convert extmenu->chefs</a></li>
+        <li><a href="/params">4. Загр. параметры iiko</a></li>
+        <li><a href="/new-load-numenc">5. Новая загруз. номенкл.</a></li></li>        
+        <li><a href="/new-load-external-menu">6. Новая загруз. внешнего меню</a></li></li>                
     </ul>
 
 <?php
@@ -184,7 +184,7 @@ function convert_extmenu_to_chefs(): void {
 
 function reload_external_menu($id_org, $api_key, $current_menu_id): void{
     global $CFG;
-    $EXTM_LOADER = new Iiko_extmenu_loader($id_org, $api_key, $current_menu_id);    
+    $EXTM_LOADER = new Iiko_extmenu_loader($id_org, $api_key, $current_menu_id, true);    
     $EXTM_LOADER->reload();
     $data = $EXTM_LOADER->get_data();
     $meta_info = $EXTM_LOADER->get_info();
@@ -324,8 +324,10 @@ function render_index_page(){
         1. [Главная страница]
 
         2. [reload external menu] – загрузка внешнего меню iiko в файл json
+        PRODUCTION
 
         3. [conv extmenu->chefs] - аналог js функции
+        PRODUCTION
 
         4. [Загрузить параметры iiko] - загружает параметры iiko в файл json и выводит название файла
            (ORGANIZATIONS, EXTERNALMENUS, TERMINALS, TABLES ...)
@@ -333,17 +335,22 @@ function render_index_page(){
         5. [Релоад номенкл.] - 
             - Загружает номенклатуру iiko в файл json
             - Делит ее на файлы. 
+            // дальше пока пауза .. что-то сломалось 
             - [Парсит в -> UNIMENU] 
             - [UNIMENU -> CHEFS]        
 
         6. [new load external menu] 
-            – загрузка внешнего меню потоком.
+            Претендент на замену варианту 2 ->
             Ключевые особенности:
-            -- Поэтапная обработка - каждый шаг отдельно
-            -- Мониторинг прогресса - видно сколько обработано
-            -- Очистка памяти - unset и gc_collect_cycles для больших данных
-            -- Гибкость - можно обрабатывать файлы сразу или позже
-            -- Безопасное удаление - все временные файлы удаляются
+            – Загрузка внешнего меню потоком.            
+            - Загрузка json минуя PHP сразу в файлы
+            .. остальное пока в работе
+            TODO
+            собрать из файлов оптимизированный json
+            в формате CHEFS 
+            
+
+            
 
 
         

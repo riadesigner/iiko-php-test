@@ -33,8 +33,6 @@
                                 {
                                     - minQuantity
                                     - maxQuantity
-                                    - freeQuantity
-                                    - byDefault
                                 }
                             - items (__МОДИФИКАТОРЫ__)
                                 {
@@ -45,10 +43,15 @@
                                         {
                                             - price
                                         }
+                                    - restrictions
+                                        {
+                                            - byDefault
+                                        }
                                     - position
                                     - measureUnitType
                                 },
                                 ...
+                            - isHidden
                         },
                         ...
                     - sizeId
@@ -82,12 +85,10 @@
 Переименовываем некоторые поля, а так же упрощаем часть структуры.    
 Получившуюся структуру будем называть __CHEFSMENU__.
 
-Особенность формата chefsmenu в том (в том числе), что CATEGORIES и ITEMS (ТОВАРЫ) - хранятся как ассоциативный массив (с id ключами ), а MODIFIERS и ITEMS (ГРУППЫ МОДИФИКАТОРОВ и МОДИФИКАТОРЫ) - как обычные массивы (с индексами 0, 1, 2, ...);   
-
-При этом файл уменьшается с 7.5 мб до 1.1 мб.  
+При этом файл уменьшается с 7.5 мб до 1.6 мб.  
 
 Вот преобразованное меню в формат CHEFSMENU.  
-File: [chefsmenu parsed file](app/exports/2026-02-17_06-08-04_993a33b2-chefs.json)   
+File: [chefsmenu parsed file](app/exports/2026-02-17_12-28-29_5e0de008-chefs.json)   
 
 Окончательная струтура:
 
@@ -123,14 +124,16 @@ File: [chefsmenu parsed file](app/exports/2026-02-17_06-08-04_993a33b2-chefs.jso
                                 {
                                     - minQuantity
                                     - maxQuantity
-                                    - freeQuantity
-                                    - byDefault
                                 }
                             - items (__МОДИФИКАТОРЫ__)
                                 {
                                     - modifierId
                                     - name
                                     - price
+                                    - position                                    
+                                    - portionWeightGrams
+                                    - measureUnitType
+                                    - byDefault                                    
                                 }
                         }
                     - orderItemType
@@ -148,3 +151,9 @@ File: [chefsmenu parsed file](app/exports/2026-02-17_06-08-04_993a33b2-chefs.jso
         
 }
 
+Особенность формата chefsmenu в том (в том числе), что CATEGORIES и ITEMS (ТОВАРЫ) - хранятся как ассоциативный массив (с id ключами ), а MODIFIERS и ITEMS (ГРУППЫ МОДИФИКАТОРОВ и МОДИФИКАТОРЫ) - как обычные массивы (с индексами 0, 1, 2, ...);   
+
+ИССЛЕДОВАТЬ
+
+На каком-то этапе было решено использовать для КАТЕГОРИЙ и ТОВАРОВ способ хранения в ассоциативном массиве, а не просто в массиве. Возможно это было не лучшее решение.  
+Возможно позже можно попробовать уйти от этого решения. 

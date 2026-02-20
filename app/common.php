@@ -96,13 +96,45 @@ function iiko_get_info($url,$headers,$params){
           }
       }      
       $curl = curl_init();
-      curl_setopt_array($curl, [CURLOPT_URL => 'https://api-ru.iiko.services/'.$url, CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => '', CURLOPT_MAXREDIRS => 15, CURLOPT_TIMEOUT => 10, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => 'POST', CURLOPT_POSTFIELDS => json_encode($params, JSON_UNESCAPED_UNICODE), CURLOPT_HTTPHEADER => $header]);
-      $json = curl_exec($curl);        
-      curl_close($curl);
+      curl_setopt_array($curl, [
+		CURLOPT_URL => 'https://api-ru.iiko.services/'.$url, 
+		CURLOPT_RETURNTRANSFER => true, 
+		CURLOPT_ENCODING => '', 
+		CURLOPT_MAXREDIRS => 15, 
+		CURLOPT_TIMEOUT => 30, 
+		CURLOPT_FOLLOWLOCATION => true, 
+		CURLOPT_HTTP_VERSION => 
+		CURL_HTTP_VERSION_1_1, 
+		CURLOPT_CUSTOMREQUEST => 'POST', 
+		CURLOPT_POSTFIELDS => json_encode($params, JSON_UNESCAPED_UNICODE), 
+		CURLOPT_HTTPHEADER => $header
+		]);
 
-      // glog($json);
+      	$json = curl_exec($curl);      
+		$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		$error = curl_error($curl);	    
+      	curl_close($curl);
+
+		if ($error) {
+			// Логируем ошибку cURL
+			glog("cURL Error: " . $error);
+			return ['error' => 'curl_error', 'message' => $error];
+		}
+		
+		if ($httpCode >= 400) {
+			glog("HTTP Error: " . $httpCode . " Response: " . $json);
+			return ['error' => 'http_error', 'code' => $httpCode, 'response' => $json];
+		}
+    
             
-      return json_decode($json, true);
+		$decoded = json_decode($json, true);
+
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			error_log("JSON Error: " . json_last_error_msg() . " Response: " . $json);
+			return ['error' => 'json_error', 'message' => json_last_error_msg()];
+		}		
+
+      	return $decoded;
 }
 
 function iiko_tables_res_parse(array $restaurantSections): array{

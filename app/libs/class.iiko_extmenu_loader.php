@@ -2,7 +2,7 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * 	ПОЛУЧАЕМ ВНЕШНЕЕ МЕНЮ ИЗ IIKO v-1.0.1
+ * 	ПОЛУЧАЕМ ВНЕШНЕЕ МЕНЮ ИЗ IIKO v-1.0.2
  * 
 */
 class Iiko_extmenu_loader{
@@ -13,18 +13,21 @@ class Iiko_extmenu_loader{
 	private array $DATA;
 	private string $TOKEN;
 	private string $INFO;
+	private bool $LOG;
 	
 	/**
 	 * @param <string> $id_org / required
 	 * @param <string> $iiko_api_key / required
 	 * @param <string> $externalMenuId / required
+	 * @param <bool> $log
 	 * @return <Iiko_extmenu_loader>
 	 * 
 	*/
-	function __construct(string $id_org, string $iiko_api_key="", $externalMenuId = ""){
+	function __construct(string $id_org, string $iiko_api_key="", $externalMenuId = "", $log=false){
 		$this->ID_ORG = $id_org;
 		$this->IIKO_API_KEY = $iiko_api_key;	
 		$this->EXTERNAL_MENU_ID = $externalMenuId;
+		$this->LOG = $log;
 		return $this;
 	}
 
@@ -54,7 +57,7 @@ class Iiko_extmenu_loader{
 		$params  = ["apiLogin" => $this->IIKO_API_KEY];
 		$res = iiko_get_info($url,$headers,$params);		
 		if(!isset($res['token'])){
-			glogError(print_r($res,1));
+			$this->LOG && glogError(print_r($res,1));
 			$errMessage = $res['errorDescription']??"";
 			die("неправильный API KEY! ".$this->IIKO_API_KEY.",<br> ".$errMessage);		
 		}	
@@ -62,11 +65,12 @@ class Iiko_extmenu_loader{
 	}
 
 	private function load_extmenu(): array{
-		// --------------------------------------------
-		// получаем все меню с ценовыми категориями
-		// TODO: надо сделать выбор в админке на случай, 
-		// если есть ценовые категории
-		// --------------------------------------------
+		// ----------------------------------------------------------
+		// получаем список имеющихся меню, а также ценовые категории
+		// TODO: надо сделать выбор ценовой категории в админке 
+		// на случай, если вдруг есть какие-то ценовые категории.
+		// По умолчанию мы вообще их не используем для получения меню.
+		// -----------------------------------------------------------
 		$url     = 'api/2/menu';
 		$headers = [
 			"Content-Type"=>"application/json",
@@ -77,8 +81,8 @@ class Iiko_extmenu_loader{
 		$priceCategories = $res['priceCategories']??[];
 		$currentPriceCategory = count($priceCategories)>0 ? $priceCategories[0]['id'] : null;		
 		
-		glog('получаем все меню с ценовыми категориями'.print_r($res,1)); 
-		glog('currentPriceCategory = '.$currentPriceCategory);
+		$this->LOG && glog('получаем все меню с ценовыми категориями'.print_r($res,1)); 
+		$this->LOG && glog('currentPriceCategory = '.$currentPriceCategory);
 
 		// ----------------------------------------------------
 		// получаем Меню по его Id с Базовой ценовой категорией
@@ -99,11 +103,14 @@ class Iiko_extmenu_loader{
 			$params['priceCategoryId'] = $currentPriceCategory;
 		}
 
+		$this->LOG && glog("START LOAD EXTERNAL MENU: ".$url.", PARAMS:".print_r($params,1));
+		
+
 		$res = iiko_get_info($url,$headers,$params);
 		
 		if(empty($res)){						
-			$errMessage = "не удалось загрузить меню. не хватило памяти";
-			glogError($errMessage);
+			$errMessage = "не удалось загрузить меню. не хватило памяти или timeout";
+			$this->LOG && glogError($errMessage);
 			die($errMessage);
 		}
 		return $res;
