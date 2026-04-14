@@ -2,7 +2,9 @@
 /**
  * ПРЕОБРАЗУЕМ ВНЕШНЕЕ МЕНЮ В CHEFSMENU (v-1.2.0)
  *  
- * updated: 17-02-2026 
+ * updated: 14-04-2026 
+ * исправил ошибку в minQuantity&maxQuantity (было просто min&max) 
+ * в restrictions группы модификаторов 
  * 
  * РЕАЛИЗАЦИЯ
  * особенность формата chefsmenu в том (в том числе), что 
@@ -83,8 +85,8 @@ class Iiko_extmenu_to_chefs {
                                 'modifierGroupId' => $modGroup['itemGroupId'] ?? '',
                                 'name' => $modGroup['name'] ?? '',
                                 'restrictions' => [
-                                    'max' => $modGroup['restrictions']['max'] ?? 0,
-                                    'min' => $modGroup['restrictions']['min'] ?? 0,
+                                    'max' => $modGroup['restrictions']['maxQuantity'] ?? 0,
+                                    'min' => $modGroup['restrictions']['minQuantity'] ?? 0,
                                 ],
                                 'items' => []
                             ];
