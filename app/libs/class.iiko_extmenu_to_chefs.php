@@ -1,6 +1,6 @@
 <?php
 /**
- * ПРЕОБРАЗУЕМ ВНЕШНЕЕ МЕНЮ В CHEFSMENU (v-1.2.0)
+ * ПРЕОБРАЗУЕМ ВНЕШНЕЕ МЕНЮ В CHEFSMENU (v-1.2.1)
  *  
  * updated: 14-04-2026 
  * исправил ошибку в minQuantity&maxQuantity (было просто min&max) 
